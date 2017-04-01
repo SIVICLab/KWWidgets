@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWHSVColorSelector : public vtkKWCompositeWidget
 {
 public:
   static vtkKWHSVColorSelector* New();
-  vtkTypeRevisionMacro(vtkKWHSVColorSelector,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWHSVColorSelector,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

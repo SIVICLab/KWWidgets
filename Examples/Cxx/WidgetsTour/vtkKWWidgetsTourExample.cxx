@@ -39,7 +39,7 @@ public:
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWWidgetsTourExample );
-vtkCxxRevisionMacro(vtkKWWidgetsTourExample, "$Revision: 1.8 $");
+//vtkCxxRevisionMacro(vtkKWWidgetsTourExample, "$Revision: 1.8 $");
 
 //----------------------------------------------------------------------------
 vtkKWWidgetsTourExample::vtkKWWidgetsTourExample()

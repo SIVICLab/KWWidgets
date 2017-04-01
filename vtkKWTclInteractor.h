@@ -30,7 +30,7 @@ class KWWidgets_EXPORT vtkKWTclInteractor : public vtkKWTopLevel
 {
 public:
   static vtkKWTclInteractor* New();
-  vtkTypeRevisionMacro(vtkKWTclInteractor, vtkKWTopLevel);
+  vtkTypeMacro(vtkKWTclInteractor, vtkKWTopLevel);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

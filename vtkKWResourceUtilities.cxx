@@ -31,7 +31,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWResourceUtilities);
-vtkCxxRevisionMacro(vtkKWResourceUtilities, "$Revision: 1.24 $");
+//vtkCxxRevisionMacro(vtkKWResourceUtilities, "$Revision: 1.24 $");
 
 //----------------------------------------------------------------------------
 int vtkKWResourceUtilities::ReadImage(

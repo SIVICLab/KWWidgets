@@ -28,7 +28,7 @@
 #include <vtksys/ios/sstream>
 #include <vtksys/stl/string>
 
-vtkCxxRevisionMacro(vtkKWStartupPageWidget, "1.21");
+//vtkCxxRevisionMacro(vtkKWStartupPageWidget, "1.21");
 vtkStandardNewMacro(vtkKWStartupPageWidget);
 
 #define VTK_KW_SPW_OPEN_TAG        "open_section"

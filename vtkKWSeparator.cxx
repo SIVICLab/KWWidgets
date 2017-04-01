@@ -17,7 +17,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWSeparator );
-vtkCxxRevisionMacro(vtkKWSeparator, "$Revision: 1.3 $");
+//vtkCxxRevisionMacro(vtkKWSeparator, "$Revision: 1.3 $");
 
 //----------------------------------------------------------------------------
 vtkKWSeparator::vtkKWSeparator()

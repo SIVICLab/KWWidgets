@@ -35,7 +35,7 @@ MAINTENANCE, SUPPORT, UPDATE, ENHANCEMENTS, OR MODIFICATIONS.
 
 //---------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWVolumePropertyHelper);
-vtkCxxRevisionMacro(vtkKWVolumePropertyHelper, "$Revision: 1.3 $");
+//vtkCxxRevisionMacro(vtkKWVolumePropertyHelper, "$Revision: 1.3 $");
 
 //----------------------------------------------------------------------------
 void vtkKWVolumePropertyHelper::ApplyScalarOpacityPreset(

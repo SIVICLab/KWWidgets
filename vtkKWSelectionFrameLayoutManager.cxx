@@ -78,7 +78,7 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWSelectionFrameLayoutManager);
-vtkCxxRevisionMacro(vtkKWSelectionFrameLayoutManager, "$Revision: 1.90 $");
+//vtkCxxRevisionMacro(vtkKWSelectionFrameLayoutManager, "$Revision: 1.90 $");
 
 //----------------------------------------------------------------------------
 class vtkKWSelectionFrameLayoutManagerInternals
@@ -2255,9 +2255,9 @@ int vtkKWSelectionFrameLayoutManager::AppendWidgetsToImageData(
           rwwidget->SetOffScreenRendering(offscreen);
 
           int ext[6];
-          w2i_filters[idx]->GetOutput()->GetWholeExtent(ext);
+          w2i_filters[idx]->GetOutput()->GetExtent(ext);
           pad_filters[idx] = vtkImageConstantPad::New();
-          pad_filters[idx]->SetInput(w2i_filters[idx]->GetOutput());
+          pad_filters[idx]->SetInputConnection(w2i_filters[idx]->GetOutputPort());
           pad_filters[idx]->SetConstant(255);
           pad_filters[idx]->SetOutputWholeExtent(
             ext[0] - spacing, ext[1] + spacing,
@@ -2265,14 +2265,14 @@ int vtkKWSelectionFrameLayoutManager::AppendWidgetsToImageData(
             ext[4], ext[5]);
           pad_filters[idx]->Update();
 
-          append_filters[j]->AddInput(pad_filters[idx]->GetOutput());
+          append_filters[j]->AddInputConnection(pad_filters[idx]->GetOutputPort());
           }
         }
       }
 
     if (append_filters[j]->GetNumberOfInputConnections(0))
       {
-      append_all->AddInput(append_filters[j]->GetOutput());
+      append_all->AddInputConnection(append_filters[j]->GetOutputPort());
       append_filters[j]->Update();
       }
     }
@@ -2415,7 +2415,7 @@ int vtkKWSelectionFrameLayoutManager::SaveScreenshotAllWidgetsToFile(
   if (!strcmp(ext, ".bmp"))
     {
     vtkBMPWriter *bmp = vtkBMPWriter::New();
-    bmp->SetInput(iData);
+    bmp->SetInputData(iData);
     bmp->SetFileName(fname);
     bmp->Write();
     if (bmp->GetErrorCode() == vtkErrorCode::OutOfDiskSpaceError)
@@ -2427,7 +2427,7 @@ int vtkKWSelectionFrameLayoutManager::SaveScreenshotAllWidgetsToFile(
   else if (!strcmp(ext, ".tif"))
     {
     vtkTIFFWriter *tif = vtkTIFFWriter::New();
-    tif->SetInput(iData);
+    tif->SetInputData(iData);
     tif->SetFileName(fname);
     tif->Write();
     if (tif->GetErrorCode() == vtkErrorCode::OutOfDiskSpaceError)
@@ -2439,7 +2439,7 @@ int vtkKWSelectionFrameLayoutManager::SaveScreenshotAllWidgetsToFile(
   else if (!strcmp(ext, ".ppm"))
     {
     vtkPNMWriter *pnm = vtkPNMWriter::New();
-    pnm->SetInput(iData);
+    pnm->SetInputData(iData);
     pnm->SetFileName(fname);
     pnm->Write();
     if (pnm->GetErrorCode() == vtkErrorCode::OutOfDiskSpaceError)
@@ -2451,7 +2451,7 @@ int vtkKWSelectionFrameLayoutManager::SaveScreenshotAllWidgetsToFile(
   else if (!strcmp(ext, ".png"))
     {
     vtkPNGWriter *png = vtkPNGWriter::New();
-    png->SetInput(iData);
+    png->SetInputData(iData);
     png->SetFileName(fname);
     png->Write();
     if (png->GetErrorCode() == vtkErrorCode::OutOfDiskSpaceError)
@@ -2463,7 +2463,7 @@ int vtkKWSelectionFrameLayoutManager::SaveScreenshotAllWidgetsToFile(
   else if (!strcmp(ext, ".jpg"))
     {
     vtkJPEGWriter *jpg = vtkJPEGWriter::New();
-    jpg->SetInput(iData);
+    jpg->SetInputData(iData);
     jpg->SetFileName(fname);
     jpg->Write();
     if (jpg->GetErrorCode() == vtkErrorCode::OutOfDiskSpaceError)

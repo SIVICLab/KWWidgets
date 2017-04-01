@@ -48,7 +48,7 @@ class KWWidgets_EXPORT vtkKWTree : public vtkKWCoreWidget
 {
 public:
   static vtkKWTree* New();
-  vtkTypeRevisionMacro(vtkKWTree,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWTree,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

@@ -26,7 +26,7 @@ class KWWidgets_EXPORT vtkKWBWidgetsInit : public vtkObject
 {
 public:
   static vtkKWBWidgetsInit* New();
-  vtkTypeRevisionMacro(vtkKWBWidgetsInit,vtkObject);
+  vtkTypeMacro(vtkKWBWidgetsInit,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

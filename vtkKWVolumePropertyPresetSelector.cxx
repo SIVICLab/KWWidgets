@@ -37,7 +37,7 @@ const char *vtkKWVolumePropertyPresetSelector::TypeColumnName  = "Type";
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWVolumePropertyPresetSelector);
-vtkCxxRevisionMacro(vtkKWVolumePropertyPresetSelector, "1.9");
+//vtkCxxRevisionMacro(vtkKWVolumePropertyPresetSelector, "1.9");
 
 //----------------------------------------------------------------------------
 class vtkKWVolumePropertyPresetSelectorInternals

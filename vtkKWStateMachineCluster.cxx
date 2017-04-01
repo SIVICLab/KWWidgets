@@ -22,7 +22,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWStateMachineCluster);
-vtkCxxRevisionMacro(vtkKWStateMachineCluster, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWStateMachineCluster, "$Revision: 1.4 $");
 
 vtkIdType vtkKWStateMachineCluster::IdCounter = 1;
 

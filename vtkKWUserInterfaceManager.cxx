@@ -23,7 +23,7 @@
 #include <vtksys/stl/algorithm>
 
 //----------------------------------------------------------------------------
-vtkCxxRevisionMacro(vtkKWUserInterfaceManager, "$Revision: 1.24 $");
+//vtkCxxRevisionMacro(vtkKWUserInterfaceManager, "$Revision: 1.24 $");
 
 //----------------------------------------------------------------------------
 class vtkKWUserInterfaceManagerInternals

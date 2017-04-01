@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWRadioButtonSet : public vtkKWWidgetSet
 {
 public:
   static vtkKWRadioButtonSet* New();
-  vtkTypeRevisionMacro(vtkKWRadioButtonSet,vtkKWWidgetSet);
+  vtkTypeMacro(vtkKWRadioButtonSet,vtkKWWidgetSet);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

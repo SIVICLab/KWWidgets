@@ -24,7 +24,7 @@
 
 #include <vtksys/ios/sstream>
 
-vtkCxxRevisionMacro(vtkKWHSVColorSelector, "$Revision: 1.24 $");
+//vtkCxxRevisionMacro(vtkKWHSVColorSelector, "$Revision: 1.24 $");
 vtkStandardNewMacro(vtkKWHSVColorSelector);
 
 #define VTK_KW_HSV_SEL_POINT_RADIUS_MIN     2

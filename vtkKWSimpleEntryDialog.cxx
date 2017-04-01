@@ -25,7 +25,7 @@
 //----------------------------------------------------------------------------
 
 vtkStandardNewMacro( vtkKWSimpleEntryDialog );
-vtkCxxRevisionMacro(vtkKWSimpleEntryDialog, "$Revision: 1.17 $");
+//vtkCxxRevisionMacro(vtkKWSimpleEntryDialog, "$Revision: 1.17 $");
 
 //----------------------------------------------------------------------------
 vtkKWSimpleEntryDialog::vtkKWSimpleEntryDialog()

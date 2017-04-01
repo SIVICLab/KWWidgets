@@ -25,7 +25,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWFrameWithScrollbar );
-vtkCxxRevisionMacro(vtkKWFrameWithScrollbar, "$Revision: 1.21 $");
+//vtkCxxRevisionMacro(vtkKWFrameWithScrollbar, "$Revision: 1.21 $");
 
 //----------------------------------------------------------------------------
 class vtkKWFrameWithScrollbarInternals

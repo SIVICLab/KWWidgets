@@ -33,7 +33,7 @@ class KWWidgets_EXPORT vtkKWMatrixWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWMatrixWidget* New();
-  vtkTypeRevisionMacro(vtkKWMatrixWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWMatrixWidget,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

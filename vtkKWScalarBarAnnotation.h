@@ -34,7 +34,7 @@ class KWWidgets_EXPORT vtkKWScalarBarAnnotation : public vtkKWCheckButtonWithPop
 {
 public:
   static vtkKWScalarBarAnnotation* New();
-  vtkTypeRevisionMacro(vtkKWScalarBarAnnotation,vtkKWCheckButtonWithPopupFrame);
+  vtkTypeMacro(vtkKWScalarBarAnnotation,vtkKWCheckButtonWithPopupFrame);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

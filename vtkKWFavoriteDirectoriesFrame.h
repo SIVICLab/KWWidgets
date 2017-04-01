@@ -40,7 +40,7 @@ class KWWidgets_EXPORT vtkKWFavoriteDirectoriesFrame : public vtkKWCompositeWidg
 {
 public:
   static vtkKWFavoriteDirectoriesFrame* New();
-  vtkTypeRevisionMacro(vtkKWFavoriteDirectoriesFrame,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWFavoriteDirectoriesFrame,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
    
   // Description:

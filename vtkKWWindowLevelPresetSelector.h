@@ -43,7 +43,7 @@ class KWWidgets_EXPORT vtkKWWindowLevelPresetSelector : public vtkKWPresetSelect
 {
 public:
   static vtkKWWindowLevelPresetSelector* New();
-  vtkTypeRevisionMacro(vtkKWWindowLevelPresetSelector, vtkKWPresetSelector);
+  vtkTypeMacro(vtkKWWindowLevelPresetSelector, vtkKWPresetSelector);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

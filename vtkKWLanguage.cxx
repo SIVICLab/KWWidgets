@@ -26,7 +26,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWLanguage);
-vtkCxxRevisionMacro(vtkKWLanguage, "$Revision: 1.7 $");
+//vtkCxxRevisionMacro(vtkKWLanguage, "$Revision: 1.7 $");
 
 //----------------------------------------------------------------------------
 void vtkKWLanguage::SetCurrentLanguage(int lang)

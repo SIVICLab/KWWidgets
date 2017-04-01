@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWSplashScreen : public vtkKWTopLevel
 {
 public:
   static vtkKWSplashScreen* New();
-  vtkTypeRevisionMacro(vtkKWSplashScreen, vtkKWTopLevel);
+  vtkTypeMacro(vtkKWSplashScreen, vtkKWTopLevel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

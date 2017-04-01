@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWVolumePropertyHelper : public vtkObject
 {
 public:
   static vtkKWVolumePropertyHelper* New();
-  vtkTypeRevisionMacro(vtkKWVolumePropertyHelper, vtkObject);
+  vtkTypeMacro(vtkKWVolumePropertyHelper, vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

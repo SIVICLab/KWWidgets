@@ -63,7 +63,7 @@ class vtkKWWidgetSetInternals;
 class KWWidgets_EXPORT vtkKWWidgetSet : public vtkKWCompositeWidget
 {
 public:
-  vtkTypeRevisionMacro(vtkKWWidgetSet,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWWidgetSet,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

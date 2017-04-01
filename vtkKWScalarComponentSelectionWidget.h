@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWScalarComponentSelectionWidget : public vtkKWComposi
 public:
   static vtkKWScalarComponentSelectionWidget* New();
   void PrintSelf(ostream& os, vtkIndent indent);
-  vtkTypeRevisionMacro(vtkKWScalarComponentSelectionWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWScalarComponentSelectionWidget,vtkKWCompositeWidget);
 
   // Description:
   // Are the components independent of each other?

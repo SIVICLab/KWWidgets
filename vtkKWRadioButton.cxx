@@ -19,7 +19,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWRadioButton );
-vtkCxxRevisionMacro(vtkKWRadioButton, "$Revision: 1.33 $");
+//vtkCxxRevisionMacro(vtkKWRadioButton, "$Revision: 1.33 $");
 
 //----------------------------------------------------------------------------
 void vtkKWRadioButton::CreateWidget()

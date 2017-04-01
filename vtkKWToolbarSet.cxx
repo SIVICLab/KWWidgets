@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 vtkStandardNewMacro(vtkKWToolbarSet);
-vtkCxxRevisionMacro(vtkKWToolbarSet, "$Revision: 1.46 $");
+//vtkCxxRevisionMacro(vtkKWToolbarSet, "$Revision: 1.46 $");
 
 //----------------------------------------------------------------------------
 class vtkKWToolbarSetInternals

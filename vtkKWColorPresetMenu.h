@@ -30,7 +30,7 @@ class KWWidgets_EXPORT vtkKWColorPresetMenu : public vtkKWMenuButtonWithLabel
 {
 public:
   static vtkKWColorPresetMenu* New();
-  vtkTypeRevisionMacro(vtkKWColorPresetMenu,vtkKWMenuButtonWithLabel);
+  vtkTypeMacro(vtkKWColorPresetMenu,vtkKWMenuButtonWithLabel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

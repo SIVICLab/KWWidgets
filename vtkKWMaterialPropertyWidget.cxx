@@ -35,7 +35,7 @@
 
 //----------------------------------------------------------------------------
 
-vtkCxxRevisionMacro(vtkKWMaterialPropertyWidget, "$Revision: 1.29 $");
+//vtkCxxRevisionMacro(vtkKWMaterialPropertyWidget, "$Revision: 1.29 $");
 
 //----------------------------------------------------------------------------
 class vtkKWMaterialPropertyWidgetInternals

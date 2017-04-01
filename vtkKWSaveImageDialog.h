@@ -24,7 +24,7 @@ class KWWidgets_EXPORT vtkKWSaveImageDialog : public vtkKWLoadSaveDialog
 {
 public:
   static vtkKWSaveImageDialog* New();
-  vtkTypeRevisionMacro(vtkKWSaveImageDialog,vtkKWLoadSaveDialog);
+  vtkTypeMacro(vtkKWSaveImageDialog,vtkKWLoadSaveDialog);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description::

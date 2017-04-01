@@ -29,7 +29,7 @@ class KWWidgets_EXPORT vtkKWSplitFrame : public vtkKWCompositeWidget
 {
 public:
   static vtkKWSplitFrame* New();
-  vtkTypeRevisionMacro(vtkKWSplitFrame,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWSplitFrame,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

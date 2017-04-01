@@ -41,7 +41,7 @@ class KWWidgets_EXPORT @WidgetType@WithSpinButtons : public vtkKWWidgetWithSpinB
 {
 public:
   static @WidgetType@WithSpinButtons* New();
-  vtkTypeRevisionMacro(@WidgetType@WithSpinButtons, vtkKWWidgetWithSpinButtons);
+  vtkTypeMacro(@WidgetType@WithSpinButtons, vtkKWWidgetWithSpinButtons);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

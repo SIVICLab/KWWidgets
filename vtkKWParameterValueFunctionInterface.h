@@ -56,7 +56,7 @@
 class KWWidgets_EXPORT vtkKWParameterValueFunctionInterface : public vtkKWWidgetWithLabel
 {
 public:
-  vtkTypeRevisionMacro(vtkKWParameterValueFunctionInterface,vtkKWWidgetWithLabel);
+  vtkTypeMacro(vtkKWParameterValueFunctionInterface,vtkKWWidgetWithLabel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

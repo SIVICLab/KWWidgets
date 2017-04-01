@@ -51,7 +51,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTree );
-vtkCxxRevisionMacro(vtkKWTree, "$Revision: 1.49 $");
+//vtkCxxRevisionMacro(vtkKWTree, "$Revision: 1.49 $");
 
 //----------------------------------------------------------------------------
 class vtkKWTreeInternals

@@ -41,7 +41,7 @@
 #include <vtksys/stl/algorithm>
 #include <vtksys/SystemTools.hxx>
 
-vtkCxxRevisionMacro(vtkKWParameterValueFunctionEditor, "$Revision: 1.115 $");
+//vtkCxxRevisionMacro(vtkKWParameterValueFunctionEditor, "$Revision: 1.115 $");
 
 //----------------------------------------------------------------------------
 #define VTK_KW_PVFE_POINT_RADIUS_MIN         2
@@ -6692,7 +6692,7 @@ void vtkKWParameterValueFunctionEditor::RedrawHistogram()
       {
       if (hist_image)
         {
-        int *wext = hist_image->GetWholeExtent();
+        int *wext = hist_image->GetExtent();
         int width = wext[1] - wext[0] + 1;
         int height = wext[3] - wext[2] + 1;
         int pixel_size = hist_image->GetNumberOfScalarComponents();
@@ -6706,7 +6706,7 @@ void vtkKWParameterValueFunctionEditor::RedrawHistogram()
         }
       if (secondary_hist_image)
         {
-        int *wext = secondary_hist_image->GetWholeExtent();
+        int *wext = secondary_hist_image->GetExtent();
         int width = wext[1] - wext[0] + 1;
         int height = wext[3] - wext[2] + 1;
         int pixel_size = secondary_hist_image->GetNumberOfScalarComponents();
@@ -6721,11 +6721,11 @@ void vtkKWParameterValueFunctionEditor::RedrawHistogram()
       if (hist_image && secondary_hist_image)
         {
         vtkImageBlend *blend = vtkImageBlend::New();
-        blend->AddInput(hist_image);
-        blend->AddInput(secondary_hist_image);
+        blend->SetInputData(0, hist_image);
+        blend->SetInputData(0, secondary_hist_image);
         vtkImageData *img_data = blend->GetOutput();
-        img_data->Update();
-        int *wext = img_data->GetWholeExtent();
+        blend->Update();
+        int *wext = img_data->GetExtent();
         int width = wext[1] - wext[0] + 1;
         int height = wext[3] - wext[2] + 1;
         int pixel_size = img_data->GetNumberOfScalarComponents();

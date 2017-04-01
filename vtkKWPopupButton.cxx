@@ -26,7 +26,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWPopupButton);
-vtkCxxRevisionMacro(vtkKWPopupButton, "$Revision: 1.32 $");
+//vtkCxxRevisionMacro(vtkKWPopupButton, "$Revision: 1.32 $");
 
 //----------------------------------------------------------------------------
 vtkKWPopupButton::vtkKWPopupButton()

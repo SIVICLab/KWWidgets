@@ -26,7 +26,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWizardWorkflow);
-vtkCxxRevisionMacro(vtkKWWizardWorkflow, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(vtkKWWizardWorkflow, "$Revision: 1.6 $");
 
 //----------------------------------------------------------------------------
 class vtkKWWizardWorkflowInternals

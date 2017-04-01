@@ -33,7 +33,7 @@ class KWWidgets_EXPORT vtkKWChangeColorButton : public vtkKWWidgetWithLabel
 {
 public:
   static vtkKWChangeColorButton* New();
-  vtkTypeRevisionMacro(vtkKWChangeColorButton,vtkKWWidgetWithLabel);
+  vtkTypeMacro(vtkKWChangeColorButton,vtkKWWidgetWithLabel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

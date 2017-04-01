@@ -42,7 +42,7 @@ class KWWidgets_EXPORT vtkKWDirectoryExplorer : public vtkKWCompositeWidget
 {
 public:
   static vtkKWDirectoryExplorer* New();
-  vtkTypeRevisionMacro(vtkKWDirectoryExplorer,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWDirectoryExplorer,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

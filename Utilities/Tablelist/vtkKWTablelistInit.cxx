@@ -22,7 +22,7 @@
  
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTablelistInit );
-vtkCxxRevisionMacro(vtkKWTablelistInit, "$Revision: 1.7 $");
+//vtkCxxRevisionMacro(vtkKWTablelistInit, "$Revision: 1.7 $");
 
 int vtkKWTablelistInit::Initialized = 0;
 

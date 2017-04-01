@@ -21,7 +21,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWMyGreenTheme);
-vtkCxxRevisionMacro(vtkKWMyGreenTheme, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(vtkKWMyGreenTheme, "$Revision: 1.6 $");
 
 //----------------------------------------------------------------------------
 void vtkKWMyGreenTheme::Install()

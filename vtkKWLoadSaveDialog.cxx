@@ -17,7 +17,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWLoadSaveDialog );
-vtkCxxRevisionMacro(vtkKWLoadSaveDialog, "$Revision: 1.58 $");
+//vtkCxxRevisionMacro(vtkKWLoadSaveDialog, "$Revision: 1.58 $");
 
 //----------------------------------------------------------------------------
 void vtkKWLoadSaveDialog::PrintSelf(ostream& os, vtkIndent indent)

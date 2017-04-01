@@ -32,7 +32,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWWidget );
-vtkCxxRevisionMacro(vtkKWWidget, "$Revision: 1.163 $");
+//vtkCxxRevisionMacro(vtkKWWidget, "$Revision: 1.163 $");
 
 //----------------------------------------------------------------------------
 class vtkKWWidgetInternals

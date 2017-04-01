@@ -22,7 +22,7 @@
  
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWBWidgetsInit );
-vtkCxxRevisionMacro(vtkKWBWidgetsInit, "$Revision: 1.3 $");
+//vtkCxxRevisionMacro(vtkKWBWidgetsInit, "$Revision: 1.3 $");
 
 int vtkKWBWidgetsInit::Initialized = 0;
 

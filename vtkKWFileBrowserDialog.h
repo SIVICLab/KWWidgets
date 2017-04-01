@@ -45,7 +45,7 @@ class KWWidgets_EXPORT vtkKWFileBrowserDialog : public vtkKWDialog
 {
 public:
   static vtkKWFileBrowserDialog* New();
-  vtkTypeRevisionMacro(vtkKWFileBrowserDialog,vtkKWDialog);
+  vtkTypeMacro(vtkKWFileBrowserDialog,vtkKWDialog);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

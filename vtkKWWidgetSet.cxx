@@ -23,7 +23,7 @@
 #include <vtksys/ios/sstream> 
 
 //----------------------------------------------------------------------------
-vtkCxxRevisionMacro(vtkKWWidgetSet, "$Revision: 1.25 $");
+//vtkCxxRevisionMacro(vtkKWWidgetSet, "$Revision: 1.25 $");
 
 //----------------------------------------------------------------------------
 class vtkKWWidgetSetInternals

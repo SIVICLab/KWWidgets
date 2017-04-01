@@ -27,7 +27,7 @@
 
 //-------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTclInteractor );
-vtkCxxRevisionMacro(vtkKWTclInteractor, "$Revision: 1.47 $");
+//vtkCxxRevisionMacro(vtkKWTclInteractor, "$Revision: 1.47 $");
 
 //----------------------------------------------------------------------------
 vtkKWTclInteractor::vtkKWTclInteractor()

@@ -24,7 +24,7 @@ extern "C" int Tkdnd_Init(Tcl_Interp *interp);
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTkDnDInit );
-vtkCxxRevisionMacro(vtkKWTkDnDInit, "$Revision: 1.3 $");
+//vtkCxxRevisionMacro(vtkKWTkDnDInit, "$Revision: 1.3 $");
 
 int vtkKWTkDnDInit::Initialized = 0;
 

@@ -24,7 +24,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWizardStep);
-vtkCxxRevisionMacro(vtkKWWizardStep, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(vtkKWWizardStep, "$Revision: 1.6 $");
 
 vtkIdType vtkKWWizardStep::IdCounter = 1;
 vtkKWWizardStepCleanup vtkKWWizardStep::Cleanup;

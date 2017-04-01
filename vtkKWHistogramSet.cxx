@@ -24,7 +24,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWHistogramSet);
-vtkCxxRevisionMacro(vtkKWHistogramSet, "$Revision: 1.8 $");
+//vtkCxxRevisionMacro(vtkKWHistogramSet, "$Revision: 1.8 $");
 
 //----------------------------------------------------------------------------
 class vtkKWHistogramSetInternals

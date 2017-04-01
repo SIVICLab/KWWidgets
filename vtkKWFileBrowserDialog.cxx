@@ -39,7 +39,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWFileBrowserDialog );
-vtkCxxRevisionMacro(vtkKWFileBrowserDialog, "$Revision: 1.48 $");
+//vtkCxxRevisionMacro(vtkKWFileBrowserDialog, "$Revision: 1.48 $");
 
 //----------------------------------------------------------------------------
 class vtkKWFileBrowserDialogInternals

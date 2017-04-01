@@ -43,7 +43,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWLogWidget );
-vtkCxxRevisionMacro(vtkKWLogWidget, "$Revision: 1.15 $");
+//vtkCxxRevisionMacro(vtkKWLogWidget, "$Revision: 1.15 $");
 
 vtkIdType vtkKWLogWidget::IdCounter = 1;
 

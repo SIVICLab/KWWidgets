@@ -46,7 +46,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWKeyBindingsWidget );
-vtkCxxRevisionMacro(vtkKWKeyBindingsWidget, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWKeyBindingsWidget, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 class vtkKWKeyBindingsWidgetInternals

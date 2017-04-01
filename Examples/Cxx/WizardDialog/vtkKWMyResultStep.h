@@ -10,7 +10,7 @@ class vtkKWMyResultStep : public vtkKWWizardStep
 {
 public:
   static vtkKWMyResultStep* New();
-  vtkTypeRevisionMacro(vtkKWMyResultStep,vtkKWWizardStep);
+  vtkTypeMacro(vtkKWMyResultStep,vtkKWWizardStep);
 
   // Description:
   // Show/hide the UI, check if this finish step is reachable.

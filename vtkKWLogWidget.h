@@ -45,7 +45,7 @@ class KWWidgets_EXPORT vtkKWLogWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWLogWidget* New();
-  vtkTypeRevisionMacro(vtkKWLogWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWLogWidget,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

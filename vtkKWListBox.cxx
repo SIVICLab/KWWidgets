@@ -18,7 +18,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWListBox);
-vtkCxxRevisionMacro(vtkKWListBox, "$Revision: 1.58 $");
+//vtkCxxRevisionMacro(vtkKWListBox, "$Revision: 1.58 $");
 
 //----------------------------------------------------------------------------
 vtkKWListBox::vtkKWListBox()

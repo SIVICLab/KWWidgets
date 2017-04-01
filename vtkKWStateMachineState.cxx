@@ -19,7 +19,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWStateMachineState);
-vtkCxxRevisionMacro(vtkKWStateMachineState, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWStateMachineState, "$Revision: 1.2 $");
 
 vtkIdType vtkKWStateMachineState::IdCounter = 1;
 

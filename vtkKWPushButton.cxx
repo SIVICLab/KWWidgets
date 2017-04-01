@@ -20,7 +20,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWPushButton );
-vtkCxxRevisionMacro(vtkKWPushButton, "$Revision: 1.38 $");
+//vtkCxxRevisionMacro(vtkKWPushButton, "$Revision: 1.38 $");
 
 //----------------------------------------------------------------------------
 vtkKWPushButton::vtkKWPushButton()

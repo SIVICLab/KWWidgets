@@ -18,7 +18,7 @@
 #include "vtkObjectFactory.h"
 
 //----------------------------------------------------------------------------
-vtkCxxRevisionMacro(vtkKWStateMachineWriter, "$Revision: 1.1 $");
+//vtkCxxRevisionMacro(vtkKWStateMachineWriter, "$Revision: 1.1 $");
 
 vtkCxxSetObjectMacro(vtkKWStateMachineWriter,Input,vtkKWStateMachine);
 

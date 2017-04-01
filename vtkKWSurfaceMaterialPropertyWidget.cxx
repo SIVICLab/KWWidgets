@@ -21,7 +21,7 @@
 //----------------------------------------------------------------------------
 
 vtkStandardNewMacro(vtkKWSurfaceMaterialPropertyWidget);
-vtkCxxRevisionMacro(vtkKWSurfaceMaterialPropertyWidget, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWSurfaceMaterialPropertyWidget, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 vtkKWSurfaceMaterialPropertyWidget::vtkKWSurfaceMaterialPropertyWidget()

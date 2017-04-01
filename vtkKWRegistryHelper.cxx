@@ -24,7 +24,7 @@
 
 #include <ctype.h>
 
-vtkCxxRevisionMacro(vtkKWRegistryHelper, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWRegistryHelper, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 vtkKWRegistryHelper *vtkKWRegistryHelper::New()

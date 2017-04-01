@@ -28,7 +28,7 @@ class KWWidgets_EXPORT vtkKWProgressGauge : public vtkKWCompositeWidget
 {
 public:
   static vtkKWProgressGauge* New();
-  vtkTypeRevisionMacro(vtkKWProgressGauge,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWProgressGauge,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

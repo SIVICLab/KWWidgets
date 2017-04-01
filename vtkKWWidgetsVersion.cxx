@@ -16,7 +16,7 @@
 #include "vtkObjectFactory.h"
 
 //----------------------------------------------------------------------------
-vtkCxxRevisionMacro(vtkKWWidgetsVersion, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWWidgetsVersion, "$Revision: 1.2 $");
 vtkStandardNewMacro(vtkKWWidgetsVersion);
 
 //----------------------------------------------------------------------------

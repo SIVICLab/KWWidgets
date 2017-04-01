@@ -107,14 +107,14 @@ const char *vtkKWApplication::MostRecentVersionLaunchedRegKey = "MostRecentVersi
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWApplication );
-vtkCxxRevisionMacro(vtkKWApplication, "$Revision: 1.356 $");
+//vtkCxxRevisionMacro(vtkKWApplication, "$Revision: 1.356 $");
 
 extern "C" int Kwwidgets_Init(Tcl_Interp *interp);
 
 // Initialize VTK Tcl. If we have not wrapped VTK for Tcl, then
 // we can only rely on Common and the two renderwidgets
 
-extern "C" int Vtkcommontcl_Init(Tcl_Interp *interp);
+extern "C" int Vtkcommoncoretcl_Init(Tcl_Interp *interp);
 
 #ifdef KWWidgets_BUILD_VTK_WIDGETS
 extern "C" int Vtktkrenderwidget_Init(Tcl_Interp *interp);
@@ -750,7 +750,7 @@ Tcl_Interp *vtkKWApplication::InitializeVTK(Tcl_Interp *interp, ostream *err)
 {
   // Initialize VTK
 
-  if (Vtkcommontcl_Init(interp) != TCL_OK) 
+  if (Vtkcommoncoretcl_Init(interp) != TCL_OK) 
     {
     if (err)
       {

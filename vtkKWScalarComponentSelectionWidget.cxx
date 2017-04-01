@@ -24,7 +24,7 @@
 #include <vtksys/ios/sstream>
 
 //----------------------------------------------------------------------------
-vtkCxxRevisionMacro(vtkKWScalarComponentSelectionWidget, "$Revision: 1.23 $");
+//vtkCxxRevisionMacro(vtkKWScalarComponentSelectionWidget, "$Revision: 1.23 $");
 vtkStandardNewMacro(vtkKWScalarComponentSelectionWidget);
 
 //----------------------------------------------------------------------------

@@ -99,7 +99,7 @@ static unsigned char image_copy[] =
 
 // ----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWTextPropertyEditor);
-vtkCxxRevisionMacro(vtkKWTextPropertyEditor, "$Revision: 1.23 $");
+//vtkCxxRevisionMacro(vtkKWTextPropertyEditor, "$Revision: 1.23 $");
 
 // ----------------------------------------------------------------------------
 vtkKWTextPropertyEditor::vtkKWTextPropertyEditor()

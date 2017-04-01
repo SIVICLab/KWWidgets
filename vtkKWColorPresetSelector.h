@@ -43,7 +43,7 @@ class KWWidgets_EXPORT vtkKWColorPresetSelector : public vtkKWPresetSelector
 {
 public:
   static vtkKWColorPresetSelector* New();
-  vtkTypeRevisionMacro(vtkKWColorPresetSelector, vtkKWPresetSelector);
+  vtkTypeMacro(vtkKWColorPresetSelector, vtkKWPresetSelector);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

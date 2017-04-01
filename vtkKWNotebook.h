@@ -33,7 +33,7 @@ class KWWidgets_EXPORT vtkKWNotebook : public vtkKWCompositeWidget
 {
 public:
   static vtkKWNotebook* New();
-  vtkTypeRevisionMacro(vtkKWNotebook,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWNotebook,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

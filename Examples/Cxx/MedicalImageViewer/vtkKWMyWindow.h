@@ -13,7 +13,7 @@ class vtkKWMyWindow : public vtkKWWindow
 {
 public:
   static vtkKWMyWindow* New();
-  vtkTypeRevisionMacro(vtkKWMyWindow,vtkKWWindow);
+  vtkTypeMacro(vtkKWMyWindow,vtkKWWindow);
 
   // Description:
   // Callbacks

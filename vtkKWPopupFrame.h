@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWPopupFrame : public vtkKWCompositeWidget
 {
 public:
   static vtkKWPopupFrame* New();
-  vtkTypeRevisionMacro(vtkKWPopupFrame,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWPopupFrame,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

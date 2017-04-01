@@ -30,7 +30,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWInternationalization);
-vtkCxxRevisionMacro(vtkKWInternationalization, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(vtkKWInternationalization, "$Revision: 1.6 $");
 
 //----------------------------------------------------------------------------
 void vtkKWInternationalization::SetCurrentTextDomain(const char *domain_name)

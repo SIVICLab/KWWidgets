@@ -26,7 +26,7 @@ class KWWidgets_EXPORT vtkKWTkDnDInit : public vtkObject
 {
 public:
   static vtkKWTkDnDInit* New();
-  vtkTypeRevisionMacro(vtkKWTkDnDInit,vtkObject);
+  vtkTypeMacro(vtkKWTkDnDInit,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

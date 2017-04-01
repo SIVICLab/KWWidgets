@@ -29,7 +29,7 @@ class KWWidgets_EXPORT vtkKWCheckButtonWithPopupFrame : public vtkKWPopupFrame
 {
 public:
   static vtkKWCheckButtonWithPopupFrame* New();
-  vtkTypeRevisionMacro(vtkKWCheckButtonWithPopupFrame,vtkKWPopupFrame);
+  vtkTypeMacro(vtkKWCheckButtonWithPopupFrame,vtkKWPopupFrame);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

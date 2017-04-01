@@ -29,7 +29,7 @@ class KWWidgets_EXPORT vtkKWExtent : public vtkKWCompositeWidget
 {
 public:
   static vtkKWExtent* New();
-  vtkTypeRevisionMacro(vtkKWExtent,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWExtent,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

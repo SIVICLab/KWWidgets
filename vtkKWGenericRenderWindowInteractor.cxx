@@ -27,7 +27,7 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWGenericRenderWindowInteractor);
-vtkCxxRevisionMacro(vtkKWGenericRenderWindowInteractor, "$Revision: 1.8 $");
+//vtkCxxRevisionMacro(vtkKWGenericRenderWindowInteractor, "$Revision: 1.8 $");
 
 //----------------------------------------------------------------------------
 vtkKWGenericRenderWindowInteractor::vtkKWGenericRenderWindowInteractor()

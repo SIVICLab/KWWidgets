@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWRange : public vtkKWWidgetWithLabel
 {
 public:
   static vtkKWRange* New();
-  vtkTypeRevisionMacro(vtkKWRange,vtkKWWidgetWithLabel);
+  vtkTypeMacro(vtkKWRange,vtkKWWidgetWithLabel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

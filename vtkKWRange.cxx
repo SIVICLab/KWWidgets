@@ -26,7 +26,7 @@
 #include <vtksys/ios/sstream>
 
 vtkStandardNewMacro( vtkKWRange );
-vtkCxxRevisionMacro(vtkKWRange, "$Revision: 1.74 $");
+//vtkCxxRevisionMacro(vtkKWRange, "$Revision: 1.74 $");
 
 #define VTK_KW_RANGE_MIN_SLIDER_SIZE        2
 #define VTK_KW_RANGE_MIN_THICKNESS          (2*VTK_KW_RANGE_MIN_SLIDER_SIZE+1)

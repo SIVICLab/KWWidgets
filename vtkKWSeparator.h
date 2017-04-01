@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWSeparator : public vtkKWFrame
 {
 public:
   static vtkKWSeparator* New();
-  vtkTypeRevisionMacro(vtkKWSeparator, vtkKWFrame);
+  vtkTypeMacro(vtkKWSeparator, vtkKWFrame);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

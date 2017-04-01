@@ -20,7 +20,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWScale );
-vtkCxxRevisionMacro(vtkKWScale, "$Revision: 1.120 $");
+//vtkCxxRevisionMacro(vtkKWScale, "$Revision: 1.120 $");
 
 //----------------------------------------------------------------------------
 vtkKWScale::vtkKWScale()

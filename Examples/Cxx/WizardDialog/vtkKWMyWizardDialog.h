@@ -12,7 +12,7 @@ class vtkKWMyWizardDialog : public vtkKWWizardDialog
 {
 public:
   static vtkKWMyWizardDialog* New();
-  vtkTypeRevisionMacro(vtkKWMyWizardDialog,vtkKWWizardDialog);
+  vtkTypeMacro(vtkKWMyWizardDialog,vtkKWWizardDialog);
 
   // Description:
   // Access to the steps.

@@ -19,7 +19,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWUserInterfacePanel);
-vtkCxxRevisionMacro(vtkKWUserInterfacePanel, "$Revision: 1.20 $");
+//vtkCxxRevisionMacro(vtkKWUserInterfacePanel, "$Revision: 1.20 $");
 
 //----------------------------------------------------------------------------
 vtkKWUserInterfacePanel::vtkKWUserInterfacePanel()

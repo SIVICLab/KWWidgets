@@ -52,7 +52,7 @@ class KWWidgets_EXPORT vtkKWColorPickerWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWColorPickerWidget* New();
-  vtkTypeRevisionMacro(vtkKWColorPickerWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWColorPickerWidget,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

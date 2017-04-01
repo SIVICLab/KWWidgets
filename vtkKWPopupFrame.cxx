@@ -20,7 +20,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWPopupFrame );
-vtkCxxRevisionMacro(vtkKWPopupFrame, "$Revision: 1.14 $");
+//vtkCxxRevisionMacro(vtkKWPopupFrame, "$Revision: 1.14 $");
 
 //----------------------------------------------------------------------------
 vtkKWPopupFrame::vtkKWPopupFrame()

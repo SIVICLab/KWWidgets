@@ -52,7 +52,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWNotebook);
-vtkCxxRevisionMacro(vtkKWNotebook, "$Revision: 1.114 $");
+//vtkCxxRevisionMacro(vtkKWNotebook, "$Revision: 1.114 $");
 
 //----------------------------------------------------------------------------
 class vtkKWNotebookInternals

@@ -24,7 +24,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWObject);
-vtkCxxRevisionMacro(vtkKWObject, "$Revision: 1.60 $");
+//vtkCxxRevisionMacro(vtkKWObject, "$Revision: 1.60 $");
 
 vtkCxxSetObjectMacro(vtkKWObject, Application, vtkKWApplication);
 

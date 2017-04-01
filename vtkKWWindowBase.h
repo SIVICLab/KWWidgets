@@ -35,7 +35,7 @@ class KWWidgets_EXPORT vtkKWWindowBase : public vtkKWTopLevel
 {
 public:
   static vtkKWWindowBase* New();
-  vtkTypeRevisionMacro(vtkKWWindowBase,vtkKWTopLevel);
+  vtkTypeMacro(vtkKWWindowBase,vtkKWTopLevel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

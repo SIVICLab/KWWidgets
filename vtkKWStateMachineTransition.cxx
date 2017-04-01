@@ -26,7 +26,7 @@ vtkCxxSetObjectMacro(vtkKWStateMachineTransition,DestinationState,vtkKWStateMach
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWStateMachineTransition);
-vtkCxxRevisionMacro(vtkKWStateMachineTransition, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWStateMachineTransition, "$Revision: 1.2 $");
 
 vtkIdType vtkKWStateMachineTransition::IdCounter = 1;
 

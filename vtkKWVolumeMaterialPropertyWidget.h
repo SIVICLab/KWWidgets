@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWVolumeMaterialPropertyWidget : public vtkKWMaterialP
 {
 public:
   static vtkKWVolumeMaterialPropertyWidget *New();
-  vtkTypeRevisionMacro(vtkKWVolumeMaterialPropertyWidget, vtkKWMaterialPropertyWidget);
+  vtkTypeMacro(vtkKWVolumeMaterialPropertyWidget, vtkKWMaterialPropertyWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

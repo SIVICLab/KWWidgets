@@ -35,7 +35,7 @@ class KWWidgets_EXPORT vtkKWPiecewiseFunctionEditor : public vtkKWParameterValue
 {
 public:
   static vtkKWPiecewiseFunctionEditor* New();
-  vtkTypeRevisionMacro(vtkKWPiecewiseFunctionEditor,vtkKWParameterValueHermiteFunctionEditor);
+  vtkTypeMacro(vtkKWPiecewiseFunctionEditor,vtkKWParameterValueHermiteFunctionEditor);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

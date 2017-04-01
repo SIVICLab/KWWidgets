@@ -22,7 +22,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMatrixWidget );
-vtkCxxRevisionMacro(vtkKWMatrixWidget, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(vtkKWMatrixWidget, "$Revision: 1.6 $");
 
 //----------------------------------------------------------------------------
 vtkKWMatrixWidget::vtkKWMatrixWidget()

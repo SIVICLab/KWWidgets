@@ -13,7 +13,7 @@ class KWMyApplication_EXPORT vtkKWMyWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWMyWidget* New();
-  vtkTypeRevisionMacro(vtkKWMyWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWMyWidget,vtkKWCompositeWidget);
 
   // Description:
   // Callbacks

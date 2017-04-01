@@ -32,7 +32,7 @@ class KWWidgets_EXPORT vtkKWLoadSaveButton : public vtkKWPushButton
 {
 public:
   static vtkKWLoadSaveButton* New();
-  vtkTypeRevisionMacro(vtkKWLoadSaveButton, vtkKWPushButton);
+  vtkTypeMacro(vtkKWLoadSaveButton, vtkKWPushButton);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

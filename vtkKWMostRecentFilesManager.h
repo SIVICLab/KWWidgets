@@ -39,7 +39,7 @@ class KWWidgets_EXPORT vtkKWMostRecentFilesManager : public vtkKWObject
 {
 public:
   static vtkKWMostRecentFilesManager* New();
-  vtkTypeRevisionMacro(vtkKWMostRecentFilesManager,vtkKWObject);
+  vtkTypeMacro(vtkKWMostRecentFilesManager,vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

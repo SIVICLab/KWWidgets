@@ -40,7 +40,7 @@ const char *vtkKWColorPresetSelector::ColorColumnName = "Color";
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWColorPresetSelector);
-vtkCxxRevisionMacro(vtkKWColorPresetSelector, "$Revision: 1.37 $");
+//vtkCxxRevisionMacro(vtkKWColorPresetSelector, "$Revision: 1.37 $");
 
 //----------------------------------------------------------------------------
 vtkKWColorPresetSelector::vtkKWColorPresetSelector()

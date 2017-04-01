@@ -37,7 +37,7 @@ const char *vtkKWToolbar::WidgetsAspectRegKey = "ToolbarFlatButtons";
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWToolbar );
-vtkCxxRevisionMacro(vtkKWToolbar, "$Revision: 1.77 $");
+//vtkCxxRevisionMacro(vtkKWToolbar, "$Revision: 1.77 $");
 
 //----------------------------------------------------------------------------
 class vtkKWToolbarInternals

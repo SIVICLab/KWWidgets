@@ -55,7 +55,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWDirectoryExplorer );
-vtkCxxRevisionMacro(vtkKWDirectoryExplorer, "$Revision: 1.51 $");
+//vtkCxxRevisionMacro(vtkKWDirectoryExplorer, "$Revision: 1.51 $");
 
 vtkIdType vtkKWDirectoryExplorer::IdCounter = 1;
 

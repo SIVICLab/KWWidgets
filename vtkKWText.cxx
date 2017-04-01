@@ -36,7 +36,7 @@ const char *vtkKWText::TagFgDarkGreen = "_fg_dark_green_tag_";
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWText);
-vtkCxxRevisionMacro(vtkKWText, "$Revision: 1.63 $");
+//vtkCxxRevisionMacro(vtkKWText, "$Revision: 1.63 $");
 
 //----------------------------------------------------------------------------
 class vtkKWTextInternals

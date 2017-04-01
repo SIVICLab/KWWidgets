@@ -29,7 +29,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWOptionDataBase);
-vtkCxxRevisionMacro(vtkKWOptionDataBase, "$Revision: 1.7 $");
+//vtkCxxRevisionMacro(vtkKWOptionDataBase, "$Revision: 1.7 $");
 
 //----------------------------------------------------------------------------
 class vtkKWOptionDataBaseInternals

@@ -31,7 +31,7 @@ class KWWidgets_EXPORT vtkKWScale : public vtkKWCoreWidget
 {
 public:
   static vtkKWScale* New();
-  vtkTypeRevisionMacro(vtkKWScale,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWScale,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

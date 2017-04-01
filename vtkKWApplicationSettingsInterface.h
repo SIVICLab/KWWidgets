@@ -34,7 +34,7 @@ class KWWidgets_EXPORT vtkKWApplicationSettingsInterface : public vtkKWUserInter
 {
 public:
   static vtkKWApplicationSettingsInterface* New();
-  vtkTypeRevisionMacro(vtkKWApplicationSettingsInterface,vtkKWUserInterfacePanel);
+  vtkTypeMacro(vtkKWApplicationSettingsInterface,vtkKWUserInterfacePanel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

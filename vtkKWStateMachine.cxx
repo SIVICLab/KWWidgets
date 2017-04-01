@@ -29,7 +29,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWStateMachine);
-vtkCxxRevisionMacro(vtkKWStateMachine, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(vtkKWStateMachine, "$Revision: 1.6 $");
 
 //----------------------------------------------------------------------------
 class vtkKWStateMachineInternals

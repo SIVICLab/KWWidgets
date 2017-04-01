@@ -18,7 +18,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWFrame);
-vtkCxxRevisionMacro(vtkKWFrame, "$Revision: 1.34 $");
+//vtkCxxRevisionMacro(vtkKWFrame, "$Revision: 1.34 $");
 
 //----------------------------------------------------------------------------
 void vtkKWFrame::CreateWidget()

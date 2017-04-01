@@ -20,7 +20,7 @@
 #include <vtksys/ios/sstream> 
 
 //----------------------------------------------------------------------------
-vtkCxxRevisionMacro(vtkKWWidgetWithScrollbars, "$Revision: 1.11 $");
+//vtkCxxRevisionMacro(vtkKWWidgetWithScrollbars, "$Revision: 1.11 $");
 
 //----------------------------------------------------------------------------
 vtkKWWidgetWithScrollbars::vtkKWWidgetWithScrollbars()

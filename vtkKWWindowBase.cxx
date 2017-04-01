@@ -36,7 +36,7 @@
 
 #include <vtksys/SystemTools.hxx>
 
-vtkCxxRevisionMacro(vtkKWWindowBase, "$Revision: 1.67 $");
+//vtkCxxRevisionMacro(vtkKWWindowBase, "$Revision: 1.67 $");
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWindowBase );

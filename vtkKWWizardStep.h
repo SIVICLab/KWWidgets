@@ -50,7 +50,7 @@ class KWWidgets_EXPORT vtkKWWizardStep : public vtkKWObject
 {
 public:
   static vtkKWWizardStep* New();
-  vtkTypeRevisionMacro(vtkKWWizardStep, vtkKWObject);
+  vtkTypeMacro(vtkKWWizardStep, vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

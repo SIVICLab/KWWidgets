@@ -73,7 +73,7 @@ class KWWidgets_EXPORT vtkKWInternationalization : public vtkObject
 {
 public:
   static vtkKWInternationalization* New();
-  vtkTypeRevisionMacro(vtkKWInternationalization,vtkObject);
+  vtkTypeMacro(vtkKWInternationalization,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

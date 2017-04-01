@@ -23,7 +23,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWDragAndDropTargetSet );
-vtkCxxRevisionMacro(vtkKWDragAndDropTargetSet, "$Revision: 1.16 $");
+//vtkCxxRevisionMacro(vtkKWDragAndDropTargetSet, "$Revision: 1.16 $");
 
 //----------------------------------------------------------------------------
 class vtkKWDragAndDropTargetSetInternals

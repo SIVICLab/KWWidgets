@@ -28,7 +28,7 @@ class KWWidgets_EXPORT vtkKWEventMap : public vtkObject
 {
 public:
   static vtkKWEventMap *New();
-  vtkTypeRevisionMacro(vtkKWEventMap, vtkObject);
+  vtkTypeMacro(vtkKWEventMap, vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // In the following code:

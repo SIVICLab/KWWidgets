@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWWidget : public vtkKWObject
 {
 public:
   static vtkKWWidget* New();
-  vtkTypeRevisionMacro(vtkKWWidget,vtkKWObject);
+  vtkTypeMacro(vtkKWWidget,vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

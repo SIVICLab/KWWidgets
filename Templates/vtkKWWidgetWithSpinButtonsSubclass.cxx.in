@@ -22,7 +22,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(@WidgetType@WithSpinButtons);
-vtkCxxRevisionMacro(@WidgetType@WithSpinButtons, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(@WidgetType@WithSpinButtons, "$Revision: 1.6 $");
 
 //----------------------------------------------------------------------------
 @WidgetType@WithSpinButtons::@WidgetType@WithSpinButtons()

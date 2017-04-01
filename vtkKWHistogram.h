@@ -30,7 +30,7 @@ class KWWidgets_EXPORT vtkKWHistogram : public vtkObject
 {
 public:
   static vtkKWHistogram* New();
-  vtkTypeRevisionMacro(vtkKWHistogram,vtkObject);
+  vtkTypeMacro(vtkKWHistogram,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

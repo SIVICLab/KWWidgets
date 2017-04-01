@@ -34,7 +34,7 @@ class KWWidgets_EXPORT vtkKWSpinBox : public vtkKWCoreWidget
 {
 public:
   static vtkKWSpinBox* New();
-  vtkTypeRevisionMacro(vtkKWSpinBox,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWSpinBox,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

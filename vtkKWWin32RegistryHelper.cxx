@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <vtksys/ios/sstream> 
 
-vtkCxxRevisionMacro(vtkKWWin32RegistryHelper, "$Revision: 1.7 $");
+//vtkCxxRevisionMacro(vtkKWWin32RegistryHelper, "$Revision: 1.7 $");
 vtkStandardNewMacro( vtkKWWin32RegistryHelper );
 
 #define BUFFER_SIZE 8192

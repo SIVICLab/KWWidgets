@@ -39,7 +39,7 @@ class KWWidgets_EXPORT vtkKWTheme : public vtkKWObject
 {
 public:
   static vtkKWTheme* New();
-  vtkTypeRevisionMacro(vtkKWTheme, vtkKWObject);
+  vtkTypeMacro(vtkKWTheme, vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

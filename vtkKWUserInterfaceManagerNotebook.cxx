@@ -28,7 +28,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWUserInterfaceManagerNotebook);
-vtkCxxRevisionMacro(vtkKWUserInterfaceManagerNotebook, "$Revision: 1.12 $");
+//vtkCxxRevisionMacro(vtkKWUserInterfaceManagerNotebook, "$Revision: 1.12 $");
 
 //----------------------------------------------------------------------------
 class vtkKWUserInterfaceManagerNotebookInternals

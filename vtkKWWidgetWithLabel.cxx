@@ -19,7 +19,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWidgetWithLabel);
-vtkCxxRevisionMacro(vtkKWWidgetWithLabel, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWWidgetWithLabel, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 vtkKWWidgetWithLabel::vtkKWWidgetWithLabel()

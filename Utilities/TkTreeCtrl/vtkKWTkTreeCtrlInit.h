@@ -26,7 +26,7 @@ class KWWidgets_EXPORT vtkKWTkTreeCtrlInit : public vtkObject
 {
 public:
   static vtkKWTkTreeCtrlInit* New();
-  vtkTypeRevisionMacro(vtkKWTkTreeCtrlInit,vtkObject);
+  vtkTypeMacro(vtkKWTkTreeCtrlInit,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

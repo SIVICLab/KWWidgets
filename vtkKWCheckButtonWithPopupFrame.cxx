@@ -21,7 +21,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWCheckButtonWithPopupFrame );
-vtkCxxRevisionMacro(vtkKWCheckButtonWithPopupFrame, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWCheckButtonWithPopupFrame, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 vtkKWCheckButtonWithPopupFrame::vtkKWCheckButtonWithPopupFrame()

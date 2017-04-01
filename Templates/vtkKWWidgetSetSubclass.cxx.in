@@ -20,7 +20,7 @@
 //----------------------------------------------------------------------------
 
 vtkStandardNewMacro(@WidgetType@Set);
-vtkCxxRevisionMacro(@WidgetType@Set, "$Revision: 1.7 $");
+//vtkCxxRevisionMacro(@WidgetType@Set, "$Revision: 1.7 $");
 
 //----------------------------------------------------------------------------
 @WidgetType@* @WidgetType@Set::GetWidget(int id)

@@ -15,7 +15,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMyOperand2Step );
-vtkCxxRevisionMacro(vtkKWMyOperand2Step, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWMyOperand2Step, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 vtkKWMyOperand2Step::vtkKWMyOperand2Step()

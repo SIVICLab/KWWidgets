@@ -31,7 +31,7 @@ public:
   // Description:
   // Standard New and type methods
   static vtkKWClipboardHelper* New();
-  vtkTypeRevisionMacro(vtkKWClipboardHelper, vtkObject);
+  vtkTypeMacro(vtkKWClipboardHelper, vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

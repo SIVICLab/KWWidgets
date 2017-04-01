@@ -40,7 +40,7 @@ class KWWidgets_EXPORT vtkKWColorSpectrumWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWColorSpectrumWidget* New();
-  vtkTypeRevisionMacro(vtkKWColorSpectrumWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWColorSpectrumWidget,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

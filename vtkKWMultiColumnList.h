@@ -49,7 +49,7 @@ class KWWidgets_EXPORT vtkKWMultiColumnList : public vtkKWCoreWidget
 {
 public:
   static vtkKWMultiColumnList* New();
-  vtkTypeRevisionMacro(vtkKWMultiColumnList,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWMultiColumnList,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
     
   // Description:

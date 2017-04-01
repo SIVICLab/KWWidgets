@@ -44,7 +44,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWColorPickerWidget );
-vtkCxxRevisionMacro(vtkKWColorPickerWidget, "$Revision: 1.21 $");
+//vtkCxxRevisionMacro(vtkKWColorPickerWidget, "$Revision: 1.21 $");
 
 //----------------------------------------------------------------------------
 class vtkKWColorPickerWidgetInternals

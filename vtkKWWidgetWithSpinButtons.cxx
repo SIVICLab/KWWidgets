@@ -19,7 +19,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWidgetWithSpinButtons);
-vtkCxxRevisionMacro(vtkKWWidgetWithSpinButtons, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWWidgetWithSpinButtons, "$Revision: 1.4 $");
 
 //----------------------------------------------------------------------------
 vtkKWWidgetWithSpinButtons::vtkKWWidgetWithSpinButtons()

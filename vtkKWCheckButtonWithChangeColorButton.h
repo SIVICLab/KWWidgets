@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWCheckButtonWithChangeColorButton : public vtkKWCompo
 {
 public:
   static vtkKWCheckButtonWithChangeColorButton* New();
-  vtkTypeRevisionMacro(vtkKWCheckButtonWithChangeColorButton, vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWCheckButtonWithChangeColorButton, vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

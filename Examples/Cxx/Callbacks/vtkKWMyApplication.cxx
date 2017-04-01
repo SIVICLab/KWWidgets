@@ -5,7 +5,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMyApplication );
-vtkCxxRevisionMacro(vtkKWMyApplication, "$Revision: 1.1 $");
+//vtkCxxRevisionMacro(vtkKWMyApplication, "$Revision: 1.1 $");
 
 //----------------------------------------------------------------------------
 vtkKWMyApplication::vtkKWMyApplication()

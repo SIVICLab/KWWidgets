@@ -8,7 +8,7 @@ class KWMyApplication_EXPORT vtkKWMyApplication : public vtkKWApplication
 {
 public:
   static vtkKWMyApplication* New();
-  vtkTypeRevisionMacro(vtkKWMyApplication,vtkKWApplication);
+  vtkTypeMacro(vtkKWMyApplication,vtkKWApplication);
 
   // Description:
   // Set/Get a value

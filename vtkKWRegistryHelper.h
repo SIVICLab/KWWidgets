@@ -30,7 +30,7 @@ public:
   // Description:
   // Standard New and type methods
   static vtkKWRegistryHelper* New();
-  vtkTypeRevisionMacro(vtkKWRegistryHelper, vtkObject);
+  vtkTypeMacro(vtkKWRegistryHelper, vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

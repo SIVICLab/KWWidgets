@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWWin32RegistryHelper : public vtkKWRegistryHelper
 {
 public:
   static vtkKWWin32RegistryHelper* New();
-  vtkTypeRevisionMacro(vtkKWWin32RegistryHelper, vtkKWRegistryHelper);
+  vtkTypeMacro(vtkKWWin32RegistryHelper, vtkKWRegistryHelper);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

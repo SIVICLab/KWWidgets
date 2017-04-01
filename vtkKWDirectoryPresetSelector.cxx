@@ -40,7 +40,7 @@ const char *vtkKWDirectoryPresetSelector::DirectoryEnabledColumnName = "Director
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWDirectoryPresetSelector);
-vtkCxxRevisionMacro(vtkKWDirectoryPresetSelector, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWDirectoryPresetSelector, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 vtkKWDirectoryPresetSelector::vtkKWDirectoryPresetSelector()

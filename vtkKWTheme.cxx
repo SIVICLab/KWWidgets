@@ -22,7 +22,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWTheme);
-vtkCxxRevisionMacro(vtkKWTheme, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWTheme, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 vtkKWTheme::vtkKWTheme()

@@ -38,7 +38,7 @@ class KWWidgets_EXPORT vtkKWSpinButtons : public vtkKWCompositeWidget
 {
 public:
   static vtkKWSpinButtons* New();
-  vtkTypeRevisionMacro(vtkKWSpinButtons,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWSpinButtons,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

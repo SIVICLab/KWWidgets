@@ -38,7 +38,7 @@ class KWWidgets_EXPORT vtkKWColorTransferFunctionEditor : public vtkKWParameterV
 {
 public:
   static vtkKWColorTransferFunctionEditor* New();
-  vtkTypeRevisionMacro(vtkKWColorTransferFunctionEditor,vtkKWParameterValueHermiteFunctionEditor);
+  vtkTypeMacro(vtkKWColorTransferFunctionEditor,vtkKWParameterValueHermiteFunctionEditor);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

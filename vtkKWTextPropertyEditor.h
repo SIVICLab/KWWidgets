@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWTextPropertyEditor : public vtkKWCompositeWidget
 {
 public:
   static vtkKWTextPropertyEditor* New();
-  vtkTypeRevisionMacro(vtkKWTextPropertyEditor,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWTextPropertyEditor,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description

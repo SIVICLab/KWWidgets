@@ -25,7 +25,7 @@ class KWWidgets_EXPORT vtkKWSurfaceMaterialPropertyWidget : public vtkKWMaterial
 {
 public:
   static vtkKWSurfaceMaterialPropertyWidget *New();
-  vtkTypeRevisionMacro(vtkKWSurfaceMaterialPropertyWidget, vtkKWMaterialPropertyWidget);
+  vtkTypeMacro(vtkKWSurfaceMaterialPropertyWidget, vtkKWMaterialPropertyWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

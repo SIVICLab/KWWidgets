@@ -32,7 +32,7 @@ class KWWidgets_EXPORT vtkKWTkcon : public vtkKWTclInteractor
 {
 public:
   static vtkKWTkcon* New();
-  vtkTypeRevisionMacro(vtkKWTkcon, vtkKWTclInteractor);
+  vtkTypeMacro(vtkKWTkcon, vtkKWTclInteractor);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

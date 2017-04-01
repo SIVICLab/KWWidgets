@@ -28,7 +28,7 @@ class KWWidgets_EXPORT vtkKWFrameWithScrollbar : public vtkKWCoreWidget
 {
 public:
   static vtkKWFrameWithScrollbar* New();
-  vtkTypeRevisionMacro(vtkKWFrameWithScrollbar,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWFrameWithScrollbar,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

@@ -23,7 +23,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWCheckButtonWithChangeColorButton);
-vtkCxxRevisionMacro(vtkKWCheckButtonWithChangeColorButton, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWCheckButtonWithChangeColorButton, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 vtkKWCheckButtonWithChangeColorButton::vtkKWCheckButtonWithChangeColorButton()

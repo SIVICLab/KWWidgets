@@ -9,7 +9,7 @@ class vtkKWMyWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWMyWidget* New();
-  vtkTypeRevisionMacro(vtkKWMyWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWMyWidget,vtkKWCompositeWidget);
 
   // Description:
   // Get the internal widget.

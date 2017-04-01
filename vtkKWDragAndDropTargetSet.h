@@ -37,7 +37,7 @@ class KWWidgets_EXPORT vtkKWDragAndDropTargetSet : public vtkKWObject
 {
 public:
   static vtkKWDragAndDropTargetSet* New();
-  vtkTypeRevisionMacro(vtkKWDragAndDropTargetSet,vtkKWObject);
+  vtkTypeMacro(vtkKWDragAndDropTargetSet,vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

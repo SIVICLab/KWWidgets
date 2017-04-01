@@ -20,7 +20,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWSaveImageDialog );
-vtkCxxRevisionMacro(vtkKWSaveImageDialog, "$Revision: 1.32 $");
+//vtkCxxRevisionMacro(vtkKWSaveImageDialog, "$Revision: 1.32 $");
 
 //----------------------------------------------------------------------------
 int vtkKWSaveImageDialog::Invoke()

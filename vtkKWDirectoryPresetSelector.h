@@ -43,7 +43,7 @@ class KWWidgets_EXPORT vtkKWDirectoryPresetSelector : public vtkKWPresetSelector
 {
 public:
   static vtkKWDirectoryPresetSelector* New();
-  vtkTypeRevisionMacro(vtkKWDirectoryPresetSelector, vtkKWPresetSelector);
+  vtkTypeMacro(vtkKWDirectoryPresetSelector, vtkKWPresetSelector);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

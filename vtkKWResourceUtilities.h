@@ -28,7 +28,7 @@ class KWWidgets_EXPORT vtkKWResourceUtilities : public vtkObject
 {
 public:
   static vtkKWResourceUtilities* New();
-  vtkTypeRevisionMacro(vtkKWResourceUtilities,vtkObject);
+  vtkTypeMacro(vtkKWResourceUtilities,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

@@ -24,7 +24,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWProgressGauge );
-vtkCxxRevisionMacro(vtkKWProgressGauge, "$Revision: 1.44 $");
+//vtkCxxRevisionMacro(vtkKWProgressGauge, "$Revision: 1.44 $");
 
 //----------------------------------------------------------------------------
 class vtkKWProgressGaugeInternals

@@ -22,7 +22,7 @@
  
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTkconInit );
-vtkCxxRevisionMacro(vtkKWTkconInit, "$Revision: 1.3 $");
+//vtkCxxRevisionMacro(vtkKWTkconInit, "$Revision: 1.3 $");
 
 int vtkKWTkconInit::Initialized = 0;
 

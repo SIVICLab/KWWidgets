@@ -17,7 +17,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWCompositeWidget );
-vtkCxxRevisionMacro(vtkKWCompositeWidget, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWCompositeWidget, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 void vtkKWCompositeWidget::CreateWidget()

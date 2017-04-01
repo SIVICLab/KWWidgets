@@ -40,7 +40,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWMultiColumnList);
-vtkCxxRevisionMacro(vtkKWMultiColumnList, "$Revision: 1.102 $");
+//vtkCxxRevisionMacro(vtkKWMultiColumnList, "$Revision: 1.102 $");
 
 //----------------------------------------------------------------------------
 class vtkKWMultiColumnListInternals

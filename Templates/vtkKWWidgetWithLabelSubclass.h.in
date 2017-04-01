@@ -41,7 +41,7 @@ class KWWidgets_EXPORT @WidgetType@WithLabel : public vtkKWWidgetWithLabel
 {
 public:
   static @WidgetType@WithLabel* New();
-  vtkTypeRevisionMacro(@WidgetType@WithLabel, vtkKWWidgetWithLabel);
+  vtkTypeMacro(@WidgetType@WithLabel, vtkKWWidgetWithLabel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

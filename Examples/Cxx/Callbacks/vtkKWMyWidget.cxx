@@ -7,7 +7,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMyWidget );
-vtkCxxRevisionMacro(vtkKWMyWidget, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWMyWidget, "$Revision: 1.4 $");
 
 //----------------------------------------------------------------------------
 vtkKWMyWidget::vtkKWMyWidget()

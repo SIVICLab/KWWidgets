@@ -21,7 +21,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMessage );
-vtkCxxRevisionMacro(vtkKWMessage, "$Revision: 1.8 $");
+//vtkCxxRevisionMacro(vtkKWMessage, "$Revision: 1.8 $");
 
 //----------------------------------------------------------------------------
 vtkKWMessage::vtkKWMessage()

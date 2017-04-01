@@ -37,7 +37,7 @@
 
 // ---------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWThumbWheel );
-vtkCxxRevisionMacro(vtkKWThumbWheel, "$Revision: 1.57 $");
+//vtkCxxRevisionMacro(vtkKWThumbWheel, "$Revision: 1.57 $");
 
 // ---------------------------------------------------------------------------
 /* 

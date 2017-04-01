@@ -10,7 +10,7 @@ class vtkKWMyWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWMyWidget* New();
-  vtkTypeRevisionMacro(vtkKWMyWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWMyWidget,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

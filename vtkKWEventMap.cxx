@@ -16,7 +16,7 @@
 
 #include "vtksys/stl/string"
 
-vtkCxxRevisionMacro(vtkKWEventMap, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWEventMap, "$Revision: 1.4 $");
 vtkStandardNewMacro(vtkKWEventMap);
 
 //----------------------------------------------------------------------------

@@ -39,7 +39,7 @@ class KWWidgets_EXPORT vtkKWGenericRenderWindowInteractor : public vtkGenericRen
 {
 public:
   static vtkKWGenericRenderWindowInteractor *New();
-  vtkTypeRevisionMacro(vtkKWGenericRenderWindowInteractor, vtkGenericRenderWindowInteractor);
+  vtkTypeMacro(vtkKWGenericRenderWindowInteractor, vtkGenericRenderWindowInteractor);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

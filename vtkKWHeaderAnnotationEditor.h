@@ -31,7 +31,7 @@ class KWWidgets_EXPORT vtkKWHeaderAnnotationEditor : public vtkKWCheckButtonWith
 {
 public:
   static vtkKWHeaderAnnotationEditor* New();
-  vtkTypeRevisionMacro(vtkKWHeaderAnnotationEditor,vtkKWCheckButtonWithPopupFrame);
+  vtkTypeMacro(vtkKWHeaderAnnotationEditor,vtkKWCheckButtonWithPopupFrame);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

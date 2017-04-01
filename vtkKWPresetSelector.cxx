@@ -53,7 +53,7 @@ const char *vtkKWPresetSelector::CommentColumnName   = "Comment";
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWPresetSelector);
-vtkCxxRevisionMacro(vtkKWPresetSelector, "$Revision: 1.86 $");
+//vtkCxxRevisionMacro(vtkKWPresetSelector, "$Revision: 1.86 $");
 
 //----------------------------------------------------------------------------
 class vtkKWPresetSelectorInternals
@@ -2336,8 +2336,8 @@ int vtkKWPresetSelector::BuildPresetThumbnailAndScreenshotFromImage(
   // and permute filter the process the image's *whole* extent.
 
   vtkImageClip *clip = vtkImageClip::New();
-  clip->SetInput(image);
-  clip->SetOutputWholeExtent(image->GetUpdateExtent());
+  clip->SetInputData(image);
+  clip->SetOutputWholeExtent(image->GetExtent());
   clip->Update();
 
   // Permute, as a convenience
@@ -2349,7 +2349,7 @@ int vtkKWPresetSelector::BuildPresetThumbnailAndScreenshotFromImage(
   if (clip_dims[2] != 1)
     {
     permute = vtkImagePermute::New();
-    permute->SetInput(clip->GetOutput());
+    permute->SetInputConnection(clip->GetOutputPort());
     if (clip_dims[0] == 1)
       {
       permute->SetFilteredAxes(1, 2, 0);
@@ -2365,7 +2365,7 @@ int vtkKWPresetSelector::BuildPresetThumbnailAndScreenshotFromImage(
     resample_input = clip->GetOutput();
     }
 
-  resample_input->Update();
+  clip->Update();
   int resample_input_dims[3], resample_output_dims[3];
 
   resample_input->GetDimensions(resample_input_dims);
@@ -2378,7 +2378,7 @@ int vtkKWPresetSelector::BuildPresetThumbnailAndScreenshotFromImage(
     }
 
   vtkImageResample *resample = vtkImageResample::New();
-  resample->SetInput(resample_input);
+  resample->SetInputData(resample_input);
   resample->SetInterpolationModeToCubic();
   resample->SetDimensionality(2);
 

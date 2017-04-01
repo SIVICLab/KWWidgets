@@ -22,7 +22,7 @@
 #include <vtksys/stl/vector>
 #include <vtksys/SystemTools.hxx>
 
-vtkCxxRevisionMacro(vtkKWMostRecentFilesManager, "$Revision: 1.20 $");
+//vtkCxxRevisionMacro(vtkKWMostRecentFilesManager, "$Revision: 1.20 $");
 vtkStandardNewMacro(vtkKWMostRecentFilesManager );
 
 #define VTK_KW_MRF_REGISTRY_FILENAME_KEYNAME_PATTERN "File%02d"

@@ -32,7 +32,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWizardWidget);
-vtkCxxRevisionMacro(vtkKWWizardWidget, "$Revision: 1.9 $");
+//vtkCxxRevisionMacro(vtkKWWizardWidget, "$Revision: 1.9 $");
 
 //----------------------------------------------------------------------------
 vtkKWWizardWidget::vtkKWWizardWidget()

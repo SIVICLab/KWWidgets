@@ -26,7 +26,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWColorSpectrumWidget );
-vtkCxxRevisionMacro(vtkKWColorSpectrumWidget, "$Revision: 1.6 $");
+//vtkCxxRevisionMacro(vtkKWColorSpectrumWidget, "$Revision: 1.6 $");
 
 #define VTK_KW_COLOR_SPECTRUM_WIDGET_FIXED_FONT "fixed"
 #define VTK_KW_COLOR_SPECTRUM_WIDGET_FIXED_FONT_85 "TkDefaultFont"

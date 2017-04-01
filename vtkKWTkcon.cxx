@@ -25,7 +25,7 @@
 
 //-------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTkcon );
-vtkCxxRevisionMacro(vtkKWTkcon, "$Revision: 1.9 $");
+//vtkCxxRevisionMacro(vtkKWTkcon, "$Revision: 1.9 $");
 
 //----------------------------------------------------------------------------
 class vtkKWTkconInternals

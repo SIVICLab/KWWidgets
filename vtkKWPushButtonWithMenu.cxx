@@ -21,7 +21,7 @@
 #include "vtkObjectFactory.h"
 
 vtkStandardNewMacro( vtkKWPushButtonWithMenu );
-vtkCxxRevisionMacro(vtkKWPushButtonWithMenu, "$Revision: 1.11 $");
+//vtkCxxRevisionMacro(vtkKWPushButtonWithMenu, "$Revision: 1.11 $");
 
 //----------------------------------------------------------------------------
 vtkKWPushButtonWithMenu::vtkKWPushButtonWithMenu()

@@ -83,7 +83,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWSimpleAnimationWidget);
-vtkCxxRevisionMacro(vtkKWSimpleAnimationWidget, "$Revision: 1.41 $");
+//vtkCxxRevisionMacro(vtkKWSimpleAnimationWidget, "$Revision: 1.41 $");
 
 //----------------------------------------------------------------------------
 vtkKWSimpleAnimationWidget::vtkKWSimpleAnimationWidget()
@@ -1149,7 +1149,7 @@ void vtkKWSimpleAnimationWidget::CreateCameraAnimation(
     w2i->SetInput(this->RenderWidget->GetRenderWindow());
     if(movie_writer)
       {
-      movie_writer->SetInput(w2i->GetOutput());
+      movie_writer->SetInputConnection(w2i->GetOutputPort());
       vtksys_stl::string filename(filename_root);
       filename += filename_ext;
       movie_writer->SetFileName(filename.c_str());
@@ -1157,7 +1157,7 @@ void vtkKWSimpleAnimationWidget::CreateCameraAnimation(
       }
     else if(image_writer)
       {
-      image_writer->SetInput(w2i->GetOutput());
+      image_writer->SetInputConnection(w2i->GetOutputPort());
       image_filename = 
         new char[strlen(filename_root.c_str()) + 
                  strlen(filename_ext.c_str()) + 25];
@@ -1259,7 +1259,7 @@ void vtkKWSimpleAnimationWidget::CreateCameraAnimation(
     if (movie_writer)
       {
       movie_writer->End();
-      movie_writer->SetInput(0);
+      movie_writer->SetInputData(0);
       }
     }
 
@@ -1452,7 +1452,7 @@ void vtkKWSimpleAnimationWidget::CreateSliceAnimation(
     w2i->SetInput(this->RenderWidget->GetRenderWindow());
     if(movie_writer)
       {
-      movie_writer->SetInput(w2i->GetOutput());
+      movie_writer->SetInputConnection(w2i->GetOutputPort());
       vtksys_stl::string filename(filename_root);
       filename += filename_ext;
       movie_writer->SetFileName(filename.c_str());
@@ -1460,7 +1460,7 @@ void vtkKWSimpleAnimationWidget::CreateSliceAnimation(
       }
     else if(image_writer)
       {
-      image_writer->SetInput(w2i->GetOutput());
+      image_writer->SetInputConnection(w2i->GetOutputPort());
       image_filename = 
         new char[strlen(filename_root.c_str()) + 
                  strlen(filename_ext.c_str()) + 25];
@@ -1534,7 +1534,7 @@ void vtkKWSimpleAnimationWidget::CreateSliceAnimation(
     if (movie_writer)
       {
       movie_writer->End();
-      movie_writer->SetInput(0);
+      movie_writer->SetInputData(0);
       }
     }
 

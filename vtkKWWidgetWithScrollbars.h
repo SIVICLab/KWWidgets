@@ -39,7 +39,7 @@ class vtkKWScrollbar;
 class KWWidgets_EXPORT vtkKWWidgetWithScrollbars : public vtkKWCompositeWidget
 {
 public:
-  vtkTypeRevisionMacro(vtkKWWidgetWithScrollbars,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWWidgetWithScrollbars,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWLoadSaveDialog : public vtkKWFileBrowserDialog
 {
 public:
   static vtkKWLoadSaveDialog* New();
-  vtkTypeRevisionMacro(vtkKWLoadSaveDialog,vtkKWFileBrowserDialog);
+  vtkTypeMacro(vtkKWLoadSaveDialog,vtkKWFileBrowserDialog);
   void PrintSelf(ostream& os, vtkIndent indent);
 
 protected:

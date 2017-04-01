@@ -34,7 +34,7 @@ class KWWidgets_EXPORT vtkKWKeyBindingsManager : public vtkKWObject
 {
 public:
   static vtkKWKeyBindingsManager* New();
-  vtkTypeRevisionMacro(vtkKWKeyBindingsManager,vtkKWObject);
+  vtkTypeMacro(vtkKWKeyBindingsManager,vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

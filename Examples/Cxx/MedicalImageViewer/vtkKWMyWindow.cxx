@@ -28,7 +28,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMyWindow );
-vtkCxxRevisionMacro(vtkKWMyWindow, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWMyWindow, "$Revision: 1.4 $");
 
 //----------------------------------------------------------------------------
 vtkKWMyWindow::vtkKWMyWindow()
@@ -118,7 +118,7 @@ void vtkKWMyWindow::CreateWidget()
     }
   this->ImageViewer->SetRenderWindow(this->RenderWidget->GetRenderWindow());
   this->ImageViewer->SetRenderer(this->RenderWidget->GetRenderer());
-  this->ImageViewer->SetInput(reader->GetOutput());
+  this->ImageViewer->SetInputConnection(reader->GetOutputPort());
   this->ImageViewer->SetupInteractor(
     this->RenderWidget->GetRenderWindow()->GetInteractor());
 

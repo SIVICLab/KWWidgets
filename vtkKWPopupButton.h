@@ -29,7 +29,7 @@ class KWWidgets_EXPORT vtkKWPopupButton : public vtkKWPushButton
 {
 public:
   static vtkKWPopupButton* New();
-  vtkTypeRevisionMacro(vtkKWPopupButton, vtkKWPushButton);
+  vtkTypeMacro(vtkKWPopupButton, vtkKWPushButton);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

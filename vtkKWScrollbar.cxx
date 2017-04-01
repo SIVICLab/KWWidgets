@@ -18,7 +18,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWScrollbar);
-vtkCxxRevisionMacro(vtkKWScrollbar, "$Revision: 1.13 $");
+//vtkCxxRevisionMacro(vtkKWScrollbar, "$Revision: 1.13 $");
 
 //----------------------------------------------------------------------------
 void vtkKWScrollbar::CreateWidget()

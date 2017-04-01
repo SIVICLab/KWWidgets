@@ -39,7 +39,7 @@ class KWWidgets_EXPORT vtkKWMessage : public vtkKWCoreWidget
 {
 public:
   static vtkKWMessage* New();
-  vtkTypeRevisionMacro(vtkKWMessage,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWMessage,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

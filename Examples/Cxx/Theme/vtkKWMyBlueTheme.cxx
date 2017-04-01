@@ -20,7 +20,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWMyBlueTheme);
-vtkCxxRevisionMacro(vtkKWMyBlueTheme, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWMyBlueTheme, "$Revision: 1.4 $");
 
 //----------------------------------------------------------------------------
 void vtkKWMyBlueTheme::Install()

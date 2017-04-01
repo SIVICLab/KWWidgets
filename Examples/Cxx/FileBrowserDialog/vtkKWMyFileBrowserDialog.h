@@ -9,7 +9,7 @@ class vtkKWMyFileBrowserDialog : public vtkKWFileBrowserDialog
 {
 public:
   static vtkKWMyFileBrowserDialog* New();
-  vtkTypeRevisionMacro(vtkKWMyFileBrowserDialog,vtkKWFileBrowserDialog);
+  vtkTypeMacro(vtkKWMyFileBrowserDialog,vtkKWFileBrowserDialog);
 
 protected:
   vtkKWMyFileBrowserDialog();

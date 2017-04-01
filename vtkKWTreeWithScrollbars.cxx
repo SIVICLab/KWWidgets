@@ -28,7 +28,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWTreeWithScrollbars);
-vtkCxxRevisionMacro(vtkKWTreeWithScrollbars, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWTreeWithScrollbars, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 vtkKWTreeWithScrollbars::vtkKWTreeWithScrollbars()

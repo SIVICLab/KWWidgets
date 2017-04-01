@@ -11,7 +11,7 @@ class vtkKWMyOperand1Step : public vtkKWWizardStep
 {
 public:
   static vtkKWMyOperand1Step* New();
-  vtkTypeRevisionMacro(vtkKWMyOperand1Step,vtkKWWizardStep);
+  vtkTypeMacro(vtkKWMyOperand1Step,vtkKWWizardStep);
 
   // Description:
   // Show/hide the UI, validate the step.

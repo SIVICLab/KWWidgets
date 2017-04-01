@@ -47,7 +47,7 @@
 #include <vtksys/stl/map>
 
 vtkStandardNewMacro(vtkKWRenderWidget);
-vtkCxxRevisionMacro(vtkKWRenderWidget, "$Revision: 1.171 $");
+//vtkCxxRevisionMacro(vtkKWRenderWidget, "$Revision: 1.171 $");
 
 //----------------------------------------------------------------------------
 class vtkKWRenderWidgetInternals

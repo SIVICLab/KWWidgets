@@ -26,7 +26,7 @@ class KWWidgets_EXPORT vtkKWMenu : public vtkKWCoreWidget
 {
 public:
   static vtkKWMenu* New();
-  vtkTypeRevisionMacro(vtkKWMenu,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWMenu,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
  
   // Description: 

@@ -51,7 +51,7 @@ class KWWidgets_EXPORT vtkKWUserInterfacePanel : public vtkKWObject
 {
 public:
   static vtkKWUserInterfacePanel* New();
-  vtkTypeRevisionMacro(vtkKWUserInterfacePanel,vtkKWObject);
+  vtkTypeMacro(vtkKWUserInterfacePanel,vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWWizardDialog : public vtkKWDialog
 {
 public:
   static vtkKWWizardDialog* New();
-  vtkTypeRevisionMacro(vtkKWWizardDialog,vtkKWDialog);
+  vtkTypeMacro(vtkKWWizardDialog,vtkKWDialog);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

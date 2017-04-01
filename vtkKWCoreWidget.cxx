@@ -23,7 +23,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWCoreWidget );
-vtkCxxRevisionMacro(vtkKWCoreWidget, "$Revision: 1.22 $");
+//vtkCxxRevisionMacro(vtkKWCoreWidget, "$Revision: 1.22 $");
 
 //----------------------------------------------------------------------------
 class vtkKWCoreWidgetInternals

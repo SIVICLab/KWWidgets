@@ -25,7 +25,7 @@ class KWWidgets_EXPORT vtkKWSmallCounterLabel : public vtkKWLabel
 {
 public:
   static vtkKWSmallCounterLabel* New();
-  vtkTypeRevisionMacro(vtkKWSmallCounterLabel,vtkKWLabel);
+  vtkTypeMacro(vtkKWSmallCounterLabel,vtkKWLabel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

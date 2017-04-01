@@ -30,7 +30,7 @@ class KWWidgets_EXPORT vtkKWThumbWheel : public vtkKWCompositeWidget
 {
 public:
   static vtkKWThumbWheel* New();
-  vtkTypeRevisionMacro(vtkKWThumbWheel,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWThumbWheel,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

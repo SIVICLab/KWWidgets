@@ -28,7 +28,7 @@
 #define BUFFER_SIZE 8192
 
 vtkStandardNewMacro( vtkKWUNIXRegistryHelper );
-vtkCxxRevisionMacro(vtkKWUNIXRegistryHelper, "$Revision: 1.8 $");
+//vtkCxxRevisionMacro(vtkKWUNIXRegistryHelper, "$Revision: 1.8 $");
 
 //----------------------------------------------------------------------------
 //****************************************************************************

@@ -15,7 +15,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMyFileBrowserDialog );
-vtkCxxRevisionMacro(vtkKWMyFileBrowserDialog, "$Revision: 1.1 $");
+//vtkCxxRevisionMacro(vtkKWMyFileBrowserDialog, "$Revision: 1.1 $");
 
 //----------------------------------------------------------------------------
 vtkKWMyFileBrowserDialog::vtkKWMyFileBrowserDialog()

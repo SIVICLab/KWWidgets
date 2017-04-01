@@ -34,7 +34,7 @@ class KWWidgets_EXPORT vtkKWVolumePropertyPresetSelector : public vtkKWPresetSel
 {
 public:
   static vtkKWVolumePropertyPresetSelector* New();
-  vtkTypeRevisionMacro(vtkKWVolumePropertyPresetSelector, vtkKWPresetSelector);
+  vtkTypeMacro(vtkKWVolumePropertyPresetSelector, vtkKWPresetSelector);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

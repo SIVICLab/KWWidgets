@@ -29,7 +29,7 @@ class KWWidgets_EXPORT vtkKWPushButtonWithMenu : public vtkKWCompositeWidget
 {
 public:
   static vtkKWPushButtonWithMenu* New();
-  vtkTypeRevisionMacro(vtkKWPushButtonWithMenu, vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWPushButtonWithMenu, vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description: 

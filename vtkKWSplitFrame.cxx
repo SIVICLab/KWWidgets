@@ -20,7 +20,7 @@
 #include "vtkKWInternationalization.h"
 
 vtkStandardNewMacro( vtkKWSplitFrame );
-vtkCxxRevisionMacro(vtkKWSplitFrame, "$Revision: 1.46 $");
+//vtkCxxRevisionMacro(vtkKWSplitFrame, "$Revision: 1.46 $");
 
 //----------------------------------------------------------------------------
 vtkKWSplitFrame::vtkKWSplitFrame()

@@ -17,7 +17,7 @@
 #include "vtkObjectFactory.h"
 
 vtkStandardNewMacro( vtkKWSpinButtons );
-vtkCxxRevisionMacro(vtkKWSpinButtons, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWSpinButtons, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 vtkKWSpinButtons::vtkKWSpinButtons()

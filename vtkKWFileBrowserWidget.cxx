@@ -44,7 +44,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWFileBrowserWidget );
-vtkCxxRevisionMacro(vtkKWFileBrowserWidget, "$Revision: 1.18 $");
+//vtkCxxRevisionMacro(vtkKWFileBrowserWidget, "$Revision: 1.18 $");
 
 //----------------------------------------------------------------------------
 class vtkKWFileBrowserWidgetInternals

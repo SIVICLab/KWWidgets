@@ -28,7 +28,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWStateMachineDOTWriter);
-vtkCxxRevisionMacro(vtkKWStateMachineDOTWriter, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWStateMachineDOTWriter, "$Revision: 1.4 $");
 
 //----------------------------------------------------------------------------
 vtkKWStateMachineDOTWriter::vtkKWStateMachineDOTWriter()

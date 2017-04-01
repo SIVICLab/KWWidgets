@@ -20,7 +20,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWComboBox);
-vtkCxxRevisionMacro(vtkKWComboBox, "$Revision: 1.22 $");
+//vtkCxxRevisionMacro(vtkKWComboBox, "$Revision: 1.22 $");
 
 //----------------------------------------------------------------------------
 vtkKWComboBox::vtkKWComboBox()

@@ -49,7 +49,7 @@ class KWWidgets_EXPORT vtkKWScaleWithEntry : public vtkKWScaleWithLabel
 {
 public:
   static vtkKWScaleWithEntry* New();
-  vtkTypeRevisionMacro(vtkKWScaleWithEntry,vtkKWScaleWithLabel);
+  vtkTypeMacro(vtkKWScaleWithEntry,vtkKWScaleWithLabel);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

@@ -20,7 +20,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWLabel );
-vtkCxxRevisionMacro(vtkKWLabel, "$Revision: 1.57 $");
+//vtkCxxRevisionMacro(vtkKWLabel, "$Revision: 1.57 $");
 
 //----------------------------------------------------------------------------
 vtkKWLabel::vtkKWLabel()

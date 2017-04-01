@@ -22,7 +22,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(@WidgetType@WithLabel);
-vtkCxxRevisionMacro(@WidgetType@WithLabel, "$Revision: 1.9 $");
+//vtkCxxRevisionMacro(@WidgetType@WithLabel, "$Revision: 1.9 $");
 
 //----------------------------------------------------------------------------
 @WidgetType@WithLabel::@WidgetType@WithLabel()

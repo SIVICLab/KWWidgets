@@ -38,7 +38,7 @@ class KWWidgets_EXPORT vtkKWColorPickerDialog : public vtkKWDialog
 {
 public:
   static vtkKWColorPickerDialog* New();
-  vtkTypeRevisionMacro(vtkKWColorPickerDialog,vtkKWDialog);
+  vtkTypeMacro(vtkKWColorPickerDialog,vtkKWDialog);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

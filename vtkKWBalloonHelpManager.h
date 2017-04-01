@@ -37,7 +37,7 @@ class KWWidgets_EXPORT vtkKWBalloonHelpManager : public vtkKWObject
 {
 public:
   static vtkKWBalloonHelpManager* New();
-  vtkTypeRevisionMacro(vtkKWBalloonHelpManager,vtkKWObject);
+  vtkTypeMacro(vtkKWBalloonHelpManager,vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

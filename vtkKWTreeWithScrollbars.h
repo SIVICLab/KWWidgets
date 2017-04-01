@@ -33,7 +33,7 @@ class KWWidgets_EXPORT vtkKWTreeWithScrollbars : public vtkKWWidgetWithScrollbar
 {
 public:
   static vtkKWTreeWithScrollbars* New();
-  vtkTypeRevisionMacro(vtkKWTreeWithScrollbars,vtkKWWidgetWithScrollbars);
+  vtkTypeMacro(vtkKWTreeWithScrollbars,vtkKWWidgetWithScrollbars);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

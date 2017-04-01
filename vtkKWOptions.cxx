@@ -19,7 +19,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWOptions );
-vtkCxxRevisionMacro(vtkKWOptions, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWOptions, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 const char* vtkKWOptions::GetCharacterEncodingAsTclOptionValue(int encoding)

@@ -28,7 +28,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWColorPresetMenu);
-vtkCxxRevisionMacro(vtkKWColorPresetMenu, "$Revision: 1.1 $");
+//vtkCxxRevisionMacro(vtkKWColorPresetMenu, "$Revision: 1.1 $");
 
 vtkCxxSetObjectMacro(vtkKWColorPresetMenu,ColorTransferFunction,vtkColorTransferFunction);
 

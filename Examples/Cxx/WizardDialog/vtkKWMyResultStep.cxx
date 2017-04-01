@@ -17,7 +17,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMyResultStep );
-vtkCxxRevisionMacro(vtkKWMyResultStep, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWMyResultStep, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 vtkKWMyResultStep::vtkKWMyResultStep()

@@ -46,7 +46,7 @@ class vtkKWMenuButton;
 class KWWidgets_EXPORT vtkKWParameterValueFunctionEditor : public vtkKWParameterValueFunctionInterface
 {
 public:
-  vtkTypeRevisionMacro(vtkKWParameterValueFunctionEditor,vtkKWParameterValueFunctionInterface);
+  vtkTypeMacro(vtkKWParameterValueFunctionEditor,vtkKWParameterValueFunctionInterface);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

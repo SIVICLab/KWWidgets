@@ -27,7 +27,7 @@ class KWWidgets_EXPORT vtkKWCheckButton : public vtkKWCoreWidget
 {
 public:
   static vtkKWCheckButton* New();
-  vtkTypeRevisionMacro(vtkKWCheckButton,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWCheckButton,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

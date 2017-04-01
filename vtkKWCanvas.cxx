@@ -44,7 +44,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWCanvas );
-vtkCxxRevisionMacro(vtkKWCanvas, "$Revision: 1.16 $");
+//vtkCxxRevisionMacro(vtkKWCanvas, "$Revision: 1.16 $");
 
 //----------------------------------------------------------------------------
 void vtkKWCanvas::CreateWidget()

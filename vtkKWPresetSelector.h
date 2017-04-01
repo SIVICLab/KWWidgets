@@ -54,7 +54,7 @@ class KWWidgets_EXPORT vtkKWPresetSelector : public vtkKWCompositeWidget
 {
 public:
   static vtkKWPresetSelector* New();
-  vtkTypeRevisionMacro(vtkKWPresetSelector, vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWPresetSelector, vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

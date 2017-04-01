@@ -54,7 +54,7 @@ class KWWidgets_EXPORT vtkKWCanvas : public vtkKWCoreWidget
 {
 public:
   static vtkKWCanvas* New();
-  vtkTypeRevisionMacro(vtkKWCanvas,vtkKWCoreWidget);
+  vtkTypeMacro(vtkKWCanvas,vtkKWCoreWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

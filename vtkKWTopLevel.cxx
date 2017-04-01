@@ -23,7 +23,7 @@
  
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTopLevel );
-vtkCxxRevisionMacro(vtkKWTopLevel, "$Revision: 1.39 $");
+//vtkCxxRevisionMacro(vtkKWTopLevel, "$Revision: 1.39 $");
 
 //----------------------------------------------------------------------------
 vtkKWTopLevel::vtkKWTopLevel()

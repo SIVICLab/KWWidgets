@@ -32,7 +32,7 @@
 #include <vtksys/stl/string>
 
 vtkStandardNewMacro(vtkKWSelectionFrame);
-vtkCxxRevisionMacro(vtkKWSelectionFrame, "$Revision: 1.62 $");
+//vtkCxxRevisionMacro(vtkKWSelectionFrame, "$Revision: 1.62 $");
 
 //----------------------------------------------------------------------------
 class vtkKWSelectionFrameInternals

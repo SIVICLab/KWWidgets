@@ -33,7 +33,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMenu );
-vtkCxxRevisionMacro(vtkKWMenu, "$Revision: 1.129 $");
+//vtkCxxRevisionMacro(vtkKWMenu, "$Revision: 1.129 $");
 
 //----------------------------------------------------------------------------
 class vtkKWMenuInternals

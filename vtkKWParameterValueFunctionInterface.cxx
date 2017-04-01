@@ -16,7 +16,7 @@
 #include "vtkCallbackCommand.h"
 #include "vtkObjectFactory.h"
 
-vtkCxxRevisionMacro(vtkKWParameterValueFunctionInterface, "$Revision: 1.7 $");
+//vtkCxxRevisionMacro(vtkKWParameterValueFunctionInterface, "$Revision: 1.7 $");
 
 //----------------------------------------------------------------------------
 void vtkKWParameterValueFunctionInterface::CreateWidget()

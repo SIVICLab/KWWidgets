@@ -35,7 +35,7 @@ class vtkKWScaleWithEntry;
 class KWWidgets_EXPORT vtkKWParameterValueHermiteFunctionEditor : public vtkKWParameterValueFunctionEditor
 {
 public:
-  vtkTypeRevisionMacro(vtkKWParameterValueHermiteFunctionEditor,vtkKWParameterValueFunctionEditor);
+  vtkTypeMacro(vtkKWParameterValueHermiteFunctionEditor,vtkKWParameterValueFunctionEditor);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

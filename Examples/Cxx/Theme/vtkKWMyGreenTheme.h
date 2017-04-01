@@ -29,7 +29,7 @@ class vtkKWMyGreenTheme : public vtkKWTheme
 {
 public:
   static vtkKWMyGreenTheme* New();
-  vtkTypeRevisionMacro(vtkKWMyGreenTheme, vtkKWTheme);
+  vtkTypeMacro(vtkKWMyGreenTheme, vtkKWTheme);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

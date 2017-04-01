@@ -31,7 +31,7 @@ class KWWidgets_EXPORT vtkKWListBoxToListBoxSelectionEditor : public vtkKWCompos
 {
 public:
   static vtkKWListBoxToListBoxSelectionEditor* New();
-  vtkTypeRevisionMacro(vtkKWListBoxToListBoxSelectionEditor,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWListBoxToListBoxSelectionEditor,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

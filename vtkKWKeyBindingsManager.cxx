@@ -31,7 +31,7 @@
 #include <vtksys/stl/map>
 #include <vtksys/SystemTools.hxx>
 
-vtkCxxRevisionMacro(vtkKWKeyBindingsManager, "1.15");
+//vtkCxxRevisionMacro(vtkKWKeyBindingsManager, "1.15");
 vtkStandardNewMacro(vtkKWKeyBindingsManager );
 
 //----------------------------------------------------------------------------

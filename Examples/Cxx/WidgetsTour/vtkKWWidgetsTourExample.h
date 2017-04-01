@@ -49,7 +49,7 @@ class vtkKWWidgetsTourExample : public vtkKWObject
 {
 public:
   static vtkKWWidgetsTourExample* New();
-  vtkTypeRevisionMacro(vtkKWWidgetsTourExample,vtkKWObject);
+  vtkTypeMacro(vtkKWWidgetsTourExample,vtkKWObject);
 
   // Description:
   // Run the example.

@@ -160,7 +160,7 @@ class KWWidgets_EXPORT vtkKWWindow : public vtkKWWindowBase
 public:
 
   static vtkKWWindow* New();
-  vtkTypeRevisionMacro(vtkKWWindow,vtkKWWindowBase);
+  vtkTypeMacro(vtkKWWindow,vtkKWWindowBase);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

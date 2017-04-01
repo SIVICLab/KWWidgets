@@ -77,7 +77,7 @@ class KWWidgets_EXPORT vtkKWOptionDataBase : public vtkKWObject
 {
 public:
   static vtkKWOptionDataBase* New();
-  vtkTypeRevisionMacro(vtkKWOptionDataBase, vtkKWObject);
+  vtkTypeMacro(vtkKWOptionDataBase, vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
   void DeepCopy(vtkKWOptionDataBase *p);
 

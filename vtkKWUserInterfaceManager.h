@@ -45,7 +45,7 @@ class vtkKWUserInterfaceManagerInternals;
 class KWWidgets_EXPORT vtkKWUserInterfaceManager : public vtkKWObject
 {
 public:
-  vtkTypeRevisionMacro(vtkKWUserInterfaceManager,vtkKWObject);
+  vtkTypeMacro(vtkKWUserInterfaceManager,vtkKWObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

@@ -24,7 +24,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWEntry);
-vtkCxxRevisionMacro(vtkKWEntry, "$Revision: 1.101 $");
+//vtkCxxRevisionMacro(vtkKWEntry, "$Revision: 1.101 $");
 
 //----------------------------------------------------------------------------
 vtkKWEntry::vtkKWEntry()

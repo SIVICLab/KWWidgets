@@ -37,7 +37,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWUserInterfaceManagerDialog);
-vtkCxxRevisionMacro(vtkKWUserInterfaceManagerDialog, "$Revision: 1.24 $");
+//vtkCxxRevisionMacro(vtkKWUserInterfaceManagerDialog, "$Revision: 1.24 $");
 
 //----------------------------------------------------------------------------
 class vtkKWUserInterfaceManagerDialogInternals

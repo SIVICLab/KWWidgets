@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWSelectionFrame : public vtkKWCompositeWidget
 {
 public:
   static vtkKWSelectionFrame* New();
-  vtkTypeRevisionMacro(vtkKWSelectionFrame, vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWSelectionFrame, vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

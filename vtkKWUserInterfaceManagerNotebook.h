@@ -45,7 +45,7 @@ class KWWidgets_EXPORT vtkKWUserInterfaceManagerNotebook : public vtkKWUserInter
 {
 public:
   static vtkKWUserInterfaceManagerNotebook* New();
-  vtkTypeRevisionMacro(vtkKWUserInterfaceManagerNotebook,vtkKWUserInterfaceManager);
+  vtkTypeMacro(vtkKWUserInterfaceManagerNotebook,vtkKWUserInterfaceManager);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

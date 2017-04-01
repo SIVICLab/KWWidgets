@@ -33,7 +33,7 @@ class KWWidgets_EXPORT vtkKWComboBox : public vtkKWEntry
 {
 public:
   static vtkKWComboBox* New();
-  vtkTypeRevisionMacro(vtkKWComboBox,vtkKWEntry);
+  vtkTypeMacro(vtkKWComboBox,vtkKWEntry);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

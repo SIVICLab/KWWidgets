@@ -20,7 +20,7 @@
 //----------------------------------------------------------------------------
 
 vtkStandardNewMacro(vtkKWRadioButtonSet);
-vtkCxxRevisionMacro(vtkKWRadioButtonSet, "$Revision: 1.23 $");
+//vtkCxxRevisionMacro(vtkKWRadioButtonSet, "$Revision: 1.23 $");
 
 //----------------------------------------------------------------------------
 vtkKWRadioButton* vtkKWRadioButtonSet::GetWidget(int id)

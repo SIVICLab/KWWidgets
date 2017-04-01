@@ -36,7 +36,7 @@
 #endif // __APPLE__
 
 vtkStandardNewMacro( vtkKWClipboardHelper );
-vtkCxxRevisionMacro(vtkKWClipboardHelper, "1.0");
+//vtkCxxRevisionMacro(vtkKWClipboardHelper, "1.0");
 
 //----------------------------------------------------------------------------
 vtkKWClipboardHelper::vtkKWClipboardHelper()
@@ -117,7 +117,7 @@ int vtkKWClipboardHelper::CopyImageToClipboard(vtkImageData* iData)
   else
     {
     vtkImageCast* cast = vtkImageCast::New();
-    cast->SetInput(iData);
+    cast->SetInputData(iData);
     cast->SetOutputScalarTypeToUnsignedChar();
     cast->Update();
     ptr = (unsigned char *)(cast->GetOutput()->GetScalarPointer());
@@ -129,7 +129,7 @@ int vtkKWClipboardHelper::CopyImageToClipboard(vtkImageData* iData)
     return 0;
     }
  
-  extent = iData->GetWholeExtent();
+  extent = iData->GetExtent();
   int size[2];
   size[0] = extent[1] - extent[0] + 1;
   size[1] = extent[3] - extent[2] + 1;

@@ -31,7 +31,7 @@ class KWWidgets_EXPORT vtkKWIcon : public vtkObject
 {
 public:
   static vtkKWIcon* New();
-  vtkTypeRevisionMacro(vtkKWIcon,vtkObject);
+  vtkTypeMacro(vtkKWIcon,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
   void DeepCopy(vtkKWIcon *p);
 

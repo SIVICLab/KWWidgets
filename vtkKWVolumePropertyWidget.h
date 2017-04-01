@@ -44,7 +44,7 @@ class KWWidgets_EXPORT vtkKWVolumePropertyWidget : public vtkKWCompositeWidget
 public:
   static vtkKWVolumePropertyWidget* New();
   void PrintSelf(ostream& os, vtkIndent indent);
-  vtkTypeRevisionMacro(vtkKWVolumePropertyWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWVolumePropertyWidget,vtkKWCompositeWidget);
 
   // Description:
   // Get/Set the transfer function mapping scalar value to color

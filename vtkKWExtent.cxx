@@ -22,7 +22,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWExtent );
-vtkCxxRevisionMacro(vtkKWExtent, "$Revision: 1.56 $");
+//vtkCxxRevisionMacro(vtkKWExtent, "$Revision: 1.56 $");
 
 //----------------------------------------------------------------------------
 vtkKWExtent::vtkKWExtent()

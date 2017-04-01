@@ -24,7 +24,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMenuButton );
-vtkCxxRevisionMacro(vtkKWMenuButton, "$Revision: 1.50 $");
+//vtkCxxRevisionMacro(vtkKWMenuButton, "$Revision: 1.50 $");
 
 //----------------------------------------------------------------------------
 class vtkKWMenuButtonInternals

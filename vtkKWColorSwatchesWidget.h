@@ -31,7 +31,7 @@ class KWWidgets_EXPORT vtkKWColorSwatchesWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWColorSwatchesWidget* New();
-  vtkTypeRevisionMacro(vtkKWColorSwatchesWidget,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWColorSwatchesWidget,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

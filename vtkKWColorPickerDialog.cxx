@@ -23,7 +23,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWColorPickerDialog );
-vtkCxxRevisionMacro(vtkKWColorPickerDialog, "$Revision: 1.5 $");
+//vtkCxxRevisionMacro(vtkKWColorPickerDialog, "$Revision: 1.5 $");
 
 //----------------------------------------------------------------------------
 vtkKWColorPickerDialog::vtkKWColorPickerDialog()

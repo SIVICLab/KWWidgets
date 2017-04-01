@@ -38,7 +38,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWColorSwatchesWidget);
-vtkCxxRevisionMacro(vtkKWColorSwatchesWidget, "$Revision: 1.4 $");
+//vtkCxxRevisionMacro(vtkKWColorSwatchesWidget, "$Revision: 1.4 $");
 
 //----------------------------------------------------------------------------
 class vtkKWColorSwatchesWidgetInternals

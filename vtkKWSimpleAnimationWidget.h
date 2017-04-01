@@ -42,7 +42,7 @@ class KWWidgets_EXPORT vtkKWSimpleAnimationWidget : public vtkKWCompositeWidget
 {
 public:
   static vtkKWSimpleAnimationWidget* New();
-  vtkTypeRevisionMacro(vtkKWSimpleAnimationWidget, vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWSimpleAnimationWidget, vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

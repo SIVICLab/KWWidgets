@@ -31,7 +31,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWIcon );
-vtkCxxRevisionMacro(vtkKWIcon, "$Revision: 1.70 $");
+//vtkCxxRevisionMacro(vtkKWIcon, "$Revision: 1.70 $");
 
 //----------------------------------------------------------------------------
 vtkKWIcon::vtkKWIcon()
@@ -84,8 +84,8 @@ void vtkKWIcon::SetImage(vtkImageData* image)
   // our permute filter the process the image's *whole* extent.
 
   vtkImageClip *clip = vtkImageClip::New();
-  clip->SetInput(image);
-  clip->SetOutputWholeExtent(image->GetUpdateExtent());
+  clip->SetInputData(image);
+  clip->SetOutputWholeExtent(image->GetExtent());
 
   // Permute, as a convenience (in case we were given a XZ or YZ slice)
 
@@ -99,7 +99,7 @@ void vtkKWIcon::SetImage(vtkImageData* image)
   if (clip_dims[2] != 1)
     {
     permute = vtkImagePermute::New();
-    permute->SetInput(clip->GetOutput());
+    permute->SetInputConnection(clip->GetOutputPort());
     if (clip_dims[0] == 1)
       {
       permute->SetFilteredAxes(1, 2, 0);
@@ -114,7 +114,7 @@ void vtkKWIcon::SetImage(vtkImageData* image)
     {
     input = clip->GetOutput();
     }
-  input->Update();
+  clip->Update();
 
   int *input_dims = input->GetDimensions();
   this->SetData((const unsigned char*)input->GetScalarPointer(),
@@ -3062,8 +3062,8 @@ int vtkKWIcon::ResampleCanvas(int resampled_width, int resampled_height)
 
   vtkImageData *input = vtkImageData::New();
   input->SetDimensions(this->Width, this->Height, 1);
-  input->SetScalarTypeToUnsignedChar();
-  input->SetNumberOfScalarComponents(this->PixelSize);
+  //input->SetScalarTypeToUnsignedChar();
+  //input->SetNumberOfScalarComponents(this->PixelSize);
 
   vtkUnsignedCharArray *array = vtkUnsignedCharArray::New();
   array->SetNumberOfComponents(this->PixelSize);
@@ -3071,7 +3071,7 @@ int vtkKWIcon::ResampleCanvas(int resampled_width, int resampled_height)
   input->GetPointData()->SetScalars(array);
 
   vtkImageResample *resample = vtkImageResample::New();
-  resample->SetInput(input);
+  resample->SetInputData(input);
   resample->SetInterpolationModeToCubic();
   resample->SetDimensionality(2);
 

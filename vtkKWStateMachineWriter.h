@@ -37,7 +37,7 @@ class vtkKWStateMachine;
 class KWWidgets_EXPORT vtkKWStateMachineWriter : public vtkObject
 {
 public:
-  vtkTypeRevisionMacro(vtkKWStateMachineWriter, vtkObject);
+  vtkTypeMacro(vtkKWStateMachineWriter, vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

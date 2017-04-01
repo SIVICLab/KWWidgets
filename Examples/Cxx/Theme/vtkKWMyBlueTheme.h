@@ -29,7 +29,7 @@ class vtkKWMyBlueTheme : public vtkKWTheme
 {
 public:
   static vtkKWMyBlueTheme* New();
-  vtkTypeRevisionMacro(vtkKWMyBlueTheme, vtkKWTheme);
+  vtkTypeMacro(vtkKWMyBlueTheme, vtkKWTheme);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

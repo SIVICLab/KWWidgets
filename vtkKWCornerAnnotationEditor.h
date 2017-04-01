@@ -36,7 +36,7 @@ class KWWidgets_EXPORT vtkKWCornerAnnotationEditor : public vtkKWCheckButtonWith
 {
 public:
   static vtkKWCornerAnnotationEditor* New();
-  vtkTypeRevisionMacro(vtkKWCornerAnnotationEditor,vtkKWCheckButtonWithPopupFrame);
+  vtkTypeMacro(vtkKWCornerAnnotationEditor,vtkKWCheckButtonWithPopupFrame);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

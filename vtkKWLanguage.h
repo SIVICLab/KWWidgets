@@ -26,7 +26,7 @@ class KWWidgets_EXPORT vtkKWLanguage : public vtkObject
 {
 public:
   static vtkKWLanguage* New();
-  vtkTypeRevisionMacro(vtkKWLanguage,vtkObject);
+  vtkTypeMacro(vtkKWLanguage,vtkObject);
   void PrintSelf(ostream& os, vtkIndent indent);
 
   // Description:

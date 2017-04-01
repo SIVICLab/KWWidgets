@@ -28,7 +28,7 @@ extern "C" int Shellicon_Init(Tcl_Interp *interp);
  
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTkTreeCtrlInit );
-vtkCxxRevisionMacro(vtkKWTkTreeCtrlInit, "$Revision: 1.1 $");
+//vtkCxxRevisionMacro(vtkKWTkTreeCtrlInit, "$Revision: 1.1 $");
 
 int vtkKWTkTreeCtrlInit::Initialized = 0;
 

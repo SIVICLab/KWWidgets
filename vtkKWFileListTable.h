@@ -40,7 +40,7 @@ class KWWidgets_EXPORT vtkKWFileListTable : public vtkKWCompositeWidget
 {
 public:
   static vtkKWFileListTable* New();
-  vtkTypeRevisionMacro(vtkKWFileListTable,vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWFileListTable,vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

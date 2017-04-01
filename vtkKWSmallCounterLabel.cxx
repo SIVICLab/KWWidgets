@@ -22,7 +22,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWSmallCounterLabel );
-vtkCxxRevisionMacro(vtkKWSmallCounterLabel, "1.119");
+//vtkCxxRevisionMacro(vtkKWSmallCounterLabel, "1.119");
 
 //----------------------------------------------------------------------------
 vtkKWSmallCounterLabel::vtkKWSmallCounterLabel()

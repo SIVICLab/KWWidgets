@@ -32,7 +32,7 @@ class vtkKWMaterialPropertyWidgetInternals;
 class KWWidgets_EXPORT vtkKWMaterialPropertyWidget : public vtkKWCompositeWidget
 {
 public:
-  vtkTypeRevisionMacro(vtkKWMaterialPropertyWidget, vtkKWCompositeWidget);
+  vtkTypeMacro(vtkKWMaterialPropertyWidget, vtkKWCompositeWidget);
   void PrintSelf(ostream& os, vtkIndent indent);
   
   // Description:

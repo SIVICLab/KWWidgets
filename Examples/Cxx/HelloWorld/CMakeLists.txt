@@ -36,10 +36,10 @@ if(WIN32 AND NOT BORLAND AND NOT CYGWIN)
 endif(WIN32 AND NOT BORLAND AND NOT CYGWIN)
 
 # Create the executable, and link it against the KWWidgets libraries.
-
+include_directories("${TK_INCLUDE_PATH}/../../win/rc")
 add_executable(${EXE_NAME} WIN32 ${EXE_SRCS} ${RC_FILENAME})
-target_link_libraries(${EXE_NAME} ${KWWidgets_LIBRARIES})
-
+target_link_libraries(${EXE_NAME} ${KWWidgets_LIBRARIES} ${TK_LIBRARY} ${TCL_LIBRARY})
+message( "${KWWidgets_LIBRARIES} ${TK_LIBRARY} ${TCL_LIBRARY}")
 # If we are building this example as a standalone external project:
 # - Generate a few small scripts (.bat, .sh, .csh) that can be sourced to set
 # the various environments variables (PATH, TCLLIBPATH, LD_LIBRARY_PATH, etc.) 

@@ -36,7 +36,7 @@ const char *vtkKWWindowLevelPresetSelector::TypeColumnName  = "Type";
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWindowLevelPresetSelector);
-vtkCxxRevisionMacro(vtkKWWindowLevelPresetSelector, "1.17");
+//vtkCxxRevisionMacro(vtkKWWindowLevelPresetSelector, "1.17");
 
 //----------------------------------------------------------------------------
 class vtkKWWindowLevelPresetSelectorInternals

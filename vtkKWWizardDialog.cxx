@@ -23,7 +23,7 @@
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWizardDialog);
-vtkCxxRevisionMacro(vtkKWWizardDialog, "$Revision: 1.2 $");
+//vtkCxxRevisionMacro(vtkKWWizardDialog, "$Revision: 1.2 $");
 
 //----------------------------------------------------------------------------
 vtkKWWizardDialog::vtkKWWizardDialog()

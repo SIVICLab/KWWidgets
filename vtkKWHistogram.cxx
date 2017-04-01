@@ -33,7 +33,7 @@
 //----------------------------------------------------------------------------
 
 vtkStandardNewMacro(vtkKWHistogram);
-vtkCxxRevisionMacro(vtkKWHistogram, "$Revision: 1.15 $");
+//vtkCxxRevisionMacro(vtkKWHistogram, "$Revision: 1.15 $");
 
 //----------------------------------------------------------------------------
 vtkKWHistogram::vtkKWHistogram()
@@ -814,11 +814,11 @@ int vtkKWHistogram::RefreshImage(ImageDescriptor *desc)
   if (draw_image)
     {
     this->Image->SetDimensions(desc->Width, desc->Height, 1);
-    this->Image->SetWholeExtent(this->Image->GetExtent());
-    this->Image->SetUpdateExtent(this->Image->GetExtent());
-    this->Image->SetScalarTypeToUnsignedChar();
-    this->Image->SetNumberOfScalarComponents(nb_of_components);
-    this->Image->AllocateScalars();
+    this->Image->SetExtent(this->Image->GetExtent());
+    //this->Image->SetUpdateExtent(this->Image->GetExtent());
+    //this->Image->SetScalarTypeToUnsignedChar();
+    //this->Image->SetNumberOfScalarComponents(nb_of_components);
+    this->Image->AllocateScalars(VTK_UNSIGNED_CHAR, nb_of_components);
     image_ptr = 
       static_cast<unsigned char*>(this->Image->GetScalarPointer());
     }
