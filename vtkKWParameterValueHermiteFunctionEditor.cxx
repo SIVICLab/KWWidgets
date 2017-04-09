@@ -20,7 +20,7 @@
 #include "vtkMath.h"
 #include "vtkCallbackCommand.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 #include <ctype.h>
 
@@ -273,7 +273,7 @@ void vtkKWParameterValueHermiteFunctionEditor::PackPointEntries()
 
   this->Superclass::PackPointEntries();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Midpoint entry
 
@@ -893,7 +893,7 @@ void vtkKWParameterValueHermiteFunctionEditor::RedrawFunction()
 
 //----------------------------------------------------------------------------
 void vtkKWParameterValueHermiteFunctionEditor::RedrawLine(
-  int id1, int id2, vtksys_ios::ostream *tk_cmd)
+  int id1, int id2, std::ostream *tk_cmd)
 {
   // Redraw the line
 
@@ -912,7 +912,7 @@ void vtkKWParameterValueHermiteFunctionEditor::RedrawLine(
   int stream_was_created = 0;
   if (!tk_cmd)
     {
-    tk_cmd = new vtksys_ios::ostringstream;
+    tk_cmd = new std::ostringstream;
     stream_was_created = 1;
     }
 
@@ -1150,7 +1150,7 @@ void vtkKWParameterValueHermiteFunctionEditor::RedrawLine(
   if (stream_was_created)
     {
     this->Script(
-      static_cast<vtksys_ios::ostringstream*>(tk_cmd)->str().c_str());
+      static_cast<std::ostringstream*>(tk_cmd)->str().c_str());
 
     delete tk_cmd;
     }
@@ -1561,7 +1561,7 @@ void vtkKWParameterValueHermiteFunctionEditor::UnBind()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Canvas
 

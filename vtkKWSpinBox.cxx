@@ -18,7 +18,7 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWInternationalization.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWSpinBox);
@@ -143,7 +143,7 @@ void vtkKWSpinBox::SetValue(double value)
     {
     // Save the old -validate option, which seems to be reset to none
     // whenever the entry was set to something invalid
-    vtksys_stl::string old_validate;
+    std::string old_validate;
     if (this->RestrictValue != vtkKWSpinBox::RestrictNone)
       {
       old_validate = this->GetConfigurationOption("-validate");
@@ -252,7 +252,7 @@ void vtkKWSpinBox::ConfigureValidation()
   else
     {
     this->SetConfigurationOption("-validate", "all");
-    vtksys_stl::string command(this->GetTclName());
+    std::string command(this->GetTclName());
     command += " ValidationCallback {%P}";
     this->SetConfigurationOption("-validatecommand", command.c_str());
     }

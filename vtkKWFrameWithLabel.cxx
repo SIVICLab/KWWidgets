@@ -196,7 +196,7 @@ void vtkKWFrameWithLabel::CreateWidget()
 
   // If the label frame get resize, reset the margins
 
-  vtksys_stl::string callback("catch {");
+  std::string callback("catch {");
   callback += this->GetTclName();
   callback += " AdjustMarginCallback}";
   this->LabelFrame->SetBinding("<Configure>", NULL, callback.c_str());
@@ -343,7 +343,7 @@ void vtkKWFrameWithLabel::SetLabelText(const char *text)
     }
   else
     {
-    vtksys_stl::string res;
+    std::string res;
     switch (vtkKWFrameWithLabel::DefaultLabelCase)
       {
       case vtkKWFrameWithLabel::LabelCaseUppercaseFirst:

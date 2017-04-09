@@ -18,7 +18,7 @@
 #include "vtkObjectFactory.h"
 #include "@WidgetType@.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(@WidgetType@WithLabel);
@@ -101,7 +101,7 @@ void @WidgetType@WithLabel::Pack()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   const char *side;
   switch (this->LabelPosition)

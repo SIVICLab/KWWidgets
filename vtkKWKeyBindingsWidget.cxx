@@ -39,10 +39,10 @@
 #include "vtkObjectFactory.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/map>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <map>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWKeyBindingsWidget );
@@ -263,14 +263,14 @@ void vtkKWKeyBindingsWidget::Update()
   vtkKWMultiColumnList *tablelist = this->KeyBindingsList->GetWidget();
   tablelist->DeleteAllRows();
 
-  typedef vtksys_stl::map<vtksys_stl::string, vtksys_stl::string> 
+  typedef std::map<std::string, std::string> 
     StringToStringContainer;
-  typedef vtksys_stl::map<vtksys_stl::string, vtksys_stl::string>::iterator 
+  typedef std::map<std::string, std::string>::iterator 
     StringToStringIterator
 ;
-  typedef vtksys_stl::map<vtksys_stl::string, StringToStringContainer> 
+  typedef std::map<std::string, StringToStringContainer> 
     StringToStringToStringContainer;
-  typedef vtksys_stl::map<vtksys_stl::string,StringToStringContainer>::iterator 
+  typedef std::map<std::string,StringToStringContainer>::iterator 
     StringToStringToStringIterator;
 
   StringToStringToStringContainer keybindings;
@@ -356,13 +356,13 @@ int vtkKWKeyBindingsWidget::WriteKeyBindingsToStream(ostream& os)
     const char *tmp = keybinding_list->GetCellText(i, 0);
     if (tmp)
       {
-      vtksys_stl::string binding(tmp);
+      std::string binding(tmp);
 
       tmp = keybinding_list->GetCellText(i, 1);
-      vtksys_stl::string context(tmp ? tmp : "");
+      std::string context(tmp ? tmp : "");
 
       tmp = keybinding_list->GetCellText(i, 2);
-      vtksys_stl::string desc(tmp ? tmp : "");
+      std::string desc(tmp ? tmp : "");
 
       os << binding << '\t' << context << '\t' << desc << endl;
       }

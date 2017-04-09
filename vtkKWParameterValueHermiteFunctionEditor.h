@@ -31,7 +31,6 @@
 #include "vtkKWParameterValueFunctionEditor.h"
 
 class vtkKWScaleWithEntry;
-
 class KWWidgets_EXPORT vtkKWParameterValueHermiteFunctionEditor : public vtkKWParameterValueFunctionEditor
 {
 public:
@@ -333,7 +332,7 @@ protected:
   virtual void RedrawFunction();
   virtual void RedrawFunctionDependentElements();
   virtual void RedrawSinglePointDependentElements(int id);
-  virtual void RedrawLine(int id1, int id2, vtksys_ios::ostream *tk_cmd = 0);
+  virtual void RedrawLine(int id1, int id2, ostream *tk_cmd = 0);
   //ETX
 
   // Description:

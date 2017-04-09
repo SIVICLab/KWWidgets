@@ -16,7 +16,7 @@
 #include "vtkKWOptions.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWScale );

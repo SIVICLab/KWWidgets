@@ -105,14 +105,14 @@ void vtkKWLoadSaveButton::SetInitialFileName(const char* path)
 {
   if (path && *path && vtksys::SystemTools::FileExists(path))
     {
-    vtksys_stl::string s(path);
+    std::string s(path);
     if(this->LoadSaveDialog)
       {
-        vtksys_stl::string p = s;
+        std::string p = s;
         if(!vtksys::SystemTools::FileIsDirectory(s.c_str()))
         {
         p = vtksys::SystemTools::GetFilenamePath(s);
-        vtksys_stl::string f = vtksys::SystemTools::GetFilenameName(s);
+        std::string f = vtksys::SystemTools::GetFilenameName(s);
         this->LoadSaveDialog->SetInitialFileName(f.c_str());
         }
         this->LoadSaveDialog->SetLastPath(p.c_str());
@@ -174,7 +174,7 @@ void vtkKWLoadSaveButton::UpdateTextFromFileName()
     numFiles = this->LoadSaveDialog->GetNumberOfFileNames();
     }
 
-  vtksys_stl::string new_fname; 
+  std::string new_fname; 
   if (this->MaximumFileNameLength <= 0 && !this->TrimPathFromFileName)
     {
     new_fname = fname; 

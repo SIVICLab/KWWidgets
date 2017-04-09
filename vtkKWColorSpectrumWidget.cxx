@@ -21,8 +21,8 @@
 #include "vtkKWCanvas.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/ios/sstream>
+#include <string>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWColorSpectrumWidget );
@@ -122,7 +122,7 @@ void vtkKWColorSpectrumWidget::CreateWidget()
   
   this->Superclass::CreateWidget();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   
   double frame_rgb[3], frame_hsv[3];
   this->GetBackgroundColor(&frame_rgb[0], &frame_rgb[1], &frame_rgb[2]);
@@ -146,7 +146,7 @@ void vtkKWColorSpectrumWidget::CreateWidget()
 
   const char *canv = this->ColorCanvas->GetWidgetName();
 
-  vtksys_ios::ostringstream img_name;
+  std::ostringstream img_name;
   img_name << this->ColorCanvas->GetWidgetName() 
            << "." << VTK_KW_COLOR_SPECTRUM_WIDGET_IMAGE_TAG;
 
@@ -195,7 +195,7 @@ void vtkKWColorSpectrumWidget::CreateWidget()
     int tcl_major = 0, tcl_minor = 0, tcl_patch_level = 0;
     Tcl_GetVersion(&tcl_major, &tcl_minor, &tcl_patch_level, NULL);
 
-    vtksys_stl::string font("{");
+    std::string font("{");
     font += (tcl_major < 8 || (tcl_major == 8 && tcl_minor < 5)) 
       ? VTK_KW_COLOR_SPECTRUM_WIDGET_FIXED_FONT 
       : VTK_KW_COLOR_SPECTRUM_WIDGET_FIXED_FONT_85;
@@ -235,11 +235,11 @@ void vtkKWColorSpectrumWidget::AdjustToCanvasSize()
   this->ColorCanvas->SetHeight(this->CanvasSize);
   this->ColorCanvas->SetWidth(this->CanvasSize);
 
-  vtksys_ios::ostringstream img_name;
+  std::ostringstream img_name;
   img_name << this->ColorCanvas->GetWidgetName() 
            << "." << VTK_KW_COLOR_SPECTRUM_WIDGET_IMAGE_TAG;
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   tk_cmd << img_name.str().c_str() 
          << " configure -width " << this->CanvasSize
          << " -height " << this->CanvasSize 
@@ -262,7 +262,7 @@ void vtkKWColorSpectrumWidget::Pack()
   
   this->UnpackChildren();
   
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   
   if (this->FixedAxisSelectorVisibility)
     {
@@ -799,7 +799,7 @@ void vtkKWColorSpectrumWidget::UpdateColorCanvas()
 
   // Update the image
 
-  vtksys_ios::ostringstream img_name;
+  std::ostringstream img_name;
   img_name << this->ColorCanvas->GetWidgetName() 
            << "." << VTK_KW_COLOR_SPECTRUM_WIDGET_IMAGE_TAG;
 
@@ -864,7 +864,7 @@ void vtkKWColorSpectrumWidget::UpdateColorCursor()
   const int size = this->CanvasSize;
   double radius = 5.0;
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   
   tk_cmd << this->ColorCanvas->GetWidgetName() 
          << " coords " << VTK_KW_COLOR_SPECTRUM_WIDGET_CURSOR_TAG

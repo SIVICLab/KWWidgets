@@ -190,7 +190,7 @@ protected:
   virtual void UpdatePointEntries(int id);
 
   //BTX
-  virtual void GetLineCoordinates(int id1, int id2, vtksys_ios::ostream *tk_cmd);
+  virtual void GetLineCoordinates(int id1, int id2, std::ostream *tk_cmd);
   //ETX
 
   vtkPiecewiseFunction *PiecewiseFunction;

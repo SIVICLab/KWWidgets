@@ -19,8 +19,8 @@
 #include "vtkKWHistogram.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/list>
-#include <vtksys/stl/string>
+#include <list>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWHistogramSet);
@@ -35,12 +35,12 @@ public:
   {
   public:
 
-    vtksys_stl::string Name;
+    std::string Name;
     vtkKWHistogram *Histogram;
   };
 
-  typedef vtksys_stl::list<HistogramSlot> HistogramsContainer;
-  typedef vtksys_stl::list<HistogramSlot>::iterator HistogramsContainerIterator;
+  typedef std::list<HistogramSlot> HistogramsContainer;
+  typedef std::list<HistogramSlot>::iterator HistogramsContainerIterator;
 
   HistogramsContainer Histograms;
 };

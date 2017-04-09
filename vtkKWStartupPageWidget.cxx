@@ -25,8 +25,8 @@
 #include "vtkObjectFactory.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 //vtkCxxRevisionMacro(vtkKWStartupPageWidget, "1.21");
 vtkStandardNewMacro(vtkKWStartupPageWidget);
@@ -42,11 +42,11 @@ vtkStandardNewMacro(vtkKWStartupPageWidget);
 class vtkKWStartupPageWidgetInternals
 {
 public:
-  vtksys_stl::string ScheduleRedrawTimerId;
+  std::string ScheduleRedrawTimerId;
 
   int LastRedrawSize[2];
 
-  vtksys_stl::string BaseFont;
+  std::string BaseFont;
 
   char TextFont[1024];
   char HexTextColor[20];
@@ -695,7 +695,7 @@ void vtkKWStartupPageWidget::Redraw()
   int y = (int)(0.10 * canv_height);
   int interspace = (int)(0.12 * canv_height);
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   const char *canv = this->StartupPageCanvas->GetWidgetName();
 
@@ -824,18 +824,18 @@ void vtkKWStartupPageWidget::AddMostRecentFilesSectionToCanvas(
           this->MostRecentFilesManager->GetDefaultTargetCommand();
         }
 
-      vtksys_stl::string filename_name;
+      std::string filename_name;
       if (!label || !*label)
         {
         filename_name = vtksys::SystemTools::GetFilenameName(filename);
         label = filename_name.c_str();
         }
       
-      vtksys_stl::string filename_path(
+      std::string filename_path(
         vtksys::SystemTools::CropString(
           vtksys::SystemTools::GetFilenamePath(filename), 60));
       
-      vtksys_stl::string cmd(target_command);
+      std::string cmd(target_command);
       cmd += " {";
       cmd += filename;
       cmd += '}';
@@ -868,7 +868,7 @@ void vtkKWStartupPageWidget::AddSectionToCanvas(
 {
   const char *canv = this->StartupPageCanvas->GetWidgetName();
 
-  vtksys_stl::string tags(tag);
+  std::string tags(tag);
   if (extra_tag)
     {
     tags += ' ';
@@ -922,7 +922,7 @@ void vtkKWStartupPageWidget::AddSectionToCanvas(
 
   if (icon && (!has_tag || !this->StartupPageCanvas->HasTag("icon")))
     {
-    vtksys_stl::string img_name(canv);
+    std::string img_name(canv);
     img_name += tag;
     img_name += "icon";
     if (vtkKWTkUtilities::UpdatePhotoFromIcon(
@@ -955,15 +955,15 @@ void vtkKWStartupPageWidget::AddSectionToCanvas(
 
   if (method && !has_tag)
     {
-    vtksys_stl::string command("HighlightSectionCallback ");
+    std::string command("HighlightSectionCallback ");
     command += tag;
     
-    vtksys_stl::string highlight_command(command);
+    std::string highlight_command(command);
     highlight_command += " 1";
     this->StartupPageCanvas->SetCanvasBinding(
         tag, "<Enter>", this, highlight_command.c_str());
     
-    vtksys_stl::string no_highlight_command(command);
+    std::string no_highlight_command(command);
     no_highlight_command += " 0";
     this->StartupPageCanvas->SetCanvasBinding(
       tag, "<Leave>", this, no_highlight_command.c_str());
@@ -1006,7 +1006,7 @@ void vtkKWStartupPageWidget::HighlightSectionCallback(
 {
   const char *canv = this->StartupPageCanvas->GetWidgetName();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   tk_cmd << canv << " itemconfigure " << tag << "text -fill "
          << (flag ? this->Internals->HexSelectedTextColor : this->Internals->HexTextColor) << endl;

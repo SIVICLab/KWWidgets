@@ -15,9 +15,9 @@
 
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/stl/map>
-#include <vtksys/ios/sstream> 
+#include <string>
+#include <map>
+#include <sstream> 
 
 #ifdef VTK_USE_ANSI_STDLIB
 #define VTK_IOS_NOCREATE 
@@ -35,7 +35,7 @@ vtkStandardNewMacro( vtkKWUNIXRegistryHelper );
 class vtkKWUNIXRegistryHelperInternals
 {
 public:
-  typedef vtksys_stl::map<vtksys_stl::string, vtksys_stl::string> StringToStringMap;
+  typedef std::map<std::string, std::string> StringToStringMap;
   StringToStringMap EntriesMap;
 };
 //****************************************************************************
@@ -72,7 +72,7 @@ int vtkKWUNIXRegistryHelper::OpenInternal(const char *toplevel,
     {
     return 0;
     }
-  vtksys_ios::ostringstream str;
+  std::ostringstream str;
   str << this->GetConfigurationDirectory() << "/." << toplevel << "rc";
   if ( readonly == vtkKWRegistryHelper::ReadWrite )
     {
@@ -154,7 +154,7 @@ int vtkKWUNIXRegistryHelper::CloseInternal()
     {
     return 0;
     }
-  vtksys_ios::ostringstream str;
+  std::ostringstream str;
   str << this->GetConfigurationDirectory() << "/." << this->GetTopLevel() << "rc";
   ofstream *ofs = new ofstream(str.str().c_str(), ios::out);
   if ( !ofs )

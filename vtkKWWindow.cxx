@@ -34,7 +34,7 @@
 #include "vtkObjectFactory.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream> 
+#include <sstream> 
 
 //vtkCxxRevisionMacro(vtkKWWindow, "$Revision: 1.297 $");
 
@@ -300,7 +300,7 @@ void vtkKWWindow::PopulateWindowMenu()
 
   int idx;
   vtkKWMenu *menu = this->GetWindowMenu();
-  vtksys_stl::string cmd;
+  std::string cmd;
 
   idx = menu->AddCommand(this->GetHideMainPanelMenuLabel(), 
                          this, "MainPanelVisibilityCallback");
@@ -375,7 +375,7 @@ void vtkKWWindow::PopulateViewMenu()
 
   int idx;
   vtkKWMenu *menu = this->GetViewMenu();
-  vtksys_stl::string cmd;
+  std::string cmd;
 
   // Menu : View : Application Settings
 
@@ -476,7 +476,7 @@ vtkKWToolbarSet* vtkKWWindow::GetSecondaryToolbarSet()
     this->SecondaryToolbarSet->SetNumberOfToolbarsChangedCommand(
       this, "NumberOfToolbarsChangedCallback");
 
-    vtksys_stl::string after;
+    std::string after;
     
     if (this->PanelLayout == vtkKWWindow::PanelLayoutSecondaryBelowView)
       {
@@ -710,7 +710,7 @@ void vtkKWWindow::ShowMainUserInterface(vtkKWUserInterfacePanel *panel)
 
   if (!panel->Raise())
     {
-    vtksys_ios::ostringstream msg;
+    std::ostringstream msg;
     msg << "The panel you are trying to access could not be displayed "
         << "properly. Please make sure there is enough room in the notebook "
         << "to bring up this part of the interface.";
@@ -865,7 +865,7 @@ void vtkKWWindow::ShowSecondaryUserInterface(vtkKWUserInterfacePanel *panel)
 
   if (!panel->Raise())
     {
-    vtksys_stl::string msg;
+    std::string msg;
     msg = "The panel you are trying to access could not be displayed "
       "properly. Please make sure there is enough room in the notebook "
       "to bring up this part of the interface.";
@@ -1044,7 +1044,7 @@ void vtkKWWindow::ShowViewUserInterface(vtkKWUserInterfacePanel *panel)
 
   if (!panel->Raise())
     {
-    vtksys_stl::string msg;
+    std::string msg;
     msg = "The panel you are trying to access could not be displayed "
       "properly. Please make sure there is enough room in the notebook "
       "to bring up this part of the interface.";
@@ -1365,7 +1365,7 @@ void vtkKWWindow::UpdateMenuState()
       }
     if (idx >= 0)
       {
-      vtksys_stl::string label;
+      std::string label;
       label += this->GetMainPanelVisibility()
         ? this->GetHideMainPanelMenuLabel() 
         : this->GetShowMainPanelMenuLabel();
@@ -1391,7 +1391,7 @@ void vtkKWWindow::UpdateMenuState()
       }
     if (idx >= 0)
       {
-      vtksys_stl::string label;
+      std::string label;
       label += this->GetSecondaryPanelVisibility()
         ? this->GetHideSecondaryPanelMenuLabel() 
         : this->GetShowSecondaryPanelMenuLabel();

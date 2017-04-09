@@ -21,8 +21,8 @@
 
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/vector>
-#include <vtksys/stl/map>
+#include <vector>
+#include <map>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWWizardWorkflow);
@@ -35,8 +35,8 @@ public:
 
   // Steps
 
-  typedef vtksys_stl::vector<vtkKWWizardStep*> StepPoolType;
-  typedef vtksys_stl::vector<vtkKWWizardStep*>::iterator StepPoolIterator;
+  typedef std::vector<vtkKWWizardStep*> StepPoolType;
+  typedef std::vector<vtkKWWizardStep*>::iterator StepPoolIterator;
   StepPoolType StepPool;
 
   StepPoolType StepNavigationStackPool;
@@ -44,8 +44,8 @@ public:
   // State to Step
   // Provide a quick way to find which step a state belongs to (if any)
 
-  typedef vtksys_stl::map<vtkKWStateMachineState*, vtkKWWizardStep*> StateToStepMapType;
-  typedef vtksys_stl::map<vtkKWStateMachineState*, vtkKWWizardStep*>::iterator StateToStepMapIterator;
+  typedef std::map<vtkKWStateMachineState*, vtkKWWizardStep*> StateToStepMapType;
+  typedef std::map<vtkKWStateMachineState*, vtkKWWizardStep*>::iterator StateToStepMapIterator;
 
   StateToStepMapType StateToStepPool;
 

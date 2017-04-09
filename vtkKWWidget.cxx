@@ -26,8 +26,8 @@
 
 #include "vtkKWWidgetsConfigure.h" // for KWWidgets_USE_TKDND
 
-#include <vtksys/stl/vector>
-#include <vtksys/stl/algorithm>
+#include <vector>
+#include <algorithm>
 #include <vtksys/SystemTools.hxx>
 
 //----------------------------------------------------------------------------
@@ -38,9 +38,9 @@ vtkStandardNewMacro( vtkKWWidget );
 class vtkKWWidgetInternals
 {
 public:
-  typedef vtksys_stl::vector<vtkKWWidget*> WidgetsContainer;
-  typedef vtksys_stl::vector<vtkKWWidget*>::iterator WidgetsContainerIterator;
-  vtksys_stl::string PreviouslyGrabbedWidget;
+  typedef std::vector<vtkKWWidget*> WidgetsContainer;
+  typedef std::vector<vtkKWWidget*>::iterator WidgetsContainerIterator;
+  std::string PreviouslyGrabbedWidget;
 
   WidgetsContainer *Children;
 
@@ -170,7 +170,7 @@ const char *vtkKWWidget::GetWidgetName()
   // Create this widgets name
 
   unsigned long id;
-  vtksys_stl::string widget_name;
+  std::string widget_name;
   if (this->Parent)
     {
     widget_name += this->Parent->GetWidgetName();
@@ -350,7 +350,7 @@ int vtkKWWidget::HasChild(vtkKWWidget *child)
 {
   if (this->GetNumberOfChildren())
     {
-    return vtksys_stl::find(this->Internals->Children->begin(),
+    return std::find(this->Internals->Children->begin(),
                            this->Internals->Children->end(),
                            child) == this->Internals->Children->end() ? 0 : 1;
     }
@@ -363,7 +363,7 @@ void vtkKWWidget::RemoveChild(vtkKWWidget *child)
   if (this->GetNumberOfChildren())
     {
     this->Internals->Children->erase(
-      vtksys_stl::find(this->Internals->Children->begin(),
+      std::find(this->Internals->Children->begin(),
                       this->Internals->Children->end(),
                       child));
     child->UnRegister(this);
@@ -481,7 +481,7 @@ int vtkKWWidget::HasFocus()
 {
   if (this->IsCreated())
     {
-    vtksys_stl::string infocus(this->Script("focus"));
+    std::string infocus(this->Script("focus"));
     return infocus.length() && !strcmp(infocus.c_str(), this->GetWidgetName());
     }
   return 0;
@@ -902,7 +902,7 @@ void vtkKWWidget::RemoveGenericBinding(
     
     // Retrieve the bindings, remove the command, re-assign
 
-    vtksys_stl::string bindings(this->Script("bind %s %s", target, event));
+    std::string bindings(this->Script("bind %s %s", target, event));
     vtksys::SystemTools::ReplaceString(bindings, command, "");
     this->Script("bind %s %s {%s}", target, event, bindings.c_str());
     delete [] command;
@@ -920,7 +920,7 @@ void vtkKWWidget::RemoveBinding(const char *event,
 
     // Retrieve the bindings, remove the command, re-assign
 
-    vtksys_stl::string bindings(
+    std::string bindings(
       this->Script("if { [info command %s] != {} } {bind %s %s}", 
                    this->GetWidgetName(), this->GetWidgetName(), event));
 

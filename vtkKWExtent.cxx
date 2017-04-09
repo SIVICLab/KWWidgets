@@ -18,7 +18,7 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWInternationalization.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWExtent );
@@ -122,7 +122,7 @@ void vtkKWExtent::Pack()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   for (int i = 0; i < 3; i++)
     {

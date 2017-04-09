@@ -18,7 +18,7 @@
 #include "vtkKWIcon.h"
 #include "vtkKWOptions.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWCheckButton );
@@ -119,10 +119,10 @@ int vtkKWCheckButton::GetSelectedState()
       this->Script("expr {${%s}} == {[%s cget -onvalue]}",
                    this->VariableName, this->GetWidgetName()));
 #else
-    vtksys_stl::string varvalue(
+    std::string varvalue(
       Tcl_GetVar(this->GetApplication()->GetMainInterp(), 
                  this->VariableName, TCL_GLOBAL_ONLY));
-    vtksys_stl::string value(this->GetConfigurationOption("-onvalue"));
+    std::string value(this->GetConfigurationOption("-onvalue"));
     return !strcmp(varvalue.c_str(), value.c_str());
 #endif
     }
@@ -199,7 +199,7 @@ void vtkKWCheckButton::Configure()
 
   if (!this->VariableName)
     {
-    vtksys_stl::string vname(this->GetWidgetName());
+    std::string vname(this->GetWidgetName());
     vname += "Value";
     this->SetVariableName(vname.c_str());
     }

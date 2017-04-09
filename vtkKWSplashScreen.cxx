@@ -20,7 +20,7 @@
 #include "vtkKWResourceUtilities.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWSplashScreen );
@@ -246,7 +246,7 @@ void vtkKWSplashScreen::SetImageToPixels(const unsigned char* pixels,
 
   // If no image name, make up one
 
-  vtksys_stl::string new_image_name;
+  std::string new_image_name;
   if (!this->ImageName)
     {
     new_image_name = this->GetTclName();

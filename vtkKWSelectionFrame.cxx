@@ -27,9 +27,9 @@
 #include "vtkKWToolbarSet.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/list>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <list>
+#include <string>
 
 vtkStandardNewMacro(vtkKWSelectionFrame);
 //vtkCxxRevisionMacro(vtkKWSelectionFrame, "$Revision: 1.62 $");
@@ -38,13 +38,13 @@ vtkStandardNewMacro(vtkKWSelectionFrame);
 class vtkKWSelectionFrameInternals
 {
 public:
-  typedef vtksys_stl::list<vtksys_stl::string> StringPoolType;
-  typedef vtksys_stl::list<vtksys_stl::string>::iterator StringPoolIterator;
+  typedef std::list<std::string> StringPoolType;
+  typedef std::list<std::string>::iterator StringPoolIterator;
 
   StringPoolType StringPool;
 
   int OuterSelectionFrameBlinkingCounter;
-  vtksys_stl::string OuterSelectionFrameBlinkingTimerId;
+  std::string OuterSelectionFrameBlinkingTimerId;
 };
 
 //----------------------------------------------------------------------------
@@ -371,7 +371,7 @@ void vtkKWSelectionFrame::Pack()
 
   this->UnpackChildren();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   int has_list     = this->SelectionListVisibility;
   int has_close    = this->AllowClose;
@@ -603,7 +603,7 @@ void vtkKWSelectionFrame::SetTitle(const char *title)
 {
   if (this->TitleLabel)
     {
-    vtksys_stl::string old_title(this->GetTitle());
+    std::string old_title(this->GetTitle());
     this->TitleLabel->SetText(title);
     if (strcmp(old_title.c_str(), this->GetTitle()))
       {
@@ -999,7 +999,7 @@ void vtkKWSelectionFrame::UpdateSelectionListMenuButton()
     return;
     }
 
-  vtksys_stl::string callback;
+  std::string callback;
 
   vtkKWMenu *menu = this->SelectionListMenuButton->GetMenu();
   menu->DeleteAllItems();

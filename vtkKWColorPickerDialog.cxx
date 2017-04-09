@@ -19,7 +19,7 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWPushButton.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWColorPickerDialog );
@@ -68,7 +68,7 @@ void vtkKWColorPickerDialog::CreateWidget()
   this->Superclass::CreateWidget();
 
   this->SetResizable(1, 1);
-  vtksys_stl::string title;
+  std::string title;
   if (this->GetApplication()->GetName())
     {
     title += this->GetApplication()->GetName();

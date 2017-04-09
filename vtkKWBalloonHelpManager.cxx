@@ -22,7 +22,7 @@
 
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWBalloonHelpManager );
@@ -366,7 +366,7 @@ void vtkKWBalloonHelpManager::AddBindings(vtkKWWidget *widget)
     return;
     }
 
-  vtksys_stl::string command("TriggerCallback ");
+  std::string command("TriggerCallback ");
   command += widget->GetTclName();
   widget->AddBinding("<Enter>", this, command.c_str());
 
@@ -384,7 +384,7 @@ void vtkKWBalloonHelpManager::RemoveBindings(vtkKWWidget *widget)
     return;
     }
 
-  vtksys_stl::string command("TriggerCallback ");
+  std::string command("TriggerCallback ");
   command += widget->GetTclName();
   widget->RemoveBinding("<Enter>", this, command.c_str());
 

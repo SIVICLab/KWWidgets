@@ -19,8 +19,8 @@
 #include "vtkKWApplication.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/map>
+#include <sstream>
+#include <map>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWProgressGauge );
@@ -31,8 +31,8 @@ class vtkKWProgressGaugeInternals
 {
 public:
 
-  typedef vtksys_stl::map<int, double> ValuePoolType;
-  typedef vtksys_stl::map<int, double>::iterator ValuePoolIterator;
+  typedef std::map<int, double> ValuePoolType;
+  typedef std::map<int, double>::iterator ValuePoolIterator;
   ValuePoolType ValuePool;
 };
 
@@ -256,7 +256,7 @@ void vtkKWProgressGauge::Redraw()
 
   const char* wname = this->Canvas->GetWidgetName();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Resize the canvas
 

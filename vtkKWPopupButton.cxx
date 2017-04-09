@@ -21,7 +21,7 @@
 #include "vtkKWTopLevel.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 #include <vtksys/SystemTools.hxx>
 
 //----------------------------------------------------------------------------
@@ -84,7 +84,7 @@ void vtkKWPopupButton::CreateWidget()
 
   this->Superclass::CreateWidget();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Create  top level window
 

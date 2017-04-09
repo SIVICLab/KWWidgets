@@ -16,7 +16,7 @@
 #include "vtkKWOptions.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 #if defined (__BORLANDC__)  && (__BORLANDC__ >= 0x0580)
 #include <ctype.h> // for isalpha
@@ -225,7 +225,7 @@ void vtkKWEntry::SetValue(const char *s)
 
   // Save the old -validate option, which seems to be reset to none
   // whenever the entry was set to something invalid
-  vtksys_stl::string old_validate;
+  std::string old_validate;
   if (this->RestrictValue != vtkKWEntry::RestrictNone)
     {
     old_validate = this->GetConfigurationOption("-validate");
@@ -456,7 +456,7 @@ void vtkKWEntry::ConfigureValidation()
   else
     {
     this->SetConfigurationOption("-validate", "all");
-    vtksys_stl::string command(this->GetTclName());
+    std::string command(this->GetTclName());
     command += " ValidationCallback {%P}";
     this->SetConfigurationOption("-validatecommand", command.c_str());
     }

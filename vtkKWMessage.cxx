@@ -17,7 +17,7 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWIcon.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMessage );
@@ -79,7 +79,7 @@ void vtkKWMessage::AppendText(const char *arg)
     {
     this->SetText(arg);
     }
-  vtksys_stl::string text(this->Text);
+  std::string text(this->Text);
   text += arg;
   this->SetText(text.c_str());
 }

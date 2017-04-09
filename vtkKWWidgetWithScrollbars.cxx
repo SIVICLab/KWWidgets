@@ -16,8 +16,8 @@
 #include "vtkKWScrollbar.h"
 #include "vtkKWCoreWidget.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/ios/sstream> 
+#include <string>
+#include <sstream> 
 
 //----------------------------------------------------------------------------
 //vtkCxxRevisionMacro(vtkKWWidgetWithScrollbars, "$Revision: 1.11 $");
@@ -109,7 +109,7 @@ void vtkKWWidgetWithScrollbars::AssociateVerticalScrollbarToWidget(
   if (this->VerticalScrollbar && this->VerticalScrollbar->IsCreated() &&
       widget && widget->IsCreated())
     {
-    vtksys_stl::string command(widget->GetWidgetName());
+    std::string command(widget->GetWidgetName());
     command += " yview";
     this->VerticalScrollbar->SetCommand(NULL, command.c_str());
     command = this->VerticalScrollbar->GetWidgetName();
@@ -142,7 +142,7 @@ void vtkKWWidgetWithScrollbars::AssociateHorizontalScrollbarToWidget(
   if (this->HorizontalScrollbar && this->HorizontalScrollbar->IsCreated() &&
       widget && widget->IsCreated())
     {
-    vtksys_stl::string command(widget->GetWidgetName());
+    std::string command(widget->GetWidgetName());
     command += " xview";
     this->HorizontalScrollbar->SetCommand(NULL, command.c_str());
     command = this->HorizontalScrollbar->GetWidgetName();
@@ -162,7 +162,7 @@ void vtkKWWidgetWithScrollbars::PackScrollbarsWithWidget(vtkKWWidget *widget)
 
   this->UnpackChildren();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   if (widget && widget->IsCreated())
     {

@@ -33,8 +33,8 @@ public:
   // Some temporary storage var that do not need to be exposed in the .h
 
   double ConfigurationOptionAsColorTemp[3];
-  vtksys_stl::string ConvertInternalStringToTclStringTemp;
-  vtksys_stl::string ConvertTclStringToInternalStringTemp;
+  std::string ConvertInternalStringToTclStringTemp;
+  std::string ConvertTclStringToInternalStringTemp;
 
   // For performance, let's cache the -state option value so that we
   // can query it faster. This is important as setting a lot of other
@@ -98,10 +98,10 @@ int vtkKWCoreWidget::SetConfigurationOption(
 
   if (res && *res)
     {
-    vtksys_stl::string err_msg(res);
-    vtksys_stl::string tcl_name(this->GetTclName());
-    vtksys_stl::string widget_name(this->GetWidgetName());
-    vtksys_stl::string type(this->GetType());
+    std::string err_msg(res);
+    std::string tcl_name(this->GetTclName());
+    std::string widget_name(this->GetWidgetName());
+    std::string type(this->GetType());
     vtkErrorMacro(
       "Error configuring " << tcl_name.c_str() << " (" << type.c_str() << ": " 
       << widget_name.c_str() << ") with option: [" << option 
@@ -238,7 +238,7 @@ const char* vtkKWCoreWidget::ConvertInternalStringToTclString(
     return NULL;
     }
 
-  vtksys_stl::string &dest = 
+  std::string &dest = 
     this->Internals->ConvertInternalStringToTclStringTemp;
   const char *res = source;
 
@@ -273,7 +273,7 @@ const char* vtkKWCoreWidget::ConvertInternalStringToTclString(
 
   // Escape
   
-  vtksys_stl::string escape_chars;
+  std::string escape_chars;
   if (options)
     {
     if (options & vtkKWCoreWidget::ConvertStringEscapeCurlyBraces)
@@ -301,7 +301,7 @@ const char* vtkKWCoreWidget::ConvertTclStringToInternalString(
     return NULL;
     }
 
-  vtksys_stl::string &dest = 
+  std::string &dest = 
     this->Internals->ConvertTclStringToInternalStringTemp;
   const char *res = source;
 
@@ -321,7 +321,7 @@ const char* vtkKWCoreWidget::ConvertTclStringToInternalString(
   
   // Escape
   
-  vtksys_stl::string escape_chars;
+  std::string escape_chars;
   if (options)
     {
     if (options & vtkKWCoreWidget::ConvertStringEscapeCurlyBraces)

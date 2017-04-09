@@ -23,9 +23,9 @@
 #include <ctype.h>
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/map>
+#include <sstream>
+#include <string>
+#include <map>
 
 #define VTK_KW_MENU_CB_VARNAME_PATTERN "CB_group%d"
 #define VTK_KW_MENU_RB_DEFAULT_GROUP "RB_group"
@@ -41,9 +41,9 @@ class vtkKWMenuInternals
 public:
   int ItemCounter;
   int IndexOfLastActiveItem;
-  vtksys_stl::string GetItemCommandTemp;
+  std::string GetItemCommandTemp;
 
-  struct CascadePoolType: public vtksys_stl::map<vtksys_stl::string, vtkKWMenu*> {};
+  struct CascadePoolType: public std::map<std::string, vtkKWMenu*> {};
   CascadePoolType CascadePool;
 };
 
@@ -165,7 +165,7 @@ int vtkKWMenu::InsertGeneric(int index,
       }
     }
 
-  vtksys_ios::ostringstream str;
+  std::ostringstream str;
   str << this->GetWidgetName() << " insert " << index << " " << type;
 
   char *clean_label = NULL;
@@ -271,12 +271,12 @@ const char* vtkKWMenu::GetItemCommand(int index)
   // Let's strip the CommandInvokedCallback wrapper out
   // The wrapper is used to send an event when the entry is invoked.
 
-  vtksys_stl::string &temp = this->Internals->GetItemCommandTemp;
+  std::string &temp = this->Internals->GetItemCommandTemp;
   temp = command;
 
   const char *pattern = "CommandInvokedCallback {";
-  vtksys_stl::string::size_type pos = temp.find(pattern);
-  if(pos != vtksys_stl::string::npos)
+  std::string::size_type pos = temp.find(pattern);
+  if(pos != std::string::npos)
     {
     temp[temp.size() - 1] = '\0'; // Remove the last enclosing '}'
     return temp.c_str() + pos + strlen(pattern);
@@ -354,7 +354,7 @@ void vtkKWMenu::SelectItem(int index)
   const char *temp = this->GetItemVariable(index);
   if (temp)
     {
-    vtksys_stl::string varname(temp);
+    std::string varname(temp);
     this->SetItemVariableValue(
       varname.c_str(), this->GetItemSelectedValue(index));
     }
@@ -372,7 +372,7 @@ void vtkKWMenu::DeselectItem(int index)
   const char *temp = this->GetItemVariable(index);
   if (temp)
     {
-    vtksys_stl::string varname(temp);
+    std::string varname(temp);
     this->SetItemVariableValue(
       varname.c_str(), this->GetItemDeselectedValue(index));
     }
@@ -409,7 +409,7 @@ int vtkKWMenu::GetItemSelectedState(int index)
   const char *temp = this->GetItemVariableValue(this->GetItemVariable(index));
   if (temp)
     {
-    vtksys_stl::string current_val(temp);
+    std::string current_val(temp);
     temp = this->GetItemSelectedValue(index);
     if (temp)
       {
@@ -548,14 +548,14 @@ void vtkKWMenu::SetItemSelectedValue(int index, const char* value)
     return;
     }
 
-  vtksys_stl::string value_safe(value ? value : "");
+  std::string value_safe(value ? value : "");
 
   if (index < 0 || index >= this->GetNumberOfItems())
     {
     return;
     }
 
-  vtksys_stl::string type(
+  std::string type(
     this->Script("%s type %d", this->GetWidgetName(), index));
   if (!strcmp("radiobutton", type.c_str()))
     {
@@ -577,7 +577,7 @@ const char* vtkKWMenu::GetItemSelectedValue(int index)
     return NULL;
     }
 
-  vtksys_stl::string type(
+  std::string type(
     this->Script("%s type %d", this->GetWidgetName(), index));
   if (!strcmp("radiobutton", type.c_str()))
     {
@@ -611,7 +611,7 @@ int vtkKWMenu::GetIndexOfItemWithSelectedValue(
 {
   if (value)
     {
-    vtksys_stl::string value_safe(value);
+    std::string value_safe(value);
 
     int nb_of_items = this->GetNumberOfItems();
     for(int i = 0; i < nb_of_items; i++)
@@ -718,7 +718,7 @@ int vtkKWMenu::AddRadioButtonImage(const char *imgname)
 int vtkKWMenu::AddRadioButtonImage(const char *imgname,
                                    vtkObject *object, const char *method)
 {
-  vtksys_stl::string str("-image ");
+  std::string str("-image ");
   str += imgname;
   str += " -selectimage ";
   str += imgname;
@@ -767,7 +767,7 @@ int vtkKWMenu::InsertRadioButtonImage(int index, const char *imgname)
 int vtkKWMenu::InsertRadioButtonImage(int index, const char *imgname,
                                       vtkObject *object, const char *method)
 {
-  vtksys_stl::string str("-image ");
+  std::string str("-image ");
   str += imgname;
   str += " -selectimage ";
   str += imgname;
@@ -811,8 +811,8 @@ int vtkKWMenu::GetIndexOfItemWithVariableAndSelectedValue(
 {
   if (varname && value)
     {
-    vtksys_stl::string varname_safe(varname);
-    vtksys_stl::string value_safe(value);
+    std::string varname_safe(varname);
+    std::string value_safe(value);
 
     int nb_of_items = this->GetNumberOfItems();
     for(int i = 0; i < nb_of_items; i++)
@@ -878,7 +878,7 @@ int vtkKWMenu::GetIndexOfSelectedItemInGroup(const char *group_name)
   const char *temp = this->GetItemVariableValue(varname);
   if (temp)
     {
-    vtksys_stl::string varvalue(temp);
+    std::string varvalue(temp);
     index = this->GetIndexOfItemWithVariableAndSelectedValue(
       varname, varvalue.c_str());
     }
@@ -889,7 +889,7 @@ int vtkKWMenu::GetIndexOfSelectedItemInGroup(const char *group_name)
 //----------------------------------------------------------------------------
 int vtkKWMenu::GetIndexOfSelectedItem()
 {
-  vtksys_stl::string group(
+  std::string group(
     this->GetItemGroupName(this->GetNumberOfItems() - 1));
   return this->GetIndexOfSelectedItemInGroup(group.c_str());
 }
@@ -963,10 +963,10 @@ void vtkKWMenu::SetItemCascade(int index, const char *menu_name)
     return;
     }
 
-  vtksys_stl::string menu_name_safe(menu_name);
+  std::string menu_name_safe(menu_name);
   const char *wname = this->GetWidgetName();
 
-  vtksys_ios::ostringstream str;
+  std::ostringstream str;
   str << wname << " entryconfigure " << index;
 
   // The cascade menu has to be a child 
@@ -980,8 +980,8 @@ void vtkKWMenu::SetItemCascade(int index, const char *menu_name)
       strncmp(wname, menu_name_safe.c_str(), parent_length) ||
       menu_name_safe[parent_length] != '.')
     {
-    vtksys_ios::ostringstream clone_menu;
-    vtksys_stl::string menu_name_safe_no_dots(menu_name_safe);
+    std::ostringstream clone_menu;
+    std::string menu_name_safe_no_dots(menu_name_safe);
     vtksys::SystemTools::ReplaceString(menu_name_safe_no_dots, ".", "_");
     clone_menu << wname << ".clone" << menu_name_safe_no_dots.c_str();
     this->Script("catch { destroy %s } \n %s clone %s", 
@@ -1240,7 +1240,7 @@ void vtkKWMenu::DeleteAllItems()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *wname = this->GetWidgetName();
 
   for (int i = nb_of_items - 1; i >= 0; --i)
@@ -1329,7 +1329,7 @@ void vtkKWMenu::SetState(int state)
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *wname = this->GetWidgetName();
 
   const char *statestr = vtkKWOptions::GetStateAsTkOptionValue(state);
@@ -1346,7 +1346,7 @@ void vtkKWMenu::SetState(int state)
 //----------------------------------------------------------------------------
 void vtkKWMenu::SetItemImage(int index, const char *imgname)
 {
-  vtksys_stl::string img(imgname ? imgname : "");
+  std::string img(imgname ? imgname : "");
 
   if (!this->IsCreated() || index < 0 || index >= this->GetNumberOfItems())
     {
@@ -1362,7 +1362,7 @@ void vtkKWMenu::SetItemImage(int index, const char *imgname)
        (tcl_minor < 4 || 
         (tcl_minor == 4 && tcl_patch_level <= 12))))
     {
-    vtksys_stl::string sys(
+    std::string sys(
       vtkKWTkUtilities::GetWindowingSystem(this->GetApplication()));
     if (!sys.compare("aqua"))
       {
@@ -1551,9 +1551,9 @@ void vtkKWMenu::SetBindingForItemAccelerator(int index, vtkKWWidget *widget)
       const char *command = this->GetItemCommand(index);
       if (command && *command)
         {
-        vtksys_stl::string command_safe(command);
+        std::string command_safe(command);
         const char *label = this->GetItemLabel(index);
-        vtksys_stl::string label_safe(label ? label : "");
+        std::string label_safe(label ? label : "");
         widget->SetKeyBinding(
           keybinding, NULL, command_safe.c_str(), 
           widget->GetClassName(), label_safe.c_str());
@@ -1583,11 +1583,11 @@ void vtkKWMenu::RemoveBindingForItemAccelerator(int index, vtkKWWidget *widget)
 void vtkKWMenu::ConvertItemAcceleratorToKeyBinding(
   const char *accelerator, char **keybinding)
 {
-  vtksys_stl::string keybinding_str;
+  std::string keybinding_str;
   
   if (accelerator && *accelerator)
     {
-    vtksys_stl::string accelerator_safe(accelerator);
+    std::string accelerator_safe(accelerator);
 
     // Let's try to transform it into a binding
 
@@ -1599,19 +1599,19 @@ void vtkKWMenu::ConvertItemAcceleratorToKeyBinding(
     // Accelerator are usually specified as Ctrl-O, with the letter
     // in uppercase. Switch it to lowercase
 
-    vtksys_stl::string::size_type accel_size = accelerator_safe.size();
-    vtksys_stl::string::size_type last_sep = accelerator_safe.rfind("-");
-    if((last_sep != vtksys_stl::string::npos &&
+    std::string::size_type accel_size = accelerator_safe.size();
+    std::string::size_type last_sep = accelerator_safe.rfind("-");
+    if((last_sep != std::string::npos &&
         last_sep == accel_size - 2) ||
-       (last_sep == vtksys_stl::string::npos && accel_size == 1))
+       (last_sep == std::string::npos && accel_size == 1))
       {
       accelerator_safe[accel_size - 1] =
-        static_cast<vtksys_stl::string::value_type>(
+        static_cast<std::string::value_type>(
           tolower(accelerator_safe[accel_size - 1]));
       }
 
     keybinding_str = "<";
-    if(last_sep == vtksys_stl::string::npos)
+    if(last_sep == std::string::npos)
       {
       keybinding_str += "Key-";
       }
@@ -1626,7 +1626,7 @@ void vtkKWMenu::ConvertItemAcceleratorToKeyBinding(
 //----------------------------------------------------------------------------
 void vtkKWMenu::SetItemHelpString(int index, const char *help)
 {
-  vtksys_stl::string help_safe(help ? help : "");
+  std::string help_safe(help ? help : "");
 
   const char *label = this->GetItemLabel(index);
   if (!label || !*label)
@@ -1634,7 +1634,7 @@ void vtkKWMenu::SetItemHelpString(int index, const char *help)
     return;
     }
 
-  vtksys_stl::string label_safe(label);
+  std::string label_safe(label);
   this->Script("set {%sHelpArray(%s)} {%s}", 
                this->GetTclName(), label_safe.c_str(), help_safe.c_str());
 }
@@ -1650,7 +1650,7 @@ const char* vtkKWMenu::GetItemHelpString(int index)
 
   // This hack should be cleaned
 
-  vtksys_stl::string label_safe(label);
+  std::string label_safe(label);
   const char *tname = this->GetTclName();
   return this->Script(
     "if [catch {set %sTemp $%sHelpArray(%s)} %sTemp ]"
@@ -1765,7 +1765,7 @@ void vtkKWMenu::DisplayHelpCallback(const char* widget_name)
   const char *help = this->GetItemHelpString(index);
   if(help)
     {
-    vtksys_stl::string help_safe(help);
+    std::string help_safe(help);
     vtkKWWindowBase *window = vtkKWWindowBase::SafeDownCast(
       this->GetParentTopLevel());
     if (window)

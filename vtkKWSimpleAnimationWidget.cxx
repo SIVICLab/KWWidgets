@@ -57,8 +57,8 @@
 #endif
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 //----------------------------------------------------------------------------
 
@@ -163,7 +163,7 @@ void vtkKWSimpleAnimationWidget::CreateWidget()
 
   this->Superclass::CreateWidget();
   
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   vtkKWPushButton *pb;
   vtkKWScaleWithEntry *scale;
@@ -733,9 +733,9 @@ void vtkKWSimpleAnimationWidget::CreateAnimationCallback()
     }
 
   int res;
-  vtksys_stl::string filename;
-  vtksys_stl::string filetypes("{{JPEG} {.jpg}} {{TIFF} {.tif}} {{PNG} {.png}}");
-  vtksys_stl::string defaultExtension(".jpg");
+  std::string filename;
+  std::string filetypes("{{JPEG} {.jpg}} {{TIFF} {.tif}} {{PNG} {.png}}");
+  std::string defaultExtension(".jpg");
 
   vtkKWLoadSaveDialog *save_dialog = vtkKWLoadSaveDialog::New();
   save_dialog->SetParent(this->GetParentTopLevel());
@@ -746,11 +746,11 @@ void vtkKWSimpleAnimationWidget::CreateAnimationCallback()
   save_dialog->SaveDialogOn();
 
 #if defined(VTK_USE_MPEG2_ENCODER)
-  filetypes = vtksys_stl::string("{{MPEG2} {.mpg}} ") + filetypes;
+  filetypes = std::string("{{MPEG2} {.mpg}} ") + filetypes;
   defaultExtension = ".mpg";
 #endif
 #if defined(VTK_USE_VIDEO_FOR_WINDOWS) || defined(VTK_USE_FFMPEG_ENCODER)
-  filetypes = vtksys_stl::string("{{AVI} {.avi}} ") + filetypes;
+  filetypes = std::string("{{AVI} {.avi}} ") + filetypes;
   defaultExtension = ".avi";
 #endif
 
@@ -772,13 +772,13 @@ void vtkKWSimpleAnimationWidget::CreateAnimationCallback()
 
   // Split into root and extension.
 
-  vtksys_stl::string filename_ext = 
+  std::string filename_ext = 
     vtksys::SystemTools::GetFilenameLastExtension(filename.c_str());
 
-  vtksys_stl::string filename_path = 
+  std::string filename_path = 
     vtksys::SystemTools::GetFilenamePath(filename.c_str());
 
-  vtksys_stl::string filename_root(filename_path);
+  std::string filename_root(filename_path);
   filename_root += '/';
   filename_root +=
     vtksys::SystemTools::GetFilenameWithoutLastExtension(filename.c_str());
@@ -817,7 +817,7 @@ void vtkKWSimpleAnimationWidget::CreateAnimationCallback()
   msg_dialog->SetStyleToOkCancel();
   msg_dialog->Create();
 
-  vtksys_stl::string msg(
+  std::string msg(
       k_("Specify the width and height of each frame to be saved from this "
          "animation."));
   
@@ -984,7 +984,7 @@ void vtkKWSimpleAnimationWidget::FixAnimationSize(
     return;
     }
 
-  vtksys_stl::string filename_ext = 
+  std::string filename_ext = 
     vtksys::SystemTools::GetFilenameLastExtension(filename);
 
   int is_mpeg = 
@@ -1056,9 +1056,9 @@ void vtkKWSimpleAnimationWidget::CreateCameraAnimation(
 
   this->FixAnimationSize(filename, &width, &height);
 
-  vtksys_stl::string filename_ext;
-  vtksys_stl::string filename_path;
-  vtksys_stl::string filename_root;
+  std::string filename_ext;
+  std::string filename_path;
+  std::string filename_root;
 
   if (filename)
     { 
@@ -1150,7 +1150,7 @@ void vtkKWSimpleAnimationWidget::CreateCameraAnimation(
     if(movie_writer)
       {
       movie_writer->SetInputConnection(w2i->GetOutputPort());
-      vtksys_stl::string filename(filename_root);
+      std::string filename(filename_root);
       filename += filename_ext;
       movie_writer->SetFileName(filename.c_str());
       movie_writer->Start();
@@ -1276,7 +1276,7 @@ void vtkKWSimpleAnimationWidget::CreateCameraAnimation(
 
   if (win)
     {
-    vtksys_stl::string end_msg(win->GetStatusText());
+    std::string end_msg(win->GetStatusText());
     end_msg += " -- ";
     if (this->AnimationStatus == vtkKWSimpleAnimationWidget::AnimationCanceled)
       {
@@ -1359,9 +1359,9 @@ void vtkKWSimpleAnimationWidget::CreateSliceAnimation(
   
   this->FixAnimationSize(filename, &width, &height);
 
-  vtksys_stl::string filename_ext;
-  vtksys_stl::string filename_path;
-  vtksys_stl::string filename_root;
+  std::string filename_ext;
+  std::string filename_path;
+  std::string filename_root;
 
   if (filename)
     { 
@@ -1453,7 +1453,7 @@ void vtkKWSimpleAnimationWidget::CreateSliceAnimation(
     if(movie_writer)
       {
       movie_writer->SetInputConnection(w2i->GetOutputPort());
-      vtksys_stl::string filename(filename_root);
+      std::string filename(filename_root);
       filename += filename_ext;
       movie_writer->SetFileName(filename.c_str());
       movie_writer->Start();
@@ -1551,7 +1551,7 @@ void vtkKWSimpleAnimationWidget::CreateSliceAnimation(
 
   if (win)
     {
-    vtksys_stl::string end_msg(win->GetStatusText());
+    std::string end_msg(win->GetStatusText());
     end_msg += " -- ";
     if (this->AnimationStatus == vtkKWSimpleAnimationWidget::AnimationCanceled)
       {

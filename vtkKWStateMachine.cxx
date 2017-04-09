@@ -21,11 +21,11 @@
 
 #include "vtkObjectFactory.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/map>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/deque>
+#include <sstream>
+#include <string>
+#include <map>
+#include <vector>
+#include <deque>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWStateMachine);
@@ -38,45 +38,45 @@ public:
 
   // States
 
-  typedef vtksys_stl::vector<vtkKWStateMachineState*> StatePoolType;
-  typedef vtksys_stl::vector<vtkKWStateMachineState*>::iterator StatePoolIterator;
+  typedef std::vector<vtkKWStateMachineState*> StatePoolType;
+  typedef std::vector<vtkKWStateMachineState*>::iterator StatePoolIterator;
   StatePoolType StatePool;
 
   // Inputs
 
-  typedef vtksys_stl::vector<vtkKWStateMachineInput*> InputPoolType;
-  typedef vtksys_stl::vector<vtkKWStateMachineInput*>::iterator InputPoolIterator;
+  typedef std::vector<vtkKWStateMachineInput*> InputPoolType;
+  typedef std::vector<vtkKWStateMachineInput*>::iterator InputPoolIterator;
   InputPoolType InputPool;
 
   // Transitions
 
-  typedef vtksys_stl::vector<vtkKWStateMachineTransition*> TransitionPoolType;
-  typedef vtksys_stl::vector<vtkKWStateMachineTransition*>::iterator TransitionPoolIterator;
+  typedef std::vector<vtkKWStateMachineTransition*> TransitionPoolType;
+  typedef std::vector<vtkKWStateMachineTransition*>::iterator TransitionPoolIterator;
   TransitionPoolType TransitionPool;
 
   TransitionPoolType TransitionHistoryPool;
 
   // Clusters
 
-  typedef vtksys_stl::vector<vtkKWStateMachineCluster*> ClusterPoolType;
-  typedef vtksys_stl::vector<vtkKWStateMachineCluster*>::iterator ClusterPoolIterator;
+  typedef std::vector<vtkKWStateMachineCluster*> ClusterPoolType;
+  typedef std::vector<vtkKWStateMachineCluster*>::iterator ClusterPoolIterator;
   ClusterPoolType ClusterPool;
 
   // Input queue
 
-  typedef vtksys_stl::deque<vtkKWStateMachineInput*> InputQueueType;
-  typedef vtksys_stl::deque<vtkKWStateMachineInput*>::iterator InputQueueIterator;
+  typedef std::deque<vtkKWStateMachineInput*> InputQueueType;
+  typedef std::deque<vtkKWStateMachineInput*>::iterator InputQueueIterator;
   InputQueueType InputQueue;
 
   // Input To Transition map
   // State to Input map
   // => transition tables
 
-  typedef vtksys_stl::map<vtkKWStateMachineInput*, vtkKWStateMachineTransition*> InputToTransitionMapType;
-  typedef vtksys_stl::map<vtkKWStateMachineInput*, vtkKWStateMachineTransition*>::iterator InputToTransitionMapIterator;
+  typedef std::map<vtkKWStateMachineInput*, vtkKWStateMachineTransition*> InputToTransitionMapType;
+  typedef std::map<vtkKWStateMachineInput*, vtkKWStateMachineTransition*>::iterator InputToTransitionMapIterator;
 
-  typedef vtksys_stl::map<vtkKWStateMachineState*, InputToTransitionMapType> StateToInputMapType;
-  typedef vtksys_stl::map<vtkKWStateMachineState*, InputToTransitionMapType>::iterator StateToInputMapIterator;
+  typedef std::map<vtkKWStateMachineState*, InputToTransitionMapType> StateToInputMapType;
+  typedef std::map<vtkKWStateMachineState*, InputToTransitionMapType>::iterator StateToInputMapIterator;
 
   StateToInputMapType TransitionTable;
 };
@@ -889,7 +889,7 @@ void vtkKWStateMachine::ProcessInput(vtkKWStateMachineInput *input)
     this->FindTransition(this->CurrentState, input);
   if (!transition)
     {
-    vtksys_ios::ostringstream err;
+    std::ostringstream err;
     err << "No transition has been defined for the current state (";
     if (this->CurrentState->GetName())
       {

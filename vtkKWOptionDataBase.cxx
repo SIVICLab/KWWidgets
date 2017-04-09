@@ -20,11 +20,11 @@
 #include "vtkKWTkUtilities.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/list>
-#include <vtksys/stl/string>
-#include <vtksys/stl/map>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <string>
+#include <map>
 #include <vtksys/RegularExpression.hxx>
 
 //----------------------------------------------------------------------------
@@ -49,11 +49,11 @@ public:
   class ContextNodeType
   {
   public:
-    vtksys_stl::string ClassName;
+    std::string ClassName;
     int IsImmediateParent;
   };
 
-  struct ContextContainerType: public vtksys_stl::list<ContextNodeType> {};
+  struct ContextContainerType: public std::list<ContextNodeType> {};
 
   // Option pool
   // Data structure used to store each option/
@@ -78,23 +78,23 @@ public:
   
   int EntryCounter;
 
-  typedef vtksys_stl::string EntryKeyType;
+  typedef std::string EntryKeyType;
 
   class EntryNodeType
   {
   public:
     int Id;
-    vtksys_stl::string Pattern;
-    vtksys_stl::string Command;
-    vtksys_stl::string Value;
-    vtksys_stl::string ClassName;
-    vtksys_stl::string SlotName;
+    std::string Pattern;
+    std::string Command;
+    std::string Value;
+    std::string ClassName;
+    std::string SlotName;
     ContextContainerType Context;
   };
 
-  struct EntryContainerType: public vtksys_stl::vector<EntryNodeType> {};
+  struct EntryContainerType: public std::vector<EntryNodeType> {};
 
-  struct EntryPoolType: public vtksys_stl::map<EntryKeyType, EntryContainerType> {};
+  struct EntryPoolType: public std::map<EntryKeyType, EntryContainerType> {};
 
   EntryPoolType EntryPool;
 
@@ -102,8 +102,8 @@ public:
   // say, for vtkKWScale, the ClassHierarchyCacheType map will look like:
   //   "vtkKWScale" => { "vtkObject", "vtkKWObject", "vtkKWWidget", "vtkKWCoreWidget", "vtkKWScale"}
   
-  struct ClassHierarchyContainerType: public vtksys_stl::vector<vtksys_stl::string> {};
-  struct ClassHierarchyCacheType: public vtksys_stl::map<vtksys_stl::string, ClassHierarchyContainerType> {};
+  struct ClassHierarchyContainerType: public std::vector<std::string> {};
+  struct ClassHierarchyCacheType: public std::map<std::string, ClassHierarchyContainerType> {};
 
   ClassHierarchyCacheType ClassHierarchyCache;
 
@@ -149,11 +149,11 @@ int vtkKWOptionDataBase::AddEntry(const char *pattern,
 
   // Get the class name and the context out of the pattern
 
-  vtksys_stl::string::size_type pos = 0;
+  std::string::size_type pos = 0;
   while (1) 
     {
-    vtksys_stl::string::size_type sep = node.Pattern.find_first_of(".*", pos);
-    if (sep == vtksys_stl::string::npos)
+    std::string::size_type sep = node.Pattern.find_first_of(".*", pos);
+    if (sep == std::string::npos)
       {
       node.ClassName = node.Pattern.substr(pos);
       break;
@@ -178,8 +178,8 @@ int vtkKWOptionDataBase::AddEntry(const char *pattern,
   // Get the slot name out of the classname 
   // (say, vtkKWFrameWithLabel:CollapsibleFrame)
 
-  vtksys_stl::string::size_type sep_slot = node.ClassName.find_first_of(':');
-  if (sep_slot != vtksys_stl::string::npos)
+  std::string::size_type sep_slot = node.ClassName.find_first_of(':');
+  if (sep_slot != std::string::npos)
     {
     node.SlotName = node.ClassName.substr(sep_slot + 1);
     node.ClassName = node.ClassName.substr(0, sep_slot);
@@ -333,11 +333,11 @@ void vtkKWOptionDataBase::ConfigureWidget(vtkKWWidget *obj)
 
   if (p_it == this->Internals->ClassHierarchyCache.end())
     {
-    vtksys_ios::ostringstream revisions;
+    std::ostringstream revisions;
     obj->PrintRevisions(revisions);
 
     char buffer[512];
-    vtkstd::string s = revisions.str();
+    std::string s = revisions.str();
     const char *c = s.c_str();
     while (*c)
       {
@@ -388,7 +388,7 @@ void vtkKWOptionDataBaseInternals::ConfigureWidget(
     return;
     }
 
-  vtksys_stl::string cmd;
+  std::string cmd;
 
   vtkKWOptionDataBaseInternals::EntryContainerType::iterator l_it = 
     p_it->second.begin();
@@ -536,7 +536,7 @@ void vtkKWOptionDataBase::AddFontOptions(
     return;
     }
 
-  vtksys_stl::string font_spec(font);
+  std::string font_spec(font);
   if (font_spec[0] != '{')
     {
     font_spec.insert(0, "{");

@@ -25,7 +25,7 @@
 #include "vtkKWRegistryHelper.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMessageDialog );
@@ -308,7 +308,7 @@ void vtkKWMessageDialog::PackButtons()
     this->ButtonFrame->UnpackChildren();
     }
 
-  vtksys_stl::string pack_opt;
+  std::string pack_opt;
   if (this->Options & vtkKWMessageDialog::PackVertically)
     {
     pack_opt = "-side top -expand yes -fill x -padx 4";

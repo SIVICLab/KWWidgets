@@ -31,7 +31,7 @@
 
 //BTX
 #include "vtkKWHistogram.h" // I need this one
-#include <vtksys/ios/iosfwd> // forward declare vtksys_ios::ostream
+//#include <iosfwd> // forward declare std::ostream
 //ETX
 
 class vtkCallbackCommand;
@@ -1399,9 +1399,9 @@ protected:
   // the line between two points
   //BTX
   virtual void RedrawFunction();
-  virtual void RedrawPoint(int id, vtksys_ios::ostream *tk_cmd = 0);
-  virtual void RedrawLine(int id1, int id2, vtksys_ios::ostream *tk_cmd = 0);
-  virtual void GetLineCoordinates(int id1, int id2, vtksys_ios::ostream *tk_cmd);
+  virtual void RedrawPoint(int id, std::ostream *tk_cmd = 0);
+  virtual void RedrawLine(int id1, int id2, std::ostream *tk_cmd = 0);
+  virtual void GetLineCoordinates(int id1, int id2, std::ostream *tk_cmd);
   //ETX
 
   // Description:

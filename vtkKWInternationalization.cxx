@@ -24,9 +24,9 @@
 #include "vtkTcl.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/stl/set>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/string>
+#include <set>
+#include <vector>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWInternationalization);
@@ -91,19 +91,19 @@ const char* vtkKWInternationalization::FindTextDomainBinding(
   
   // First try to find likely path to search catalogs for
   
-  vtksys_stl::set<vtksys_stl::string> search_dir_candidates;
+  std::set<std::string> search_dir_candidates;
 
   // User dirs
 
-  vtksys_stl::vector<vtksys_stl::string> user_dir_candidates;
+  std::vector<std::string> user_dir_candidates;
   if (dirs_to_search && *dirs_to_search)
     {
     vtksys::SystemTools::Split(dirs_to_search, user_dir_candidates, ';');
     }
 
-  vtksys_stl::vector<vtksys_stl::string>::iterator user_dir_it = 
+  std::vector<std::string>::iterator user_dir_it = 
     user_dir_candidates.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator user_dir_end = 
+  std::vector<std::string>::iterator user_dir_end = 
     user_dir_candidates.end();
   for(; user_dir_it != user_dir_end; ++user_dir_it)
     {
@@ -158,7 +158,7 @@ const char* vtkKWInternationalization::FindTextDomainBinding(
 
   // Try to find the exec in the PATH environment variable
 
-  vtksys_stl::string exec_path, error_msg;
+  std::string exec_path, error_msg;
   if (vtksys::SystemTools::FindProgramPath(
         domain_name, exec_path, error_msg, domain_name))
     {
@@ -192,13 +192,13 @@ const char* vtkKWInternationalization::FindTextDomainBinding(
 
   // In each search path, we will look in the following subdirs
 
-  vtksys_stl::vector<vtksys_stl::string> subdir_candidates;
+  std::vector<std::string> subdir_candidates;
 
   const char *subdir_levels[] = { ".", "..", "../.." };
   size_t l;
   for (l = 0; l < sizeof(subdir_levels) / sizeof(subdir_levels[0]); l++)
     {
-    vtksys_stl::string subdir_level = subdir_levels[l];
+    std::string subdir_level = subdir_levels[l];
 
     user_dir_it = user_dir_candidates.begin();
     for(; user_dir_it != user_dir_end; ++user_dir_it)
@@ -214,7 +214,7 @@ const char* vtkKWInternationalization::FindTextDomainBinding(
     subdir_candidates.push_back(subdir_level + "/locale");
     subdir_candidates.push_back(subdir_level + "/share/locale");
     subdir_candidates.push_back(
-      subdir_level + "/share/" + vtksys_stl::string(domain_name) + "/locale");
+      subdir_level + "/share/" + std::string(domain_name) + "/locale");
     subdir_candidates.push_back(subdir_level + "/po");
     subdir_candidates.push_back(subdir_level + "/mo");
     }
@@ -223,28 +223,28 @@ const char* vtkKWInternationalization::FindTextDomainBinding(
   // that domain
 
   vtkDirectory *dir = vtkDirectory::New();
-  vtksys_stl::set<vtksys_stl::string> catalog_candidates;
+  std::set<std::string> catalog_candidates;
 
-  vtksys_stl::set<vtksys_stl::string>::iterator search_dir_it = 
+  std::set<std::string>::iterator search_dir_it = 
     search_dir_candidates.begin();
-  vtksys_stl::set<vtksys_stl::string>::iterator search_dir_end = 
+  std::set<std::string>::iterator search_dir_end = 
     search_dir_candidates.end();
   
   for(; search_dir_it != search_dir_end; ++search_dir_it)
     {
-    vtksys_stl::string search_dir = *search_dir_it;
+    std::string search_dir = *search_dir_it;
     vtksys::SystemTools::ConvertToUnixSlashes(search_dir);
 
     // For each exec dir, try several locale dir candidates
 
-    vtksys_stl::vector<vtksys_stl::string>::iterator subdir_it = 
+    std::vector<std::string>::iterator subdir_it = 
       subdir_candidates.begin();
-    vtksys_stl::vector<vtksys_stl::string>::iterator subdir_end = 
+    std::vector<std::string>::iterator subdir_end = 
       subdir_candidates.end();
 
     for(; subdir_it != subdir_end; ++subdir_it)
       {
-      vtksys_stl::string try_locale_dir(search_dir);
+      std::string try_locale_dir(search_dir);
       try_locale_dir += "/";
       try_locale_dir += *subdir_it;
       if (!vtksys::SystemTools::FileIsDirectory(try_locale_dir.c_str()))
@@ -260,7 +260,7 @@ const char* vtkKWInternationalization::FindTextDomainBinding(
         {
         if (dir->GetFile(f)[0] != '.')
           {
-          vtksys_stl::string try_catalog(try_locale_dir);
+          std::string try_catalog(try_locale_dir);
           try_catalog += "/";
           try_catalog += dir->GetFile(f);
           try_catalog += "/LC_MESSAGES";
@@ -285,11 +285,11 @@ const char* vtkKWInternationalization::FindTextDomainBinding(
   if (catalog_candidates.size())
     {
     long int max_ctime = -1;
-    vtksys_stl::string final_pick;
+    std::string final_pick;
     
-    vtksys_stl::set<vtksys_stl::string>::iterator cat_it = 
+    std::set<std::string>::iterator cat_it = 
       catalog_candidates.begin();
-    vtksys_stl::set<vtksys_stl::string>::iterator cat_end = 
+    std::set<std::string>::iterator cat_end = 
       catalog_candidates.end();
     for(; cat_it != cat_end; ++cat_it)
       {

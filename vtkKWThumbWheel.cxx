@@ -23,8 +23,8 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWApplication.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 #define VTK_KW_TW_BORDER_SIZE      2
 #define VTK_KW_TW_MIN_SIZE_NOTCHES 2
@@ -705,7 +705,7 @@ void vtkKWThumbWheel::Bind()
       {
       this->TopLevel->SetBinding("<Leave>", this, "WithdrawPopupCallback");
 
-      vtksys_stl::string callback;
+      std::string callback;
 
       int j;
       for (j = 0 ; j < 3; j++)
@@ -1128,7 +1128,7 @@ void vtkKWThumbWheel::SetBalloonHelpString(const char *string)
 
   if (string)
     {
-    vtksys_ios::ostringstream modes;
+    std::ostringstream modes;
     modes << string << " (";
 
     int i;
@@ -1198,7 +1198,7 @@ void vtkKWThumbWheel::SetBalloonHelpString(const char *string)
     {
     if (string)
       {
-      vtksys_ios::ostringstream temp;
+      std::ostringstream temp;
       temp 
         << string << " " 
         << ks_("Popup ThumbWheel|(press this button to display a thumbwheel)");

@@ -30,10 +30,10 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #include "vtkKWFileBrowserDialog.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/list>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/algorithm>
+#include <vector>
+#include <list>
+#include <sstream>
+#include <algorithm>
 
 const char *vtkKWDirectoryPresetSelector::DirectoryColumnName  = "Directory";
 const char *vtkKWDirectoryPresetSelector::DirectoryEnabledColumnName = "DirectoryEnabled";
@@ -226,7 +226,7 @@ int vtkKWDirectoryPresetSelector::UpdatePresetRow(int id)
 
   if (this->MaximumDirectoryLength > 0)
     {
-    vtksys_stl::string cropped(
+    std::string cropped(
       vtksys::SystemTools::CropString(
         this->GetPresetDirectory(id), this->MaximumDirectoryLength));
     list->SetCellText(
@@ -252,7 +252,7 @@ int vtkKWDirectoryPresetSelector::AddDirectoryCallback()
   this->FileBrowserDialog->SetFileName(NULL);
   this->FileBrowserDialog->Invoke();
 
-  vtksys_stl::list<vtksys_stl::string> paths;
+  std::list<std::string> paths;
   
   int i;
   for (i = 0; i < this->FileBrowserDialog->GetNumberOfFileNames(); i++)
@@ -266,8 +266,8 @@ int vtkKWDirectoryPresetSelector::AddDirectoryCallback()
 
   paths.sort();
 
-  vtksys_stl::list<vtksys_stl::string>::reverse_iterator it = paths.rbegin();
-  vtksys_stl::list<vtksys_stl::string>::reverse_iterator end = paths.rend();
+  std::list<std::string>::reverse_iterator it = paths.rbegin();
+  std::list<std::string>::reverse_iterator end = paths.rend();
 
   int id = -1;
   for (; it != end; it++)
@@ -296,7 +296,7 @@ const char* vtkKWDirectoryPresetSelector::PresetCellEditStartCallback(
   if (col == this->GetDirectoryColumnIndex())
     {
     int id = this->GetIdOfPresetAtRow(row);
-    vtksys_stl::string cell_contents(this->GetPresetDirectory(id));
+    std::string cell_contents(this->GetPresetDirectory(id));
     vtkKWMultiColumnList *list = this->PresetList->GetWidget();
     list->CancelEditing();
     if (!this->FileBrowserDialog->IsCreated())
@@ -310,7 +310,7 @@ const char* vtkKWDirectoryPresetSelector::PresetCellEditStartCallback(
     const char *filename = this->FileBrowserDialog->GetFileName();
     if (filename)
       {
-      vtksys_stl::string validated_contents(
+      std::string validated_contents(
         list->EditEndCallback(NULL, row, col, filename));
       if (strcmp(validated_contents.c_str(), cell_contents.c_str()))
         {
@@ -370,11 +370,11 @@ int vtkKWDirectoryPresetSelector::AddEnabledPresetDirectoriesFromDelimitedString
 
   int count = 0;
 
-  vtksys_stl::vector<vtksys_stl::string> from_paths;
+  std::vector<std::string> from_paths;
   vtksys::SystemTools::Split(from_str, from_paths, from_delim);
   
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_it = from_paths.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_end = from_paths.end();
+  std::vector<std::string>::iterator from_it = from_paths.begin();
+  std::vector<std::string>::iterator from_end = from_paths.end();
   for (; from_it != from_end; from_it++)
     {
     const char *dir = (*from_it).c_str();
@@ -404,7 +404,7 @@ int vtkKWDirectoryPresetSelector::GetEnabledPresetDirectoriesToDelimitedString(
     }
 
   int count = 0;
-  vtksys_ios::ostringstream to_stream;
+  std::ostringstream to_stream;
 
   int i, nb_presets = this->GetNumberOfPresets();
   for (i = 0; i < nb_presets; i++)
@@ -445,14 +445,14 @@ int vtkKWDirectoryPresetSelector::AddPresetDirectoriesFromDelimitedString(
 
   int count = 0;
 
-  vtksys_stl::vector<vtksys_stl::string> from_paths;
+  std::vector<std::string> from_paths;
   vtksys::SystemTools::Split(from_str, from_paths, from_delim);
   
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_it = from_paths.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_end = from_paths.end();
+  std::vector<std::string>::iterator from_it = from_paths.begin();
+  std::vector<std::string>::iterator from_end = from_paths.end();
   for (; from_it != from_end; from_it++)
     {
-    vtksys_stl::string dir((*from_it));
+    std::string dir((*from_it));
     ++from_it;
     if (from_it == from_end)
       {
@@ -485,7 +485,7 @@ int vtkKWDirectoryPresetSelector::GetPresetDirectoriesToDelimitedString(
     }
 
   int count = 0;
-  vtksys_ios::ostringstream to_stream;
+  std::ostringstream to_stream;
 
   int i, nb_presets = this->GetNumberOfPresets();
   for (i = 0; i < nb_presets; i++)
@@ -526,16 +526,16 @@ int vtkKWDirectoryPresetSelector::GetEnabledPresetDirectoriesFromPresetDirectori
     }
 
   int count = 0;
-  vtksys_ios::ostringstream to_stream;
+  std::ostringstream to_stream;
 
-  vtksys_stl::vector<vtksys_stl::string> from_paths;
+  std::vector<std::string> from_paths;
   vtksys::SystemTools::Split(from_str, from_paths, from_delim);
   
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_it = from_paths.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_end = from_paths.end();
+  std::vector<std::string>::iterator from_it = from_paths.begin();
+  std::vector<std::string>::iterator from_end = from_paths.end();
   for (; from_it != from_end; from_it++)
     {
-    vtksys_stl::string dir((*from_it));
+    std::string dir((*from_it));
     ++from_it;
     if (from_it == from_end)
       {
@@ -573,31 +573,31 @@ int vtkKWDirectoryPresetSelector::UpdatePresetDirectoriesFromEnabledPresetDirect
     }
 
   int count = 0;
-  vtksys_ios::ostringstream update_stream;
+  std::ostringstream update_stream;
 
-  vtksys_stl::vector<vtksys_stl::string> update_paths;
+  std::vector<std::string> update_paths;
   if (*update_str)
     {
     vtksys::SystemTools::Split(*update_str, update_paths, update_delim);
     }
 
-  vtksys_stl::vector<vtksys_stl::string> from_paths;
+  std::vector<std::string> from_paths;
   vtksys::SystemTools::Split(from_str, from_paths, from_delim);
 
-  vtksys_stl::vector<vtksys_stl::string>::iterator update_it = 
+  std::vector<std::string>::iterator update_it = 
     update_paths.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator update_end = 
+  std::vector<std::string>::iterator update_end = 
     update_paths.end();
   for (; update_it != update_end; update_it++)
     {
-    vtksys_stl::string dir((*update_it));
+    std::string dir((*update_it));
     ++update_it;
     if (update_it == update_end)
       {
       break;
       }
     int enabled = atoi((*update_it).c_str());
-    vtksys_stl::vector<vtksys_stl::string>::iterator found = vtksys_stl::find(
+    std::vector<std::string>::iterator found = std::find(
       from_paths.begin(), from_paths.end(), dir);
     if (enabled)
       {
@@ -630,8 +630,8 @@ int vtkKWDirectoryPresetSelector::UpdatePresetDirectoriesFromEnabledPresetDirect
 
   // Now add the remaining (as enabled)
 
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_it = from_paths.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator from_end = from_paths.end();
+  std::vector<std::string>::iterator from_it = from_paths.begin();
+  std::vector<std::string>::iterator from_end = from_paths.end();
   for (; from_it != from_end; from_it++)
     {
     if (update_stream.str().size())

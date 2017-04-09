@@ -18,7 +18,7 @@
 
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/vector>
+#include <vector>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWStateMachineCluster);
@@ -33,8 +33,8 @@ public:
 
   // States
 
-  typedef vtksys_stl::vector<vtkKWStateMachineState*> StatePoolType;
-  typedef vtksys_stl::vector<vtkKWStateMachineState*>::iterator StatePoolIterator;
+  typedef std::vector<vtkKWStateMachineState*> StatePoolType;
+  typedef std::vector<vtkKWStateMachineState*>::iterator StatePoolIterator;
   StatePoolType StatePool;
 };
 

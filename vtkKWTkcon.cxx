@@ -20,8 +20,8 @@
 
 #include "Utilities/tkcon/vtkKWTkconInit.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 //-------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTkcon );
@@ -99,7 +99,7 @@ void vtkKWTkcon::CreateWidget()
 
   this->vtkKWCoreWidget::CreateWidget();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // http://wiki.tcl.tk/1878
 
@@ -117,7 +117,7 @@ void vtkKWTkcon::CreateWidget()
 
   // Now let's map some elements of this console to widgets
 
-  vtksys_stl::string name;
+  std::string name;
 
   name = this->Script("set ::tkcon::PRIV(console)");
   this->Internals->Console = vtkKWText::New();

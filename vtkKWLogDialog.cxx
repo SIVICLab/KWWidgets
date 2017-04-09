@@ -18,7 +18,7 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWPushButton.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWLogDialog );
@@ -61,7 +61,7 @@ void vtkKWLogDialog::CreateWidget()
   this->SetMinimumSize(400, 450);
   this->SetSize(650, 550);
 
-  vtksys_stl::string title;
+  std::string title;
   if (this->GetApplication()->GetName())
     {
     title += this->GetApplication()->GetName();

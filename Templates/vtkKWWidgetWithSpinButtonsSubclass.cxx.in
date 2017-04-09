@@ -18,7 +18,7 @@
 #include "vtkObjectFactory.h"
 #include "@WidgetType@.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(@WidgetType@WithSpinButtons);
@@ -100,7 +100,7 @@ void @WidgetType@WithSpinButtons::Pack()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   if (this->Widget && this->Widget->IsCreated())
     {

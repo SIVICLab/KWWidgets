@@ -42,10 +42,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "vtkKWTkUtilities.h"
 #include "vtkKWIcon.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
+#include <string>
+#include <vector>
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream> 
+#include <sstream> 
 
 #include "Utilities/BWidgets/vtkKWBWidgetsInit.h"
 
@@ -135,7 +135,7 @@ void vtkKWTree::CreateWidget()
 
   this->Internals->TreeCanvas = vtkKWWidget::New();
   this->Internals->TreeCanvas->SetParent(this);
-  vtksys_stl::string name(this->GetWidgetName());
+  std::string name(this->GetWidgetName());
   name += ".c";
   this->Internals->TreeCanvas->SetWidgetName(name.c_str());
   this->Internals->TreeCanvas->Create();
@@ -285,7 +285,7 @@ void vtkKWTree::SelectionCallback()
 
   if (this->SelectionMode == vtkKWOptions::SelectionModeSingle)
     {
-    vtksys_stl::vector<vtksys_stl::string> sel_nodes;
+    std::vector<std::string> sel_nodes;
     vtksys::SystemTools::Split(this->GetSelection(), sel_nodes, ' ');
     if (sel_nodes.size() > 1)
       {
@@ -327,7 +327,7 @@ void vtkKWTree::KeyNavigationCallback(const char* key)
 {
   if (this->IsCreated() && this->HasSelection() && key && *key)
     {
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
     //Get all visible and seletable nodes
     tk_cmd << "set nodes {}" << endl;
     tk_cmd << "foreach nodeItem [" 
@@ -414,7 +414,7 @@ void vtkKWTree::SetSelectionMode(int arg)
   if (this->SelectionMode == vtkKWOptions::SelectionModeSingle &&
       this->HasSelection())
     {
-    vtksys_stl::vector<vtksys_stl::string> sel_nodes;
+    std::vector<std::string> sel_nodes;
     vtksys::SystemTools::Split(this->GetSelection(), sel_nodes, ' ');
     this->SelectSingleNode(sel_nodes[0].c_str());
     }
@@ -490,10 +490,10 @@ void vtkKWTree::DeselectNode(const char *node)
 //----------------------------------------------------------------------------
 void vtkKWTree::SelectNodeChildren(const char *node)
 {
-  vtksys_stl::vector<vtksys_stl::string> children;
+  std::vector<std::string> children;
   vtksys::SystemTools::Split(this->GetNodeChildren(node), children, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = children.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = children.end();
+  std::vector<std::string>::iterator it = children.begin();
+  std::vector<std::string>::iterator end = children.end();
   for (; it != end; it++)
     {
     this->SelectNode((*it).c_str());
@@ -504,10 +504,10 @@ void vtkKWTree::SelectNodeChildren(const char *node)
 //----------------------------------------------------------------------------
 void vtkKWTree::DeselectNodeChildren(const char *node)
 {
-  vtksys_stl::vector<vtksys_stl::string> children;
+  std::vector<std::string> children;
   vtksys::SystemTools::Split(this->GetNodeChildren(node), children, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = children.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = children.end();
+  std::vector<std::string>::iterator it = children.begin();
+  std::vector<std::string>::iterator end = children.end();
   for (; it != end; it++)
     {
     this->DeselectNode((*it).c_str());
@@ -560,7 +560,7 @@ void vtkKWTree::AddNode(const char *parent,
     return;
     }
 
-  vtksys_stl::string cmd;
+  std::string cmd;
 
   cmd.append(this->GetWidgetName()).append(" insert end ").append(parent && *parent ? parent : "root").append(" ").append(node);
 
@@ -663,7 +663,7 @@ void vtkKWTree::DisplayChildNodes(const char* node)
       return;
       }
 
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
 
     //Figure out how many units in each page
 
@@ -762,7 +762,7 @@ int vtkKWTree::IsNodeAncestor(const char *ancestor, const char *node)
 {
   if (this->IsCreated() && ancestor && *ancestor && node && *node)
     {
-    vtksys_stl::string parent(this->GetNodeParent(node));
+    std::string parent(this->GetNodeParent(node));
     if (!strcmp(parent.c_str(), ancestor))
       {
       return 1;
@@ -838,11 +838,11 @@ const char* vtkKWTree::FindNodeWithUserData(
     return NULL;
     }
    
-  vtksys_stl::vector<vtksys_stl::string> children_list;
+  std::vector<std::string> children_list;
   vtksys::SystemTools::Split(children, children_list, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = children_list.end();
+  std::vector<std::string>::iterator end = children_list.end();
 
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = children_list.begin();
+  std::vector<std::string>::iterator it = children_list.begin();
   for (; it != end; it++)
     {
     const char *child_data = this->GetNodeUserData((*it).c_str());
@@ -933,7 +933,7 @@ void vtkKWTree::SetNodeFontWeightToBold(const char *node)
   if (this->IsCreated() && node && *node)
     {
     char new_font[1024];
-    vtksys_stl::string font(this->GetNodeFont(node));
+    std::string font(this->GetNodeFont(node));
     vtkKWTkUtilities::ChangeFontWeightToBold(
       this->GetApplication()->GetMainInterp(), font.c_str(), new_font);
     this->SetNodeFont(node, new_font);
@@ -946,7 +946,7 @@ void vtkKWTree::SetNodeFontWeightToNormal(const char *node)
   if (this->IsCreated() && node && *node)
     {
     char new_font[1024];
-    vtksys_stl::string font(this->GetNodeFont(node));
+    std::string font(this->GetNodeFont(node));
     vtkKWTkUtilities::ChangeFontWeightToNormal(
       this->GetApplication()->GetMainInterp(), font.c_str(), new_font);
     this->SetNodeFont(node, new_font);
@@ -959,7 +959,7 @@ void vtkKWTree::SetNodeFontSlantToItalic(const char *node)
   if (this->IsCreated() && node && *node)
     {
     char new_font[1024];
-    vtksys_stl::string font(this->GetNodeFont(node));
+    std::string font(this->GetNodeFont(node));
     vtkKWTkUtilities::ChangeFontSlantToItalic(
       this->GetApplication()->GetMainInterp(), font.c_str(), new_font);
     this->SetNodeFont(node, new_font);
@@ -972,7 +972,7 @@ void vtkKWTree::SetNodeFontSlantToRoman(const char *node)
   if (this->IsCreated() && node && *node)
     {
     char new_font[1024];
-    vtksys_stl::string font(this->GetNodeFont(node));
+    std::string font(this->GetNodeFont(node));
     vtkKWTkUtilities::ChangeFontSlantToRoman(
       this->GetApplication()->GetMainInterp(), font.c_str(), new_font);
     this->SetNodeFont(node, new_font);
@@ -1032,10 +1032,10 @@ void vtkKWTree::DeleteAllNodeWindows(const char *parent)
     return;
     }
    
-  vtksys_stl::vector<vtksys_stl::string> children_list;
+  std::vector<std::string> children_list;
   vtksys::SystemTools::Split(children, children_list, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = children_list.end();
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = children_list.begin();
+  std::vector<std::string>::iterator end = children_list.end();
+  std::vector<std::string>::iterator it = children_list.begin();
 
   for (; it != end; it++)
     {
@@ -1087,7 +1087,7 @@ void vtkKWTree::SetNodeImageToPixels(const char *node,
   // Use the prev pic, or create a new one
 
   int had_no_image = 0;
-  vtksys_stl::string image_name(
+  std::string image_name(
     this->Script("%s itemcget %s -image", this->GetWidgetName(), node));
   if (!image_name.size())
     {
@@ -1470,7 +1470,7 @@ void vtkKWTree::DropOverNodeCallback(
 
   // Check that the location of the drop is a node
 
-  vtksys_stl::vector<vtksys_stl::string> where_elems;
+  std::vector<std::string> where_elems;
   vtksys::SystemTools::Split(where, where_elems, ' ');
 
   if (where_elems.size() != 2 || strcmp(where_elems[0].c_str(), "node"))
@@ -1478,9 +1478,9 @@ void vtkKWTree::DropOverNodeCallback(
     return;
     }
 
-  vtksys_stl::string node(data);
-  vtksys_stl::string new_parent(where_elems[1]);
-  vtksys_stl::string previous_parent(this->GetNodeParent(node.c_str()));
+  std::string node(data);
+  std::string new_parent(where_elems[1]);
+  std::string previous_parent(this->GetNodeParent(node.c_str()));
 
   if (this->EnableReparenting &&
       !this->IsNodeAncestor(node.c_str(), new_parent.c_str()))

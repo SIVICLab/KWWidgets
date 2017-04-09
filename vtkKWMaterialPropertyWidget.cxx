@@ -30,8 +30,8 @@
 #include "vtkObjectFactory.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/list>
+#include <sstream>
+#include <list>
 
 //----------------------------------------------------------------------------
 
@@ -42,8 +42,8 @@ class vtkKWMaterialPropertyWidgetInternals
 {
 public:
 
-  typedef vtksys_stl::list<vtkKWMaterialPropertyWidget::Preset*> PresetsContainer;
-  typedef vtksys_stl::list<vtkKWMaterialPropertyWidget::Preset*>::iterator PresetsContainerIterator;
+  typedef std::list<vtkKWMaterialPropertyWidget::Preset*> PresetsContainer;
+  typedef std::list<vtkKWMaterialPropertyWidget::Preset*>::iterator PresetsContainerIterator;
 
   PresetsContainer Presets;
 };
@@ -774,7 +774,7 @@ void vtkKWMaterialPropertyWidget::CreatePresets()
       pb->SetImageToPixels(
         buffer, this->PresetSize, this->PresetSize, pixel_size);
 
-      vtksys_ios::ostringstream preset_callback;
+      std::ostringstream preset_callback;
       preset_callback << "PresetMaterialCallback " << rank;
       pb->SetCommand(this, preset_callback.str().c_str());
       }

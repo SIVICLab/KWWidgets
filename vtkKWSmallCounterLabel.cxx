@@ -18,7 +18,7 @@
 #include "vtkKWTopLevel.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWSmallCounterLabel );

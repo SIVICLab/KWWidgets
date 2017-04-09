@@ -33,7 +33,7 @@
 
 #include "vtkObjectFactory.h"
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/stl/string>
+#include <string>
 
 #ifdef _WIN32
 #include "vtkKWWin32RegistryHelper.h"
@@ -56,7 +56,7 @@ public:
     this->CurrentFileExts = ".*";
   }
   
-  vtksys_stl::string CurrentFileExts;
+  std::string CurrentFileExts;
 };
 
 //----------------------------------------------------------------------------
@@ -547,18 +547,18 @@ void vtkKWFileBrowserWidget::FilterFilesByExtensions(
   if (this->FileListTable->IsCreated() && 
       fileextensions && *fileextensions)
     {
-    vtksys_stl::string tmpExts = fileextensions;
+    std::string tmpExts = fileextensions;
     bool bUseExt = false;
-    vtksys_stl::vector<vtksys_stl::string> extlist;
+    std::vector<std::string> extlist;
     vtksys::SystemTools::Split(tmpExts.c_str(), extlist, ' ');
     if (extlist.size()>0)
       {
       // if there is a .* in the extenstions list, or none of them
       // are extensions, ignore extensions.
-      vtksys_stl::vector<vtksys_stl::string>::iterator it;
+      std::vector<std::string>::iterator it;
       for(it = extlist.begin(); it != extlist.end(); it++)
         {
-        vtksys_stl::string ext = *it;
+        std::string ext = *it;
         if (ext.size() >= 2 && ext[0] == '.')
           {
           bUseExt = true;
@@ -599,9 +599,9 @@ void vtkKWFileBrowserWidget::AddFavoriteDirectoryCallback()
     return;
     }
   
-  vtksys_stl::string favoritedir = 
+  std::string favoritedir = 
     this->DirectoryExplorer->GetSelectedDirectory();
-  vtksys_stl::string defaultname = 
+  std::string defaultname = 
     vtksys::SystemTools::GetFilenameName(favoritedir);
   
   // Check if the favorite folder is already there, 
@@ -610,7 +610,7 @@ void vtkKWFileBrowserWidget::AddFavoriteDirectoryCallback()
   if (this->FavoriteDirectoriesFrame->HasFavoriteDirectory(
         favoritedir.c_str()))
     {
-    vtksys_stl::string message = 
+    std::string message = 
       "The selected directoy has already been added.";
     vtkKWMessageDialog::PopupMessage(
       this->GetApplication(), this, 
@@ -638,7 +638,7 @@ void vtkKWFileBrowserWidget::AddFavoriteDirectoryCallback()
   dlg->GetOKButton()->Focus();
   
   int ok = dlg->Invoke();
-  vtksys_stl::string favoritename = dlg->GetEntry()->GetWidget()->GetValue();
+  std::string favoritename = dlg->GetEntry()->GetWidget()->GetValue();
   dlg->Delete();
   if (ok)
     {
@@ -658,7 +658,7 @@ void vtkKWFileBrowserWidget::AddFavoriteDirectoryCallback()
     if (this->FavoriteDirectoriesFrame->HasFavoriteDirectoryWithName(
           favoritename.c_str()))
       {
-      vtksys_stl::string message = 
+      std::string message = 
         "The name for this favorite is already used: ";
       message.append(favoritename.c_str());
       vtkKWMessageDialog::PopupMessage(
@@ -733,7 +733,7 @@ void vtkKWFileBrowserWidget::UpdateForCurrentDirectory()
     const char *sel_dir = this->DirectoryExplorer->GetSelectedDirectory();
     if (sel_dir)
       {
-      vtksys_stl::string sel_dir_str(sel_dir);
+      std::string sel_dir_str(sel_dir);
       this->FavoriteDirectoriesFrame->SelectFavoriteDirectory(sel_dir_str.c_str());
       }
     }
@@ -820,7 +820,7 @@ void vtkKWFileBrowserWidget::FileDeletedCallback(
 {
   if (fullname && *fullname && isDir)
     {
-    vtksys_stl::string path = fullname;
+    std::string path = fullname;
     if (this->DirectoryExplorerVisibility && 
         this->DirectoryExplorer->HasSelection())
       {

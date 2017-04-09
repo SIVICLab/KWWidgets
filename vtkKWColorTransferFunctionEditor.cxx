@@ -33,8 +33,8 @@
 #include "vtkKWScaleWithEntry.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 vtkStandardNewMacro(vtkKWColorTransferFunctionEditor);
 //vtkCxxRevisionMacro(vtkKWColorTransferFunctionEditor, "$Revision: 1.61 $");
@@ -820,7 +820,7 @@ void vtkKWColorTransferFunctionEditor::Pack()
 
   this->Superclass::Pack();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Add the color space menu (in top left frame)
 
@@ -890,7 +890,7 @@ void vtkKWColorTransferFunctionEditor::PackPointEntries()
 
   this->Superclass::PackPointEntries();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Value entries (in top right frame)
 
@@ -1563,7 +1563,7 @@ void vtkKWColorTransferFunctionEditor::RedrawColorRamp()
       this->Canvas && this->Canvas->IsAlive())
     {
     const char *canv = this->Canvas->GetWidgetName();
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
 
     // Create/remove the image item in the canvas only when needed
 
@@ -1572,7 +1572,7 @@ void vtkKWColorTransferFunctionEditor::RedrawColorRamp()
       {
       if (this->ColorRampVisibility)
         {
-        vtksys_stl::string image_name(
+        std::string image_name(
           this->ColorRamp->GetConfigurationOption("-image"));
         tk_cmd << canv << " create image 0 0 -anchor nw "
                << " -image " << image_name.c_str() 
@@ -1644,7 +1644,7 @@ void vtkKWColorTransferFunctionEditor::RedrawHistogram()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // If the primary histogram has just been created, raise or lower it
 

@@ -29,11 +29,11 @@
 #include "vtkKWRadioButton.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/map>
-#include <vtksys/stl/algorithm>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <map>
+#include <algorithm>
 #include <vtksys/SystemTools.hxx>
 
 #include "Utilities/Tablelist/vtkKWTablelistInit.h"
@@ -47,13 +47,13 @@ class vtkKWMultiColumnListInternals
 {
 public:
   
-  vtksys_stl::string ScheduleRefreshColorsOfAllCellsWithWindowCommandTimerId;
-  vtksys_stl::string ScheduleRefreshAllCellsWithWindowCommandTimerId;
-  vtksys_stl::string ScheduleRefreshAllRowsWithWindowCommandTimerId;
-  vtksys_stl::string ScheduleRefreshEnabledStateOfAllCellsWithWindowCommandTimerId;
+  std::string ScheduleRefreshColorsOfAllCellsWithWindowCommandTimerId;
+  std::string ScheduleRefreshAllCellsWithWindowCommandTimerId;
+  std::string ScheduleRefreshAllRowsWithWindowCommandTimerId;
+  std::string ScheduleRefreshEnabledStateOfAllCellsWithWindowCommandTimerId;
 
-  vtksys_stl::vector<int> LastSelectionRowIndices;
-  vtksys_stl::vector<int> LastSelectionColIndices;
+  std::vector<int> LastSelectionRowIndices;
+  std::vector<int> LastSelectionColIndices;
 
   int EditedCellRowIndex;
   int EditedCellColumnIndex;
@@ -92,12 +92,12 @@ public:
   // - column index to visibility (column vis helps deciding if a specific
   //                               content should be inserted in a column cell)
 
-  typedef vtksys_stl::map<vtksys_stl::string, int> ColumnNameToIndexCacheType;
-  typedef vtksys_stl::map<vtksys_stl::string, int>::iterator ColumnNameToIndexCacheTypeIterator;
+  typedef std::map<std::string, int> ColumnNameToIndexCacheType;
+  typedef std::map<std::string, int>::iterator ColumnNameToIndexCacheTypeIterator;
   ColumnNameToIndexCacheType ColumnNameToIndexCache;
 
-  typedef vtksys_stl::map<int, int> ColumnIndexToVisibilityCacheType;
-  typedef vtksys_stl::map<int, int>::iterator ColumnIndexToVisibilityCacheTypeIterator;
+  typedef std::map<int, int> ColumnIndexToVisibilityCacheType;
+  typedef std::map<int, int>::iterator ColumnIndexToVisibilityCacheTypeIterator;
   ColumnIndexToVisibilityCacheType ColumnIndexToVisibilityCache;
 };
 
@@ -212,7 +212,7 @@ void vtkKWMultiColumnList::CreateWidget()
 
   // Call the superclass to set the appropriate flags then create manually
 
-  vtksys_stl::string options("-background #ffffff -stripebackground #dfe7ef -showseparators 1 -showarrow 1  -highlightthickness 0 -selectmode browse -relief sunken -bd 2 -spacing 2 -exportselection 0 -activestyle none -foreground #000000 -selectforeground #ffffff -width 0 -setfocus 1");
+  std::string options("-background #ffffff -stripebackground #dfe7ef -showseparators 1 -showarrow 1  -highlightthickness 0 -selectmode browse -relief sunken -bd 2 -spacing 2 -exportselection 0 -activestyle none -foreground #000000 -selectforeground #ffffff -width 0 -setfocus 1");
 #ifdef _WIN32
   options += " -selectbackground #092369";
 #else
@@ -275,7 +275,7 @@ void vtkKWMultiColumnList::AddInteractionBindings()
     return;
     }
 
-  vtksys_stl::string bodytag(
+  std::string bodytag(
     this->Script("%s bodytag", this->GetWidgetName()));
 
   this->SetGenericBinding(
@@ -295,7 +295,7 @@ void vtkKWMultiColumnList::RemoveInteractionBindings()
     return;
     }
 
-  vtksys_stl::string bodytag(
+  std::string bodytag(
     this->Script("%s bodytag", this->GetWidgetName()));
 
   this->RemoveGenericBinding(bodytag.c_str(), "<<Button3>>");
@@ -309,7 +309,7 @@ void vtkKWMultiColumnList::SetBinding(const char *event,
   this->Superclass::SetBinding(event, object, method);
   if (this->IsCreated())
     {
-    vtksys_stl::string bodytag(
+    std::string bodytag(
       this->Script("%s bodytag", this->GetWidgetName()));
     this->SetGenericBinding(bodytag.c_str(), event, object, method);
     }
@@ -328,7 +328,7 @@ void vtkKWMultiColumnList::AddBinding(const char *event,
   this->Superclass::AddBinding(event, object, method);
   if (this->IsCreated())
     {
-    vtksys_stl::string bodytag(
+    std::string bodytag(
       this->Script("%s bodytag", this->GetWidgetName()));
     this->AddGenericBinding(bodytag.c_str(), event, object, method);
     }
@@ -347,7 +347,7 @@ void vtkKWMultiColumnList::RemoveBinding(const char *event,
   this->Superclass::RemoveBinding(event, object, method);
   if (this->IsAlive())
     {
-    vtksys_stl::string bodytag(
+    std::string bodytag(
       this->Script("%s bodytag", this->GetWidgetName()));
     this->RemoveGenericBinding(bodytag.c_str(), event, object, method);
     }
@@ -374,8 +374,8 @@ int vtkKWMultiColumnList::HasFocus()
 {
   if (this->IsCreated())
     {
-    vtksys_stl::string infocus(this->Script("focus"));
-    vtksys_stl::string shouldfocus(
+    std::string infocus(this->Script("focus"));
+    std::string shouldfocus(
       this->Script("%s bodypath", this->GetWidgetName()));
     return infocus.length() && !strcmp(infocus.c_str(), shouldfocus.c_str());
     }
@@ -960,7 +960,7 @@ void vtkKWMultiColumnList::SetColumnAttribute(
     return;
     }
 
-  vtksys_stl::string escaped_name(
+  std::string escaped_name(
     this->ConvertInternalStringToTclString(
       name, vtkKWCoreWidget::ConvertStringEscapeInterpretable));
   const char *escaped_value = this->ConvertInternalStringToTclString(
@@ -1073,7 +1073,7 @@ int vtkKWMultiColumnList::GetColumnAttributeAsInt(
 void vtkKWMultiColumnList::GetColumnBackgroundColor(
   int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetColumnConfigurationOption(col_index, "-background"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -1113,7 +1113,7 @@ void vtkKWMultiColumnList::ClearColumnBackgroundColor(int col_index)
 void vtkKWMultiColumnList::GetColumnForegroundColor(
   int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetColumnConfigurationOption(col_index, "-foreground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -1190,7 +1190,7 @@ void vtkKWMultiColumnList::SetColumnLabelImageToPixels(
 
   // Use the prev pic, or create a new one
 
-  vtksys_stl::string image_name(
+  std::string image_name(
     this->GetColumnConfigurationOption(col_index, "-labelimage"));
   if (!image_name.size())
     {
@@ -1261,7 +1261,7 @@ int vtkKWMultiColumnList::GetLastSortedOrder()
     return vtkKWMultiColumnList::SortByUnknownOrder;
     }
 
-  vtksys_stl::string strOrder = this->Script("%s sortorder", this->GetWidgetName());
+  std::string strOrder = this->Script("%s sortorder", this->GetWidgetName());
   if(strcmp(strOrder.c_str(), "decreasing")==0)
     {
     return vtkKWMultiColumnList::SortByDecreasingOrder;
@@ -1446,10 +1446,10 @@ int vtkKWMultiColumnList::SetColumnConfigurationOption(
 
   if (res && *res)
     {
-    vtksys_stl::string err_msg(res);
-    vtksys_stl::string tcl_name(this->GetTclName());
-    vtksys_stl::string widget_name(this->GetWidgetName());
-    vtksys_stl::string type(this->GetType());
+    std::string err_msg(res);
+    std::string tcl_name(this->GetTclName());
+    std::string widget_name(this->GetWidgetName());
+    std::string type(this->GetType());
     vtkErrorMacro(
       "Error configuring " << tcl_name.c_str() << " (" << type.c_str() << ": " 
       << widget_name.c_str() << ") at column: " << col_index 
@@ -1577,7 +1577,7 @@ void vtkKWMultiColumnList::SetColumnFormatCommandToEmptyOutput(int col_index)
 void vtkKWMultiColumnList::SetColumnFormatCommandToEmptyOutputIfWindowCommand(
   int col_index)
 {
-  vtksys_stl::string command(
+  std::string command(
     "ColumnFormatCommandToEmptyOutputIfWindowCommandCallback ");
   command += this->GetTclName();
   this->SetColumnFormatCommand(col_index, this, command.c_str());
@@ -1622,7 +1622,7 @@ void vtkKWMultiColumnList::InsertRow(int row_index)
     int nb_cols = this->GetNumberOfColumns();
     if (nb_cols > 0)
       {
-      vtksys_stl::string item;
+      std::string item;
       for (int i = 0; i < nb_cols; i++)
         {
         item += "\"\" ";
@@ -1657,7 +1657,7 @@ void vtkKWMultiColumnList::InsertRows(int row_index, int num_rows)
     int nb_cols = this->GetNumberOfColumns();
     if (nb_cols > 0)
       {
-      vtksys_stl::string item;
+      std::string item;
       for (int i = 0; i < nb_cols; i++)
         {
         item += "\"\" ";
@@ -1672,7 +1672,7 @@ void vtkKWMultiColumnList::InsertRows(int row_index, int num_rows)
         }
       const char* name = this->GetWidgetName();
       const char* pItem = item.c_str();
-      vtksys_ios::ostringstream tk_cmd;
+      std::ostringstream tk_cmd;
       for(int row=0; row<num_rows; row++)
         {
         tk_cmd << name << " insert " << (row+row_index) 
@@ -1830,7 +1830,7 @@ void vtkKWMultiColumnList::SetRowAttribute(
     return;
     }
 
-  vtksys_stl::string escaped_name(
+  std::string escaped_name(
     this->ConvertInternalStringToTclString(
       name, vtkKWCoreWidget::ConvertStringEscapeInterpretable));
   const char *escaped_value = this->ConvertInternalStringToTclString(
@@ -1943,7 +1943,7 @@ int vtkKWMultiColumnList::GetRowAttributeAsInt(
 void vtkKWMultiColumnList::GetRowBackgroundColor(
   int row_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetRowConfigurationOption(row_index, "-background"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -1983,7 +1983,7 @@ void vtkKWMultiColumnList::ClearRowBackgroundColor(int row_index)
 void vtkKWMultiColumnList::GetRowForegroundColor(
   int row_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetRowConfigurationOption(row_index, "-foreground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -2134,10 +2134,10 @@ int vtkKWMultiColumnList::SetRowConfigurationOption(
 
   if (res && *res)
     {
-    vtksys_stl::string err_msg(res);
-    vtksys_stl::string tcl_name(this->GetTclName());
-    vtksys_stl::string widget_name(this->GetWidgetName());
-    vtksys_stl::string type(this->GetType());
+    std::string err_msg(res);
+    std::string tcl_name(this->GetTclName());
+    std::string widget_name(this->GetWidgetName());
+    std::string type(this->GetType());
     vtkErrorMacro(
       "Error configuring " << tcl_name.c_str() << " (" << type.c_str() << ": " 
       << widget_name.c_str() << ") at row: " << row_index 
@@ -2365,7 +2365,7 @@ void vtkKWMultiColumnList::SetCellAttribute(
     return;
     }
 
-  vtksys_stl::string escaped_name(
+  std::string escaped_name(
     this->ConvertInternalStringToTclString(
       name, vtkKWCoreWidget::ConvertStringEscapeInterpretable));
   const char *escaped_value = this->ConvertInternalStringToTclString(
@@ -2569,7 +2569,7 @@ void vtkKWMultiColumnList::SeeCell(int row_index, int col_index)
 void vtkKWMultiColumnList::GetCellBackgroundColor(
   int row_index, int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetCellConfigurationOption(row_index, col_index, "-background"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -2611,7 +2611,7 @@ void vtkKWMultiColumnList::ClearCellBackgroundColor(
 void vtkKWMultiColumnList::GetCellForegroundColor(
   int row_index, int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetCellConfigurationOption(row_index, col_index, "-foreground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -2644,7 +2644,7 @@ void vtkKWMultiColumnList::SetCellForegroundColor(
 void vtkKWMultiColumnList::GetCellCurrentBackgroundColor(
   int row_index, int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string bgcolor;
+  std::string bgcolor;
 
   // If disabled, everything is background
 
@@ -2747,7 +2747,7 @@ double* vtkKWMultiColumnList::GetCellCurrentBackgroundColor(
 void vtkKWMultiColumnList::GetCellCurrentForegroundColor(
   int row_index, int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string fgcolor;
+  std::string fgcolor;
 
   // If disabled, everything is disabledforeground
 
@@ -2930,7 +2930,7 @@ void vtkKWMultiColumnList::SetCellImageToPixels(
 
   // Use the prev pic, or create a new one
 
-  vtksys_stl::string image_name(
+  std::string image_name(
     this->GetCellConfigurationOption(row_index, col_index, "-image"));
   if (!image_name.size())
     {
@@ -3099,7 +3099,7 @@ void vtkKWMultiColumnList::RemoveAllWindowDestroyCommandFromCells()
     this->SetStateToNormal();
     state_was_changed = 1;
     }
-  vtksys_stl::string command_str;
+  std::string command_str;
   int nb_rows = this->GetNumberOfRows();
   int nb_cols = this->GetNumberOfColumns();
   for (int row = 0; row < nb_rows; row++)
@@ -3128,7 +3128,7 @@ void vtkKWMultiColumnList::RefreshCellWithWindowCommand(int row_index,
     this->GetCellConfigurationOption(row_index, col_index, "-window");
   if (command && *command)
     {
-    vtksys_stl::string command_str(command);
+    std::string command_str(command);
     int old_state = this->GetState();
     int state_was_changed = 0;
     if (this->GetState() != vtkKWOptions::StateNormal)
@@ -3161,7 +3161,7 @@ void vtkKWMultiColumnList::RefreshAllCellsWithWindowCommand()
     this->SetStateToNormal();
     state_was_changed = 1;
     }
-  vtksys_stl::string command_str;
+  std::string command_str;
   int nb_rows = this->GetNumberOfRows();
   int nb_cols = this->GetNumberOfColumns();
   for (int row = 0; row < nb_rows; row++)
@@ -3227,7 +3227,7 @@ void vtkKWMultiColumnList::RefreshEnabledStateOfAllCellsWithWindowCommand()
     this->SetStateToNormal();
     state_was_changed = 1;
     }
-  vtksys_stl::string command_str;
+  std::string command_str;
   int nb_rows = this->GetNumberOfRows();
   int nb_cols = this->GetNumberOfColumns();
   for (int row = 0; row < nb_rows; row++)
@@ -3322,7 +3322,7 @@ void vtkKWMultiColumnList::RefreshAllRowsWithWindowCommand(int col)
     this->SetStateToNormal();
     state_was_changed = 1;
     }
-  vtksys_stl::string command_str;
+  std::string command_str;
   int nb_rows = this->GetNumberOfRows();
   for (int row = 0; row < nb_rows; row++)
     {
@@ -3678,7 +3678,7 @@ void vtkKWMultiColumnList::CellWindowCommandToColorButtonCallback(
   child->SetPadY(0);
 
   double r, g, b;
-  vtksys_stl::string cell_text(this->GetCellText(row, col));
+  std::string cell_text(this->GetCellText(row, col));
   if (!this->GetEnabled() ||
       sscanf(cell_text.c_str(), "%lg %lg %lg", &r, &g, &b) != 3)
     {
@@ -3773,7 +3773,7 @@ void vtkKWMultiColumnList::CellWindowCommandToPickDirectoryButtonCallback(
     child->Delete();
     }
 
-  vtksys_stl::string cell_text(this->GetCellText(row, col));
+  std::string cell_text(this->GetCellText(row, col));
   child->GetLoadSaveDialog()->RetrieveLastPathFromRegistry(
     "OpenPath");
   if(!cell_text.empty() && vtksys::SystemTools::FileExists(cell_text.c_str()))
@@ -3850,7 +3850,7 @@ void vtkKWMultiColumnList::CellWindowCommandToPickDirectoryButtonChangeCallback(
 void vtkKWMultiColumnList::SetCellWindowCommandToComboBoxWithValuesAsSemiColonSeparated(
   int row_index, int col_index, const char *values)
 {
-  vtksys_stl::string command("CellWindowCommandToComboBoxCreateCallback {");
+  std::string command("CellWindowCommandToComboBoxCreateCallback {");
   if (values)
     {
     command += values;
@@ -3878,7 +3878,7 @@ void vtkKWMultiColumnList::SetCellWindowCommandToComboBoxWithValuesAsArray(
 {
   if (values && values->GetNumberOfValues())
     {
-    vtksys_stl::string str(values->GetValue(0));
+    std::string str(values->GetValue(0));
     for (int i = 1; i < values->GetNumberOfValues(); i++)
       {
       str += ";";
@@ -3899,7 +3899,7 @@ void vtkKWMultiColumnList::SetCellWindowCommandToComboBoxWithValues(
 {
   if (values && nb_values > 0)
     {
-    vtksys_stl::string str(values[0]);
+    std::string str(values[0]);
     for (int i = 1; i < nb_values; i++)
       {
       str += ";";
@@ -3944,11 +3944,11 @@ void vtkKWMultiColumnList::CellWindowCommandToComboBoxCreateCallback(
   
   // Set the default based on the current column width.. 
 
-  vtksys_stl::vector<vtksys_stl::string> split_elems;
+  std::vector<std::string> split_elems;
   vtksys::SystemTools::Split(values, split_elems, ';');
   
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = split_elems.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = split_elems.end();
+  std::vector<std::string>::iterator it = split_elems.begin();
+  std::vector<std::string>::iterator end = split_elems.end();
 
   int column_width = this->GetColumnWidth(col);
   const int column_width_margin = 4;
@@ -3992,7 +3992,7 @@ void vtkKWMultiColumnList::CellWindowCommandToComboBoxCreateCallback(
     child->AddValue((*it).c_str());
     }
 
-  vtksys_stl::string cell_content(this->GetCellText(row, col));
+  std::string cell_content(this->GetCellText(row, col));
   child->SetValue(cell_content.c_str());
 
   // The combobox is readonly, but we still want to be able to select the
@@ -4001,7 +4001,7 @@ void vtkKWMultiColumnList::CellWindowCommandToComboBoxCreateCallback(
 
   vtkKWWidget *entryw = vtkKWWidget::New();
   entryw->SetParent(child);
-  vtksys_stl::string name(child->GetWidgetName());
+  std::string name(child->GetWidgetName());
   name += ".e";        // see BWidget's ComboBox implementation
   entryw->SetWidgetName(name.c_str());
   entryw->Create();
@@ -4080,10 +4080,10 @@ void vtkKWMultiColumnList::CellWindowCommandToComboBoxValueCallback(
 
     if (row < this->GetNumberOfRows())
       {
-      vtksys_stl::string cell_content(this->GetCellText(row, col));
+      std::string cell_content(this->GetCellText(row, col));
       if (strcmp(cell_content.c_str(), value))
         {
-        vtksys_stl::string validated(
+        std::string validated(
           this->InvokeEditEndCommand(row, col, value));
         cb->SetValue(validated.c_str());
         if (strcmp(cell_content.c_str(), validated.c_str()))
@@ -4248,10 +4248,10 @@ void vtkKWMultiColumnList::RejectInput()
 void vtkKWMultiColumnList::ReportErrorOnSetCellConfigurationOption(
   int row_index, int col_index, const char *option, const char *res)
 {
-  vtksys_stl::string err_msg(res);
-  vtksys_stl::string tcl_name(this->GetTclName());
-  vtksys_stl::string widget_name(this->GetWidgetName());
-  vtksys_stl::string type(this->GetType());
+  std::string err_msg(res);
+  std::string tcl_name(this->GetTclName());
+  std::string widget_name(this->GetWidgetName());
+  std::string type(this->GetType());
   vtkErrorMacro(
     "Error configuring " << tcl_name.c_str() << " (" << type.c_str() << ": " 
     << widget_name.c_str() << ") at cell: " << row_index << "," << col_index
@@ -4512,7 +4512,7 @@ int vtkKWMultiColumnList::FindCellAtRelativeCoordinates(
     return 0;
     }
 
-  vtksys_stl::string nearest(
+  std::string nearest(
     this->Script("%s containingcell %d %d", this->GetWidgetName(), x, y));
   return (sscanf(nearest.c_str(), "%d,%d", row_index, col_index) == 2 &&
           col_index >= 0 && row_index >= 0) ? 1 : 0;
@@ -4666,7 +4666,7 @@ void vtkKWMultiColumnList::SetSelectionForegroundColor(double r, double g, doubl
 void vtkKWMultiColumnList::GetColumnSelectionBackgroundColor(
   int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetColumnConfigurationOption(col_index, "-selectbackground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -4697,7 +4697,7 @@ void vtkKWMultiColumnList::SetColumnSelectionBackgroundColor(
 void vtkKWMultiColumnList::GetColumnSelectionForegroundColor(
   int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetColumnConfigurationOption(col_index, "-selectforeground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -4728,7 +4728,7 @@ void vtkKWMultiColumnList::SetColumnSelectionForegroundColor(
 void vtkKWMultiColumnList::GetRowSelectionBackgroundColor(
   int row_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetRowConfigurationOption(row_index, "-selectbackground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -4759,7 +4759,7 @@ void vtkKWMultiColumnList::SetRowSelectionBackgroundColor(
 void vtkKWMultiColumnList::GetRowSelectionForegroundColor(
   int row_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetRowConfigurationOption(row_index, "-selectforeground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
 }
@@ -4790,7 +4790,7 @@ void vtkKWMultiColumnList::SetRowSelectionForegroundColor(
 void vtkKWMultiColumnList::GetCellSelectionBackgroundColor(
   int row_index, int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetCellConfigurationOption(
       row_index, col_index, "-selectbackground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
@@ -4825,7 +4825,7 @@ void vtkKWMultiColumnList::SetCellSelectionBackgroundColor(
 void vtkKWMultiColumnList::GetCellSelectionForegroundColor(
   int row_index, int col_index, double *r, double *g, double *b)
 {
-  vtksys_stl::string color(
+  std::string color(
     this->GetCellConfigurationOption(
       row_index, col_index, "-selectforeground"));
   vtkKWTkUtilities::GetRGBColor(this, color.c_str(), r, g, b);
@@ -5015,14 +5015,14 @@ int vtkKWMultiColumnList::GetSelectedRows(int *indices)
     return 0;
     }
 
-  vtksys_stl::string curselection(
+  std::string curselection(
     this->Script("%s curselection", this->GetWidgetName()));
 
-  vtksys_stl::vector<vtksys_stl::string> split_elems;
+  std::vector<std::string> split_elems;
   vtksys::SystemTools::Split(curselection.c_str(), split_elems, ' ');
   
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = split_elems.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = split_elems.end();
+  std::vector<std::string>::iterator it = split_elems.begin();
+  std::vector<std::string>::iterator end = split_elems.end();
   int index = 0;
   for (; it != end; index++, it++)
     {
@@ -5130,14 +5130,14 @@ int vtkKWMultiColumnList::GetSelectedCells(int *row_indices, int *col_indices)
     return 0;
     }
 
-  vtksys_stl::string curselection(
+  std::string curselection(
     this->Script("%s curcellselection", this->GetWidgetName()));
 
-  vtksys_stl::vector<vtksys_stl::string> split_elems;
+  std::vector<std::string> split_elems;
   vtksys::SystemTools::Split(curselection.c_str(), split_elems, ' ');
   
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = split_elems.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = split_elems.end();
+  std::vector<std::string>::iterator it = split_elems.begin();
+  std::vector<std::string>::iterator end = split_elems.end();
   int index = 0, row, col;
   for (; it != end; it++)
     {
@@ -5247,7 +5247,7 @@ void vtkKWMultiColumnList::SetCellUpdatedCommand(
 void vtkKWMultiColumnList::InvokeCellUpdatedCommand(
   int row, int col, const char *text)
 {
-  vtksys_stl::string cell_contents(text);
+  std::string cell_contents(text);
   if (this->CellUpdatedCommand && *this->CellUpdatedCommand && 
       this->IsCreated())
     {
@@ -5402,8 +5402,8 @@ const char* vtkKWMultiColumnList::EditStartCallback(
     if (res)
       {
       this->CancelEditing();
-      vtksys_stl::string cell_contents(this->GetCellText(row, col));
-      vtksys_stl::string start_contents(
+      std::string cell_contents(this->GetCellText(row, col));
+      std::string start_contents(
         this->InvokeEditStartCommand(row, col, cell_contents.c_str()));
       double r = 1, g = 1, b = 1, out_r = 1, out_g = 1, out_b = 1;
       sscanf(start_contents.c_str(), "%lg %lg %lg", &r, &g, &b);
@@ -5413,7 +5413,7 @@ const char* vtkKWMultiColumnList::EditStartCallback(
         {
         char buffer[256];
         sprintf(buffer, "%g %g %g", out_r, out_g, out_b);
-        vtksys_stl::string validated_contents(
+        std::string validated_contents(
           this->InvokeEditEndCommand(row, col, buffer));
         if (strcmp(validated_contents.c_str(), cell_contents.c_str()) &&
             sscanf(validated_contents.c_str(), "%lg %lg %lg", &r, &g, &b) == 3)
@@ -5535,10 +5535,10 @@ void vtkKWMultiColumnList::HasSelectionChanged()
       this->Internals->LastSelectionRowIndices.resize(nb_of_selected_cells);
       this->Internals->LastSelectionColIndices.resize(nb_of_selected_cells);
       }
-    vtksys_stl::copy(row_indices, 
+    std::copy(row_indices, 
                      row_indices + nb_of_selected_cells, 
                      this->Internals->LastSelectionRowIndices.begin());
-    vtksys_stl::copy(col_indices, 
+    std::copy(col_indices, 
                      col_indices + nb_of_selected_cells, 
                      this->Internals->LastSelectionColIndices.begin());
   
@@ -5581,7 +5581,7 @@ void vtkKWMultiColumnList::SetSortCommand(vtkObject *object,
 void vtkKWMultiColumnList::RightClickCallback(
   const char *w, int x, int y, int root_x, int root_y)
 {
-  vtksys_stl::string convert(this->Script(
+  std::string convert(this->Script(
     "lrange [tablelist::convEventFields %s %d %d] 1 2", w, x, y));
   int row_index, col_index;
   if (sscanf(convert.c_str(), "%d %d", &x, &y) == 2 &&

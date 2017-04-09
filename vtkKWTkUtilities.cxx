@@ -27,7 +27,7 @@
 #include "X11/Xutil.h"
 #include "vtkConfigure.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 #include <vtksys/SystemTools.hxx>
 
 // This has to be here because on HP varargs are included in 
@@ -214,8 +214,8 @@ const char* vtkKWTkUtilities::EvaluateSimpleStringInternal(
   vtkObject *obj,
   const char *str)
 {
-  static vtksys_stl::string err;
-  static vtksys_stl::string errInfo;
+  static std::string err;
+  static std::string errInfo;
   
   if (Tcl_GlobalEval(interp, str) != TCL_OK && obj)
     {
@@ -351,7 +351,7 @@ void vtkKWTkUtilities::GetRGBColor(Tcl_Interp *interp,
     return;
     }
 
-  vtksys_ios::ostringstream command;
+  std::ostringstream command;
   command << "winfo rgb " << widget << " " << color;
   if (Tcl_GlobalEval(interp, command.str().c_str()) != TCL_OK)
     {
@@ -396,7 +396,7 @@ void vtkKWTkUtilities::GetOptionColor(Tcl_Interp *interp,
     return;
     }
 
-  vtksys_ios::ostringstream command;
+  std::ostringstream command;
   command << widget << " cget " << option;
   if (Tcl_GlobalEval(interp, command.str().c_str()) != TCL_OK)
     {
@@ -448,7 +448,7 @@ void vtkKWTkUtilities::GetDefaultOptionColor(Tcl_Interp *interp,
     return;
     }
 
-  vtksys_ios::ostringstream command;
+  std::ostringstream command;
   command << "lindex [" << widget << " config " << option << "] 3";
   if (Tcl_GlobalEval(interp, command.str().c_str()) != TCL_OK)
     {
@@ -505,7 +505,7 @@ void vtkKWTkUtilities::SetOptionColor(Tcl_Interp *interp,
   sprintf(color, "#%02x%02x%02x", 
           (int)(r * 255.0), (int)(g * 255.0), (int)(b * 255.0));
 
-  vtksys_ios::ostringstream command;
+  std::ostringstream command;
   command << widget << " configure " << option << " " << color;
   if (Tcl_GlobalEval(interp, command.str().c_str()) != TCL_OK)
     {
@@ -594,7 +594,7 @@ int vtkKWTkUtilities::GetGeometry(Tcl_Interp *interp,
     return 0;
     }
 
-  vtksys_stl::string geometry("winfo geometry ");
+  std::string geometry("winfo geometry ");
   geometry += widget;
   if (Tcl_GlobalEval(interp, geometry.c_str()) != TCL_OK)
     {
@@ -784,7 +784,7 @@ int vtkKWTkUtilities::UpdatePhoto(Tcl_Interp *interp,
 
   if (!photo)
     {
-    vtksys_ios::ostringstream create_photo;
+    std::ostringstream create_photo;
     create_photo << "image create photo " << photo_name;
     int res = Tcl_GlobalEval(interp, create_photo.str().c_str());
     if (res != TCL_OK)
@@ -1026,7 +1026,7 @@ void vtkKWTkUtilities::SetImageOptionToPixels(
     return;
     }
 */
-  vtksys_stl::string image_name(widget->GetWidgetName());
+  std::string image_name(widget->GetWidgetName());
   image_name += ".";
   image_name += &image_option[1];
 
@@ -1184,7 +1184,7 @@ int vtkKWTkUtilities::GetPhotoHeight(vtkKWWidget *widget)
 
   // Retrieve -image option
 
-  vtksys_stl::string cmd(widget->GetWidgetName());
+  std::string cmd(widget->GetWidgetName());
   cmd += " cget -image";
   
   if (Tcl_GlobalEval(interp, cmd.c_str()) != TCL_OK)
@@ -1204,7 +1204,7 @@ int vtkKWTkUtilities::GetPhotoHeight(vtkKWWidget *widget)
 
   // Get size
 
-  vtksys_stl::string image_name(result);
+  std::string image_name(result);
   return vtkKWTkUtilities::GetPhotoHeight(interp, image_name.c_str());
 }
 
@@ -1246,7 +1246,7 @@ int vtkKWTkUtilities::GetRealActualFont(Tcl_Interp *interp,
                                         const char *font, 
                                         char *real_font)
 {
-  vtksys_stl::string script;
+  std::string script;
   int res, tcl_major, tcl_minor, tcl_patch_level;
   Tcl_GetVersion(&tcl_major, &tcl_minor, &tcl_patch_level, NULL);
   if (tcl_major < 8 || (tcl_major == 8 && tcl_minor < 5))
@@ -1305,7 +1305,7 @@ int vtkKWTkUtilities::ChangeFontWeight(Tcl_Interp *interp,
   // First try to modify the old -foundry-family-weigth-*-*-... form
   // Catch the weight field, replace it with bold or medium.
 
-  vtksys_ios::ostringstream regsub;
+  std::ostringstream regsub;
   regsub << "unset -nocomplain __tmp__; regsub -- {(-[^-]*\\S-[^-]*\\S-)([^-]*)(-.*)} \""
          << font << "\" {\\1" << (weight ? "bold" : "medium") 
          << "\\3} __tmp__";
@@ -1339,7 +1339,7 @@ int vtkKWTkUtilities::ChangeFontWeight(Tcl_Interp *interp,
     return 0;
     }
 
-  vtksys_stl::string script("unset -nocomplain __tmp__; array set __tmp__ \"");
+  std::string script("unset -nocomplain __tmp__; array set __tmp__ \"");
   script += real_font;
   script += "\" ; set __tmp__(-weight) ";
   script += (weight ? "bold" : "normal");
@@ -1383,7 +1383,7 @@ int vtkKWTkUtilities::ChangeFontWeight(Tcl_Interp *interp,
 
   // Get the font
 
-  vtksys_ios::ostringstream getfont;
+  std::ostringstream getfont;
   getfont << widget << " cget -font";
   res = Tcl_GlobalEval(interp, getfont.str().c_str());
   if (res != TCL_OK)
@@ -1402,7 +1402,7 @@ int vtkKWTkUtilities::ChangeFontWeight(Tcl_Interp *interp,
 
   // Set the font
 
-  vtksys_ios::ostringstream setfont;
+  std::ostringstream setfont;
   setfont << widget << " configure -font \"" << new_font << "\"";
   res = Tcl_GlobalEval(interp, setfont.str().c_str());
   if (res != TCL_OK)
@@ -1466,7 +1466,7 @@ int vtkKWTkUtilities::ChangeFontSlant(Tcl_Interp *interp,
   // First try to modify the old -foundry-family-weigth-slant-*-*-... form
   // Catch the slant field, replace it with i (italic) or r (roman).
 
-  vtksys_ios::ostringstream regsub;
+  std::ostringstream regsub;
   regsub << "unset -nocomplain __tmp__; regsub -- {(-[^-]*\\S-[^-]*\\S-[^-]*\\S-)([^-]*)(-.*)} \""
          << font << "\" {\\1" << (slant ? "i" : "r") << "\\3} __tmp__";
 
@@ -1499,7 +1499,7 @@ int vtkKWTkUtilities::ChangeFontSlant(Tcl_Interp *interp,
     return 0;
     }
 
-  vtksys_stl::string script("unset -nocomplain __tmp__; array set __tmp__ \"");
+  std::string script("unset -nocomplain __tmp__; array set __tmp__ \"");
   script += real_font;
   script += "\" ; set __tmp__(-slant) ";
   script += (slant ? "italic" : "roman");
@@ -1543,7 +1543,7 @@ int vtkKWTkUtilities::ChangeFontSlant(Tcl_Interp *interp,
 
   // Get the font
 
-  vtksys_ios::ostringstream getfont;
+  std::ostringstream getfont;
   getfont << widget << " cget -font";
   res = Tcl_GlobalEval(interp, getfont.str().c_str());
   if (res != TCL_OK)
@@ -1562,7 +1562,7 @@ int vtkKWTkUtilities::ChangeFontSlant(Tcl_Interp *interp,
 
   // Set the font
 
-  vtksys_ios::ostringstream setfont;
+  std::ostringstream setfont;
   setfont << widget << " configure -font \"" << new_font << "\"";
   res = Tcl_GlobalEval(interp, setfont.str().c_str());
   if (res != TCL_OK)
@@ -1660,7 +1660,7 @@ int vtkKWTkUtilities::ChangeFontSize(Tcl_Interp *interp,
 
   // Get the font
 
-  vtksys_ios::ostringstream getfont;
+  std::ostringstream getfont;
   getfont << widget << " cget -font";
   res = Tcl_GlobalEval(interp, getfont.str().c_str());
   if (res != TCL_OK)
@@ -1679,7 +1679,7 @@ int vtkKWTkUtilities::ChangeFontSize(Tcl_Interp *interp,
 
   // Set the font
 
-  vtksys_ios::ostringstream setfont;
+  std::ostringstream setfont;
   setfont << widget << " configure -font \"" << new_font << "\"";
   res = Tcl_GlobalEval(interp, setfont.str().c_str());
   if (res != TCL_OK)
@@ -1712,7 +1712,7 @@ int vtkKWTkUtilities::GetGridSize(Tcl_Interp *interp,
                                   int *nb_of_cols,
                                   int *nb_of_rows)
 {
-  vtksys_ios::ostringstream size;
+  std::ostringstream size;
   size << "grid size " << widget;
   int res = Tcl_GlobalEval(interp, size.str().c_str());
   if (res != TCL_OK)
@@ -1751,7 +1751,7 @@ int vtkKWTkUtilities::GetWidgetPositionInGrid(Tcl_Interp *interp,
                                       int *col,
                                       int *row)
 {
-  vtksys_ios::ostringstream info;
+  std::ostringstream info;
   info << "grid info " << widget ;
   int res = Tcl_GlobalEval(interp, info.str().c_str());
   if (res != TCL_OK)
@@ -1810,7 +1810,7 @@ int vtkKWTkUtilities::GetWidgetPaddingInPack(Tcl_Interp *interp,
                                           int *padx,
                                           int *pady)
 {
-  vtksys_ios::ostringstream packinfo;
+  std::ostringstream packinfo;
   packinfo << "pack info " << widget;
   int res = Tcl_GlobalEval(interp, packinfo.str().c_str());
   const char *result = Tcl_GetStringResult(interp);
@@ -1881,7 +1881,7 @@ int vtkKWTkUtilities::GetMasterInPack(Tcl_Interp *interp,
                                      const char *widget,
                                      ostream &in)
 {
-  vtksys_ios::ostringstream packinfo;
+  std::ostringstream packinfo;
   packinfo << "pack info " << widget;
   int res = Tcl_GlobalEval(interp, packinfo.str().c_str());
   const char *result = Tcl_GetStringResult(interp);
@@ -1939,7 +1939,7 @@ int vtkKWTkUtilities::GetSlavesBoundingBoxInPack(Tcl_Interp *interp,
                                         int *width,
                                         int *height)
 {
-  vtksys_ios::ostringstream slaves;
+  std::ostringstream slaves;
   slaves << "pack slaves " << widget;
   int res = Tcl_GlobalEval(interp, slaves.str().c_str());
   if (res != TCL_OK)
@@ -2045,7 +2045,7 @@ int vtkKWTkUtilities::GetSlaveHorizontalPositionInPack(Tcl_Interp *interp,
                                                      const char *slave,
                                                      int *x)
 {
-  vtksys_ios::ostringstream slaves;
+  std::ostringstream slaves;
   slaves << "pack slaves " << widget;
   int res = Tcl_GlobalEval(interp, slaves.str().c_str());
   if (res != TCL_OK)
@@ -2183,7 +2183,7 @@ int vtkKWTkUtilities::GetGridColumnWidths(Tcl_Interp *interp,
       {
       // Get the slave
 
-      vtksys_ios::ostringstream slave;
+      std::ostringstream slave;
       slave << "grid slaves " << widget << " -column " << col
             << " -row " << row;
       int res = Tcl_GlobalEval(interp, slave.str().c_str());
@@ -2254,7 +2254,7 @@ int vtkKWTkUtilities::SynchroniseGridsColumnMinimumSize(
   // Synchronize columns (for each column, configure -minsize to the largest
   // column width for all grids)
 
-  vtksys_ios::ostringstream minsize;
+  std::ostringstream minsize;
   for (int col = 0; col < min_nb_of_cols; col++)
     {
     int col_width_max = 0;
@@ -2317,7 +2317,7 @@ int vtkKWTkUtilities::SynchroniseLabelsMaximumWidth(
     {
     // Get the -width
 
-    vtksys_ios::ostringstream getwidth;
+    std::ostringstream getwidth;
     getwidth << widgets[widget] << " cget -width";
     int res = Tcl_GlobalEval(interp, getwidth.str().c_str());
     const char *result = Tcl_GetStringResult(interp);
@@ -2331,7 +2331,7 @@ int vtkKWTkUtilities::SynchroniseLabelsMaximumWidth(
 
     // Get the -text length
 
-    vtksys_ios::ostringstream getlength;
+    std::ostringstream getlength;
     getlength << widgets[widget] << " cget -text";
     res = Tcl_GlobalEval(interp, getlength.str().c_str());
     if (res != TCL_OK)
@@ -2357,7 +2357,7 @@ int vtkKWTkUtilities::SynchroniseLabelsMaximumWidth(
 
   // Synchronize labels
 
-  vtksys_ios::ostringstream setwidth;
+  std::ostringstream setwidth;
   for (widget = 0; widget < nb_of_widgets; widget++)
     {
     setwidth << widgets[widget] << " configure -width " << maxwidth;
@@ -2401,7 +2401,7 @@ int vtkKWTkUtilities::GetSlavesInPack(
 
   // Get number of slaves
 
-  vtksys_ios::ostringstream nb_slaves_str;
+  std::ostringstream nb_slaves_str;
   nb_slaves_str << "llength [pack slaves " << widget << "]";
   res = Tcl_GlobalEval(interp, nb_slaves_str.str().c_str());
   const char *result = Tcl_GetStringResult(interp);
@@ -2419,7 +2419,7 @@ int vtkKWTkUtilities::GetSlavesInPack(
 
   // Get the slaves as a space-separated list
 
-  vtksys_ios::ostringstream slaves_str;
+  std::ostringstream slaves_str;
   slaves_str << "pack slaves " << widget;
   res = Tcl_GlobalEval(interp, slaves_str.str().c_str());
   result = Tcl_GetStringResult(interp);
@@ -2809,7 +2809,7 @@ int vtkKWTkUtilities::SetTopLevelMouseCursor(Tcl_Interp *interp,
     return 0;
     }
 
-  vtksys_stl::string cmd("[winfo toplevel ");
+  std::string cmd("[winfo toplevel ");
   cmd += widget;
   cmd += "] configure -cursor {";
   if (cursor)
@@ -2853,7 +2853,7 @@ int vtkKWTkUtilities::IsTopLevel(Tcl_Interp *interp,
     return 0;
     }
 
-  vtksys_stl::string cmd("winfo toplevel ");
+  std::string cmd("winfo toplevel ");
   cmd += widget;
 
   if (Tcl_GlobalEval(interp, cmd.c_str()) != TCL_OK)
@@ -2888,7 +2888,7 @@ void vtkKWTkUtilities::WithdrawTopLevel(Tcl_Interp *interp,
     return;
     }
 
-  vtksys_stl::string cmd("wm withdraw ");
+  std::string cmd("wm withdraw ");
   cmd += widget;
 
   if (Tcl_GlobalEval(interp, cmd.c_str()) != TCL_OK)
@@ -3279,7 +3279,7 @@ int vtkKWTkUtilities::GetMousePointerCoordinates(
     return 0;
     }
 
-  vtksys_stl::string pointerxy("winfo pointerxy ");
+  std::string pointerxy("winfo pointerxy ");
   pointerxy += widget;
   if (Tcl_GlobalEval(interp, pointerxy.c_str()) != TCL_OK)
     {
@@ -3331,7 +3331,7 @@ int vtkKWTkUtilities::GetWidgetCoordinates(
     return 0;
     }
 
-  vtksys_stl::string widgetxy("concat [winfo rootx ");
+  std::string widgetxy("concat [winfo rootx ");
   widgetxy += widget;
   widgetxy += "] [winfo rooty ";
   widgetxy += widget;
@@ -3385,7 +3385,7 @@ int vtkKWTkUtilities::GetWidgetRelativeCoordinates(
     return 0;
     }
 
-  vtksys_stl::string widgetxy("concat [winfo x ");
+  std::string widgetxy("concat [winfo x ");
   widgetxy += widget;
   widgetxy += "] [winfo y ";
   widgetxy += widget;
@@ -3439,7 +3439,7 @@ int vtkKWTkUtilities::GetWidgetSize(
     return 0;
     }
 
-  vtksys_stl::string widgetwh("concat [winfo width ");
+  std::string widgetwh("concat [winfo width ");
   widgetwh += widget;
   widgetwh += "] [winfo height ";
   widgetwh += widget;
@@ -3493,7 +3493,7 @@ int vtkKWTkUtilities::GetWidgetRequestedSize(
     return 0;
     }
 
-  vtksys_stl::string widgetwh("concat [winfo reqwidth ");
+  std::string widgetwh("concat [winfo reqwidth ");
   widgetwh += widget;
   widgetwh += "] [winfo reqheight ";
   widgetwh += widget;
@@ -3547,7 +3547,7 @@ const char* vtkKWTkUtilities::GetWidgetClass(
     return NULL;
     }
 
-  vtksys_stl::string widgetclass("winfo class ");
+  std::string widgetclass("winfo class ");
   widgetclass += widget;
   if (Tcl_GlobalEval(interp, widgetclass.c_str()) != TCL_OK)
     {
@@ -3581,7 +3581,7 @@ int vtkKWTkUtilities::GetScreenSize(
     return 0;
     }
 
-  vtksys_stl::string widgetwh("concat [winfo screenwidth ");
+  std::string widgetwh("concat [winfo screenwidth ");
   widgetwh += widget;
   widgetwh += "] [winfo screenheight ";
   widgetwh += widget;
@@ -3675,7 +3675,7 @@ int vtkKWTkUtilities::GetFontMeasure(
   Tcl_Interp *interp = widget->GetApplication()->GetMainInterp();
   const char *widget_name = widget->GetWidgetName(); 
 
-  vtksys_stl::string fontm("font measure [");
+  std::string fontm("font measure [");
   fontm += widget_name;
   fontm += " cget -font] -displayof ";
   fontm += widget_name;

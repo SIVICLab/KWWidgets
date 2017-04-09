@@ -34,8 +34,8 @@
 
 #include "vtkObjectFactory.h"
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/stl/string>
-#include <vtksys/stl/list>
+#include <string>
+#include <list>
 
 #define VTK_KW_DIR_REGISTRY_PATHNAME_KEYNAME_PATTERN "Path%02d"
 #define VTK_KW_DIR_REGISTRY_LABEL_KEYNAME_PATTERN "Path%02dLabel"
@@ -75,8 +75,8 @@ public:
   class FavoriteDirectoryEntry
   {
   public:
-    vtksys_stl::string Path;
-    vtksys_stl::string Name;
+    std::string Path;
+    std::string Name;
 
     int IsEqual(const char *path, const char *) 
       { return (path && !strcmp(path, this->Path.c_str())); }
@@ -84,8 +84,8 @@ public:
 
   // Favorite directories list
 
-  typedef vtksys_stl::list<FavoriteDirectoryEntry*> FavoriteDirectoryEntryContainer;
-  typedef vtksys_stl::list<FavoriteDirectoryEntry*>::iterator FavoriteDirectoryEntryIterator;
+  typedef std::list<FavoriteDirectoryEntry*> FavoriteDirectoryEntryContainer;
+  typedef std::list<FavoriteDirectoryEntry*>::iterator FavoriteDirectoryEntryIterator;
 
   FavoriteDirectoryEntryContainer FavoriteDirectories;
   
@@ -282,7 +282,7 @@ const char* vtkKWFavoriteDirectoriesFrame::GetNameOfFavoriteDirectory(
 {
   if (path && *path)
     {
-    vtksys_stl::string dirpath = path;
+    std::string dirpath = path;
     vtksys::SystemTools::ConvertToUnixSlashes(dirpath);
   
     vtkKWFavoriteDirectoriesFrameInternals::FavoriteDirectoryEntryIterator 
@@ -290,7 +290,7 @@ const char* vtkKWFavoriteDirectoriesFrame::GetNameOfFavoriteDirectory(
     vtkKWFavoriteDirectoriesFrameInternals::FavoriteDirectoryEntryIterator 
       end = this->Internals->FavoriteDirectories.end();
 
-    vtksys_stl::string currPath;
+    std::string currPath;
     for(; it!=end; it++)
       {
       currPath = (*it)->Path;
@@ -383,12 +383,12 @@ void vtkKWFavoriteDirectoriesFrame::SelectFavoriteDirectory(
   if (path && *path && !this->IsFavoriteDirectorySelected(path))
     {
     this->ClearFavoriteDirectorySelection();
-    vtksys_stl::string path_str(path);
+    std::string path_str(path);
     const char *name_of_fav = 
       this->GetNameOfFavoriteDirectory(path_str.c_str());
     if (name_of_fav)
       {
-      vtksys_stl::string name_of_fav_str(name_of_fav);
+      std::string name_of_fav_str(name_of_fav);
       this->SelectFavoriteDirectoryWithName(name_of_fav_str.c_str());
       this->InvokeFavoriteDirectorySelectedCommand(
         path_str.c_str(), name_of_fav_str.c_str());
@@ -402,21 +402,21 @@ int vtkKWFavoriteDirectoriesFrame::IsFavoriteDirectorySelected(
 {
   if (path && *path)
     {
-    vtksys_stl::string path_str(path);
+    std::string path_str(path);
     const char *name_of_fav = 
       this->GetNameOfFavoriteDirectory(path_str.c_str());
     if (name_of_fav)
       {
-      vtksys_stl::string name_of_fav_str(name_of_fav);
+      std::string name_of_fav_str(name_of_fav);
       const char *sel_path = this->GetSelectedFavoriteDirectory();
       if (sel_path && *sel_path)
         {
-        vtksys_stl::string sel_path_str(sel_path);
+        std::string sel_path_str(sel_path);
         const char *sel_name_of_fav = 
           this->GetNameOfFavoriteDirectory(sel_path_str.c_str());
         if (sel_name_of_fav)
           {
-          vtksys_stl::string sel_name_of_fav_str(sel_name_of_fav);
+          std::string sel_name_of_fav_str(sel_name_of_fav);
           if (!strcmp(sel_name_of_fav_str.c_str(), name_of_fav_str.c_str()))
             {
             return 1;
@@ -512,7 +512,7 @@ void vtkKWFavoriteDirectoriesFrame::AddFavoriteDirectory(
     return;
     }
 
-  vtksys_stl::string dirpath = path;
+  std::string dirpath = path;
   
   vtkDirectory *dir = vtkDirectory::New();
   if (!dir->Open(dirpath.c_str()))
@@ -622,7 +622,7 @@ void vtkKWFavoriteDirectoriesFrame::PopulateContextMenu(
   vtkKWMenu *menu, const char *path)
 {
   char command[256];
-  vtksys_stl::string buttonpath = path;
+  std::string buttonpath = path;
 
 #ifdef _WIN32
   // Explore to open native explorer file
@@ -742,8 +742,8 @@ void vtkKWFavoriteDirectoriesFrame::RemoveFavoriteDirectoryCallback(
     return;
     }
 
-  vtksys_stl::string path_str = path;
-  vtksys_stl::string message(
+  std::string path_str = path;
+  std::string message(
     "Are you sure you want to delete this favorite directory? \n");
   message.append(path_str.c_str());
 
@@ -812,7 +812,7 @@ void vtkKWFavoriteDirectoriesFrame::RenameFavoriteDirectoryCallback(
     ks_("Favorite Directories|Dialog|Enter a new favorite name:"));
   
   int ok = dlg->Invoke();
-  vtksys_stl::string newname = dlg->GetEntry()->GetWidget()->GetValue();
+  std::string newname = dlg->GetEntry()->GetWidget()->GetValue();
   dlg->Delete();
   if (ok)
     {
@@ -984,7 +984,7 @@ void vtkKWFavoriteDirectoriesFrame::RestoreFavoriteDirectoriesFromRegistry()
   // We will always have the directory, set by "HOME" 
   // evironment variable, as favorite
     
-   vtksys_stl::string dir; 
+   std::string dir; 
    if(vtksys::SystemTools::GetEnv("HOME", dir)) 
      { 
      if(vtksys::SystemTools::FileIsDirectory(dir.c_str())) 
@@ -1071,10 +1071,10 @@ void vtkKWFavoriteDirectoriesFrame::RestoreFavoriteDirectoriesFromSystemRegistry
     }
 
   char buff[vtkKWRegistryHelper::RegistryKeyValueSizeMax];
-  vtksys_stl::string placekey = VTK_KW_WIN32_REGIRSTRY_PLACES_BAR_KEY;
+  std::string placekey = VTK_KW_WIN32_REGIRSTRY_PLACES_BAR_KEY;
   bool userdefined = false;
   char place[10];
-  vtksys_stl::string value, placename;
+  std::string value, placename;
 
   // If this system key exists, read from it and 
   // add them to the favorite dir entries.
@@ -1140,10 +1140,10 @@ void vtkKWFavoriteDirectoriesFrame::WriteFavoriteDirectoriesToSystemRegistry()
     }
     
   char buff[vtkKWRegistryHelper::RegistryKeyValueSizeMax];
-  vtksys_stl::string placekey = VTK_KW_WIN32_REGIRSTRY_PLACES_BAR_KEY;
+  std::string placekey = VTK_KW_WIN32_REGIRSTRY_PLACES_BAR_KEY;
   bool userdefined = false;
   char place[10];
-  vtksys_stl::string value, placename;
+  std::string value, placename;
 
   // If this system key exists, read from it and 
   // add them to the favorite dir entries.
@@ -1257,7 +1257,7 @@ void vtkKWFavoriteDirectoriesFrame::WriteFavoriteDirectoriesToSystemRegistry()
 int vtkKWFavoriteDirectoriesFrame::AddSpecialFavoriteFolder(int csidl)
 {
 #ifdef _WIN32
-  vtksys_stl::string name;
+  std::string name;
   switch (csidl)
     {
     case CSIDL_DESKTOP:

@@ -22,9 +22,9 @@
 #include "vtkKWUserInterfacePanel.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/list>
-#include <vtksys/stl/algorithm>
-#include <vtksys/ios/sstream> 
+#include <list>
+#include <algorithm>
+#include <sstream> 
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWUserInterfaceManagerNotebook);
@@ -35,9 +35,9 @@ class vtkKWUserInterfaceManagerNotebookInternals
 {
 public:
 
-  typedef vtksys_stl::list<vtkKWUserInterfaceManagerNotebook::DragAndDropEntry*> DragAndDropEntriesContainer;
-  typedef vtksys_stl::list<vtkKWUserInterfaceManagerNotebook::DragAndDropEntry*>::iterator DragAndDropEntriesContainerIterator;
-  typedef vtksys_stl::list<vtkKWUserInterfaceManagerNotebook::DragAndDropEntry*>::reverse_iterator DragAndDropEntriesContainerReverseIterator;
+  typedef std::list<vtkKWUserInterfaceManagerNotebook::DragAndDropEntry*> DragAndDropEntriesContainer;
+  typedef std::list<vtkKWUserInterfaceManagerNotebook::DragAndDropEntry*>::iterator DragAndDropEntriesContainerIterator;
+  typedef std::list<vtkKWUserInterfaceManagerNotebook::DragAndDropEntry*>::reverse_iterator DragAndDropEntriesContainerReverseIterator;
 
   DragAndDropEntriesContainer DragAndDropEntries;
 };
@@ -856,7 +856,7 @@ int vtkKWUserInterfaceManagerNotebook::GetDragAndDropWidgetLocation(
   // is the page ID (and which tag is the panel ID by the way)
   // Extract the -in parameter from the pack info
 
-  vtksys_ios::ostringstream in_str;
+  std::ostringstream in_str;
   if (!vtkKWTkUtilities::GetMasterInPack(widget, in_str))
     {
     return 0;
@@ -876,8 +876,8 @@ int vtkKWUserInterfaceManagerNotebook::GetDragAndDropWidgetLocation(
   // our widget (if any) so that we can locate the widget among
   // its sibblings.
 
-  vtksys_ios::ostringstream prev_slave_str;
-  vtksys_ios::ostringstream next_slave_str;
+  std::ostringstream prev_slave_str;
+  std::ostringstream next_slave_str;
 
   if (vtkKWTkUtilities::GetPreviousAndNextSlaveInPack(
         this->Notebook->GetFrame(page_id),
@@ -939,7 +939,7 @@ vtkKWUserInterfaceManagerNotebook::GetDragAndDropWidgetFromLabelAndLocation(
       const char *label = this->GetDragAndDropWidgetLabel(child);
       if (label && !strcmp(label, widget_label))
         {
-        vtksys_ios::ostringstream in_str;
+        std::ostringstream in_str;
         if (vtkKWTkUtilities::GetMasterInPack(child, in_str))
           {
           int cmp = strcmp(in_str.str().c_str(), page->GetWidgetName());
@@ -1227,7 +1227,7 @@ int vtkKWUserInterfaceManagerNotebook::DragAndDropWidget(
 
   // If a page id was specified, then pack in that specific page
 
-  vtksys_ios::ostringstream in;
+  std::ostringstream in;
   vtkKWWidget *page = this->Notebook->GetFrame(to_loc->PageId);
   if (page)
     {
@@ -1236,7 +1236,7 @@ int vtkKWUserInterfaceManagerNotebook::DragAndDropWidget(
 
   // If an "after widget" was specified, then pack after that widget
 
-  vtksys_ios::ostringstream after;
+  std::ostringstream after;
   if (to_loc->AfterWidget && to_loc->AfterWidget->IsCreated())
     {
     after << " -after " << to_loc->AfterWidget->GetWidgetName();
@@ -1308,7 +1308,7 @@ int vtkKWUserInterfaceManagerNotebook::AddDragAndDropEntry(
   if (prev_entry)
     {
     vtkKWUserInterfaceManagerNotebookInternals::DragAndDropEntriesContainerIterator pos = 
-      vtksys_stl::find(this->Internals->DragAndDropEntries.begin(),
+      std::find(this->Internals->DragAndDropEntries.begin(),
                    this->Internals->DragAndDropEntries.end(),
                    prev_entry);
     if (pos == this->Internals->DragAndDropEntries.end())

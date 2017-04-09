@@ -23,8 +23,8 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWInternationalization.h"
 
-#include <vtksys/stl/list>
-#include <vtksys/stl/string>
+#include <list>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWColorPresetMenu);
@@ -38,12 +38,12 @@ class vtkKWColorPresetMenuInternals
 public:
   struct PresetNode
   {
-    vtksys_stl::string Name;
+    std::string Name;
     vtkColorTransferFunction *ColorTransferFunction;
   };
 
-  typedef vtksys_stl::list<PresetNode> PresetContainer;
-  typedef vtksys_stl::list<PresetNode>::iterator PresetContainerIterator;
+  typedef std::list<PresetNode> PresetContainer;
+  typedef std::list<PresetNode>::iterator PresetContainerIterator;
 
   PresetContainer Presets;
 };
@@ -745,7 +745,7 @@ void vtkKWColorPresetMenu::PopulatePresetMenu()
   vtkKWMenu *menu = this->GetWidget()->GetMenu();
   menu->DeleteAllItems();
 
-  vtksys_stl::string callback, preset_label, img_name;
+  std::string callback, preset_label, img_name;
   char func_addr[128];
 
   double *data_start, *data_ptr, *data_ptr_end;

@@ -26,9 +26,9 @@
 #include "vtkKWFrame.h"
 #include "vtkKWEvent.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
+#include <sstream>
+#include <string>
+#include <vector>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWListBoxToListBoxSelectionEditor );
@@ -346,8 +346,8 @@ void vtkKWListBoxToListBoxSelectionEditor::ShiftItems(vtkKWListBox* l1, int down
   strcpy(selection, list);
   int idx = -1;
   int size = l1->GetNumberOfItems();
-  vtksys_ios::istringstream sel(selection);
-  vtksys_stl::string item;
+  std::istringstream sel(selection);
+  std::string item;
   while(sel >> idx)
     {
     if ( idx < 0 )
@@ -411,9 +411,9 @@ void vtkKWListBoxToListBoxSelectionEditor::MoveList(vtkKWListBox* l1, vtkKWListB
   char* selection = new char[ strlen(list) + 1 ];
   strcpy(selection, list);
   int idx = -1;
-  vtksys_stl::string str;
-  vtksys_stl::vector<int> vec;
-  vtksys_ios::istringstream sel(selection);
+  std::string str;
+  std::vector<int> vec;
+  std::istringstream sel(selection);
   while(sel >> idx)
     {
     if ( idx < 0 )

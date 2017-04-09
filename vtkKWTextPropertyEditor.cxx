@@ -32,7 +32,7 @@
 #include "vtkProperty2D.h"
 #include "vtkTextProperty.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 #define VTK_KW_TEXT_PROP_BOLD_ID   0
 #define VTK_KW_TEXT_PROP_ITALIC_ID 1
@@ -341,7 +341,7 @@ void vtkKWTextPropertyEditor::Pack()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   this->ChangeColorButton->UnpackSiblings();
 

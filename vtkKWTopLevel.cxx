@@ -19,7 +19,7 @@
 #include "vtkKWTkUtilities.h"
 #include "vtkKWMenu.h"
 
-#include <vtksys/stl/string>
+#include <string>
  
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTopLevel );
@@ -67,7 +67,7 @@ vtkKWApplication* vtkKWTopLevel::GetApplication()
 //----------------------------------------------------------------------------
 void vtkKWTopLevel::CreateWidget()
 {
-  vtksys_stl::string opts;
+  std::string opts;
 
   if (this->GetWindowClass())
     {

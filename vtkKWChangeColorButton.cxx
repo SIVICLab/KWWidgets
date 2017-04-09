@@ -21,7 +21,7 @@
 #include "vtkKWTkUtilities.h"
 #include "vtkKWInternationalization.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWChangeColorButton);
@@ -174,7 +174,7 @@ void vtkKWChangeColorButton::Pack()
   this->ColorButton->UnpackSiblings();
   this->ButtonFrame->UnpackSiblings();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Repack everything
 

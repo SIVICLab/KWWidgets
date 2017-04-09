@@ -35,10 +35,10 @@
 #include <ctype.h>
 #include <limits>
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/algorithm>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <algorithm>
 #include <vtksys/SystemTools.hxx>
 
 //vtkCxxRevisionMacro(vtkKWParameterValueFunctionEditor, "$Revision: 1.115 $");
@@ -1564,7 +1564,7 @@ void vtkKWParameterValueFunctionEditor::CreateHistogramLogModeOptionMenu()
 
     vtkKWMenu *menu = this->HistogramLogModeOptionMenu->GetMenu();
 
-    vtksys_stl::string img_name;
+    std::string img_name;
 
     img_name = this->HistogramLogModeOptionMenu->GetWidgetName();
     img_name += ".img0";
@@ -1736,7 +1736,7 @@ void vtkKWParameterValueFunctionEditor::Pack()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   /*
     TLC: TopLeftContainer, contains the TopLeftFrame (TLF) and UserFrame (UF)
@@ -2044,7 +2044,7 @@ void vtkKWParameterValueFunctionEditor::PackPointEntries()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // ParameterEntry (PE)
   
@@ -2074,7 +2074,7 @@ void vtkKWParameterValueFunctionEditor::Bind()
 
   // Canvas
 
-  vtksys_stl::string cmd;
+  std::string cmd;
 
   if (this->Canvas && this->Canvas->IsAlive())
     {
@@ -2236,7 +2236,7 @@ void vtkKWParameterValueFunctionEditor::UnBind()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Canvas
 
@@ -2457,7 +2457,7 @@ void vtkKWParameterValueFunctionEditor::SetRelativeVisibleParameterRange(
   double r0, double r1)
 {
   double range[2];
-  const double epsilon = vtkstd::numeric_limits<double>::epsilon();
+  const double epsilon = std::numeric_limits<double>::epsilon();
   this->ParameterRange->GetRelativeRange(range);
   if ((fabs(range[0] - r0) > epsilon) || 
       (fabs(range[1] - r1) > epsilon))
@@ -4567,7 +4567,7 @@ void vtkKWParameterValueFunctionEditor::SetPointRemovedCommand(
 void vtkKWParameterValueFunctionEditor::InvokePointRemovedCommand(
   int id, double parameter)
 {
-  vtksys_ios::ostringstream param_str;
+  std::ostringstream param_str;
   param_str << parameter;
   this->InvokePointCommand(this->PointRemovedCommand, id, param_str.str().c_str());
 
@@ -5275,7 +5275,7 @@ void vtkKWParameterValueFunctionEditor::RedrawRangeFrame()
 
   const char *canv = this->Canvas->GetWidgetName();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Create the frames if not created already
   // We use two frames, one frame is a black outline, the other is the
@@ -5519,7 +5519,7 @@ void vtkKWParameterValueFunctionEditor::RedrawRangeTicks()
     p_t_canv = this->ParameterTicksCanvas->GetWidgetName();
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   int tcl_major = 0, tcl_minor = 0, tcl_patch_level = 0;
 
@@ -5738,7 +5738,7 @@ void vtkKWParameterValueFunctionEditor::RedrawParameterCursor()
 
   const char *canv = this->Canvas->GetWidgetName();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Create the cursor if not created already
 
@@ -5801,7 +5801,7 @@ void vtkKWParameterValueFunctionEditor::RedrawParameterCursor()
 
 //----------------------------------------------------------------------------
 void vtkKWParameterValueFunctionEditor::RedrawPoint(int id, 
-                                                    vtksys_ios::ostream *tk_cmd)
+                                                    std::ostream *tk_cmd)
 {
   if (!this->IsCreated() || !this->HasFunction() || this->DisableRedraw)
     {
@@ -5814,7 +5814,7 @@ void vtkKWParameterValueFunctionEditor::RedrawPoint(int id,
   int stream_was_created = 0;
   if (!tk_cmd)
     {
-    tk_cmd = new vtksys_ios::ostringstream;
+    tk_cmd = new std::ostringstream;
     stream_was_created = 1;
     }
 
@@ -6192,7 +6192,7 @@ void vtkKWParameterValueFunctionEditor::RedrawPoint(int id,
   if (stream_was_created)
     {
     this->Script(
-      static_cast<vtksys_ios::ostringstream*>(tk_cmd)->str().c_str());
+      static_cast<std::ostringstream*>(tk_cmd)->str().c_str());
 
     delete tk_cmd;
     }
@@ -6246,7 +6246,7 @@ int vtkKWParameterValueFunctionEditor::FunctionLineIsInVisibleRangeBetweenPoints
 
 //----------------------------------------------------------------------------
 void vtkKWParameterValueFunctionEditor::RedrawLine(
-  int id1, int id2, vtksys_ios::ostream *tk_cmd)
+  int id1, int id2, std::ostream *tk_cmd)
 {
   if (!this->IsCreated() || !this->HasFunction() || this->DisableRedraw)
     {
@@ -6259,7 +6259,7 @@ void vtkKWParameterValueFunctionEditor::RedrawLine(
   int stream_was_created = 0;
   if (!tk_cmd)
     {
-    tk_cmd = new vtksys_ios::ostringstream;
+    tk_cmd = new std::ostringstream;
     stream_was_created = 1;
     }
 
@@ -6350,7 +6350,7 @@ void vtkKWParameterValueFunctionEditor::RedrawLine(
   if (stream_was_created)
     {
     this->Script(
-      static_cast<vtksys_ios::ostringstream*>(tk_cmd)->str().c_str());
+      static_cast<std::ostringstream*>(tk_cmd)->str().c_str());
 
     delete tk_cmd;
     }
@@ -6358,7 +6358,7 @@ void vtkKWParameterValueFunctionEditor::RedrawLine(
 
 //----------------------------------------------------------------------------
 void vtkKWParameterValueFunctionEditor::GetLineCoordinates(
-  int id1, int id2, vtksys_ios::ostream *tk_cmd)
+  int id1, int id2, std::ostream *tk_cmd)
 {
   // We assume all parameters are OK, they were checked by RedrawLine
 
@@ -6445,7 +6445,7 @@ void vtkKWParameterValueFunctionEditor::RedrawFunction()
 
   // Create the points 
   
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   int i, nb_potential_points = this->GetFunctionSize();
   if (nb_potential_points < this->LastRedrawFunctionSize)
@@ -6552,7 +6552,7 @@ void vtkKWParameterValueFunctionEditor::RedrawHistogram()
     this->CanvasHasTag(
       vtkKWParameterValueFunctionEditor::HistogramTag);
 
-  vtksys_stl::string hist_img_name;
+  std::string hist_img_name;
   if (this->Histogram && hist_is_image)
     {
     hist_img_name = canv;
@@ -6596,7 +6596,7 @@ void vtkKWParameterValueFunctionEditor::RedrawHistogram()
     this->CanvasHasTag(
       vtkKWParameterValueFunctionEditor::SecondaryHistogramTag);
 
-  vtksys_stl::string secondary_hist_img_name;
+  std::string secondary_hist_img_name;
   if (this->SecondaryHistogram && secondary_hist_is_image)
     {
     secondary_hist_img_name = canv;
@@ -6621,7 +6621,7 @@ void vtkKWParameterValueFunctionEditor::RedrawHistogram()
   vtkImageData *secondary_hist_image = NULL;
   vtkIntArray *secondary_hist_image_coords = NULL;
 
-  vtksys_stl::string blend_hist_img_name;
+  std::string blend_hist_img_name;
   if (this->Histogram && hist_is_image &&
       this->SecondaryHistogram && secondary_hist_is_image)
     {
@@ -6745,7 +6745,7 @@ void vtkKWParameterValueFunctionEditor::RedrawHistogram()
       }
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   char color[10];
   double *v_w_range = this->GetWholeValueRange();
@@ -6947,7 +6947,7 @@ void vtkKWParameterValueFunctionEditor::SelectPoint(int id)
     {
     const char *canv = this->Canvas->GetWidgetName();
 
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
 
     tk_cmd << canv << " addtag " 
            << vtkKWParameterValueFunctionEditor::SelectedTag 
@@ -6984,7 +6984,7 @@ void vtkKWParameterValueFunctionEditor::ClearSelection()
     {
     const char *canv = this->Canvas->GetWidgetName();
 
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
 
     tk_cmd << canv << " dtag p" <<  this->GetSelectedPoint()
            << " " << vtkKWParameterValueFunctionEditor::SelectedTag << endl;
@@ -7416,7 +7416,7 @@ void vtkKWParameterValueFunctionEditor::UpdateRangeLabel()
     return;
     }
 
-  vtksys_ios::ostringstream ranges;
+  std::ostringstream ranges;
   int nb_ranges = 0;
 
   if (this->ParameterRangeLabelVisibility)
@@ -7524,7 +7524,7 @@ void vtkKWParameterValueFunctionEditor::UpdateHistogramLogModeOptionMenu()
       menu->GetIndexOfItem("Log."), "-image");
     if (img_opt && *img_opt)
       {
-      vtksys_ios::ostringstream img_name;
+      std::ostringstream img_name;
       img_name << this->HistogramLogModeOptionMenu->GetWidgetName() 
                << ".img" << log_mode;
       this->HistogramLogModeOptionMenu->SetValue(img_name.str().c_str());
@@ -8029,20 +8029,20 @@ vtkKWParameterValueFunctionEditor::FindClosestItemWithTagAtCanvasCoordinates(
       "%s find overlapping %d %d %d %d", 
       canv, *c_x - halo, *c_y - halo, *c_x + halo, *c_y + halo);
 
-  vtksys_stl::vector<vtksys_stl::string> items;
+  std::vector<std::string> items;
   vtksys::SystemTools::Split(res, items, ' ');
   
   // For each item, check the tags, and see if we have a match
 
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = items.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = items.end();
+  std::vector<std::string>::iterator it = items.begin();
+  std::vector<std::string>::iterator end = items.end();
   for (; it != end; it++)
     {
     res = this->Script("%s itemcget %s -tags", canv, (*it).c_str());
-    vtksys_stl::vector<vtksys_stl::string> tags;
+    std::vector<std::string> tags;
     vtksys::SystemTools::Split(res, tags, ' ');
-    vtksys_stl::vector<vtksys_stl::string>::iterator match =
-      vtksys_stl::find(tags.begin(), tags.end(), tag);
+    std::vector<std::string>::iterator match =
+      std::find(tags.begin(), tags.end(), tag);
     if (match != tags.end())
       {
       strcpy(found, (*it).c_str());

@@ -17,8 +17,8 @@
 #include "vtkKWEntry.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/vector>
-#include <vtksys/stl/string>
+#include <vector>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWMatrixWidget );

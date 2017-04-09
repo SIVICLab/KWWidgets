@@ -25,9 +25,9 @@
 #include "vtkKWSeparator.h"
 #include "vtkKWWidgetWithLabel.h"
 
-#include <vtksys/stl/list>
-#include <vtksys/stl/algorithm>
-#include <vtksys/ios/sstream> 
+#include <list>
+#include <algorithm>
+#include <sstream> 
 
 static int vtkKWToolbarGlobalToolbarAspect = vtkKWToolbar::ToolbarAspectFlat;
 static int vtkKWToolbarGlobalWidgetsAspect = vtkKWToolbar::WidgetsAspectFlat;
@@ -51,8 +51,8 @@ public:
     int Visibility;
   };
 
-  typedef vtksys_stl::list<WidgetNode> WidgetsContainer;
-  typedef vtksys_stl::list<WidgetNode>::iterator WidgetsContainerIterator;
+  typedef std::list<WidgetNode> WidgetsContainer;
+  typedef std::list<WidgetNode>::iterator WidgetsContainerIterator;
 
   WidgetsContainer Widgets;
 };
@@ -733,7 +733,7 @@ void vtkKWToolbar::ConstrainWidgetsLayout()
   if ( numPerRow > 0 )
     {
     int row = 0, num = 0;
-    vtksys_ios::ostringstream grid_tk;
+    std::ostringstream grid_tk;
 
     it = this->Internals->Widgets.begin();
     for (; it != end; ++it)
@@ -852,7 +852,7 @@ void vtkKWToolbar::UpdateWidgetsLayout()
 
   // Pack
 
-  vtksys_ios::ostringstream grid_tk, grid_forget_tk;
+  std::ostringstream grid_tk, grid_forget_tk;
   grid_forget_tk << "grid forget "; 
 
   size_t nb_in_grid = 0;

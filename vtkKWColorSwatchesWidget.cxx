@@ -32,9 +32,9 @@
 #include "vtkKWTkUtilities.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/list>
-#include <vtksys/stl/string>
-#include <vtksys/ios/sstream>
+#include <list>
+#include <string>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWColorSwatchesWidget);
@@ -46,23 +46,23 @@ class vtkKWColorSwatchesWidgetInternals
 public:
   struct SwatchNode
   {
-    vtksys_stl::string Name;
+    std::string Name;
     double RGB[3];
     char HexRGB[6];
   };
 
-  typedef vtksys_stl::list<SwatchNode> SwatchContainer;
-  typedef vtksys_stl::list<SwatchNode>::iterator SwatchIterator;
+  typedef std::list<SwatchNode> SwatchContainer;
+  typedef std::list<SwatchNode>::iterator SwatchIterator;
 
   struct SwatchCollectionNode
   {
     int Id;
-    vtksys_stl::string Name;
+    std::string Name;
     SwatchContainer Swatches;
   };
 
-  typedef vtksys_stl::list<SwatchCollectionNode> SwatchCollectionContainer;
-  typedef vtksys_stl::list<SwatchCollectionNode>::iterator SwatchCollectionIterator;
+  typedef std::list<SwatchCollectionNode> SwatchCollectionContainer;
+  typedef std::list<SwatchCollectionNode>::iterator SwatchCollectionIterator;
 
   SwatchCollectionContainer SwatchCollections;
 
@@ -77,8 +77,8 @@ public:
   vtkKWColorPresetSelector *SwatchesColorPresetSelector;
 
   static int SwatchCollectionCounter;
-  vtksys_stl::string SchedulePopulateCollectionsTimerId;
-  vtksys_stl::string SchedulePopulateSwatchesTimerId;
+  std::string SchedulePopulateCollectionsTimerId;
+  std::string SchedulePopulateSwatchesTimerId;
 };
 
 int vtkKWColorSwatchesWidgetInternals::SwatchCollectionCounter = 0;
@@ -501,7 +501,7 @@ void vtkKWColorSwatchesWidget::PopulateCollections()
     }
 
   const char *temp = this->Internals->CollectionComboBox->GetValue();
-  vtksys_stl::string old_sel(temp ? temp : "");
+  std::string old_sel(temp ? temp : "");
 
   this->Internals->CollectionComboBox->DeleteAllValues();
 
@@ -623,7 +623,7 @@ void vtkKWColorSwatchesWidget::PopulateSwatchesAsFrames()
       this->Internals->SwatchesBalloonHelpManager->SetDelay(10);
       }
 
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
     
     vtkKWColorSwatchesWidgetInternals::SwatchIterator it = 
       collection->Swatches.begin();

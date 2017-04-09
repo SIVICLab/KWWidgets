@@ -28,8 +28,8 @@
 #include "vtkPiecewiseFunction.h"
 #include "vtkColorTransferFunction.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 vtkStandardNewMacro(vtkKWPiecewiseFunctionEditor);
 //vtkCxxRevisionMacro(vtkKWPiecewiseFunctionEditor, "$Revision: 1.59 $");
@@ -614,7 +614,7 @@ int vtkKWPiecewiseFunctionEditor::FunctionLineIsSampledBetweenPoints(
 
 //----------------------------------------------------------------------------
 void vtkKWPiecewiseFunctionEditor::GetLineCoordinates(
-  int id1, int id2, vtksys_ios::ostream *tk_cmd)
+  int id1, int id2, std::ostream *tk_cmd)
 {
   // We want to intercept specific case like
   // sharpness = 1.0: step (3 segments), could not be done using sampling
@@ -804,7 +804,7 @@ void vtkKWPiecewiseFunctionEditor::Pack()
 
   this->Superclass::Pack();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Window/Level mode (in top left frame)
 
@@ -831,7 +831,7 @@ void vtkKWPiecewiseFunctionEditor::PackPointEntries()
 
   this->Superclass::PackPointEntries();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Value entry (in top right frame)
 

@@ -22,7 +22,7 @@
 #include "vtkMath.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 //vtkCxxRevisionMacro(vtkKWHSVColorSelector, "$Revision: 1.24 $");
 vtkStandardNewMacro(vtkKWHSVColorSelector);
@@ -209,7 +209,7 @@ void vtkKWHSVColorSelector::Pack()
   const char *col0 = " -column 1 ";
   const char *col1 = " -column 0 ";
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Hue/Sat label
 
@@ -536,19 +536,19 @@ void vtkKWHSVColorSelector::RedrawHueSatWheelCanvas()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   const char *canv = this->HueSatWheelCanvas->GetWidgetName();
 
   // If the image is not in the canvas, create it and add it to the canvas
   
-  vtksys_ios::ostringstream img_name;
+  std::ostringstream img_name;
   img_name << this->HueSatWheelCanvas->GetWidgetName() 
            << "." << VTK_KW_HSV_SEL_IMAGE_TAG;
 
   if (!this->HueSatWheelCanvas->HasTag(VTK_KW_HSV_SEL_IMAGE_TAG))
     {
-    vtksys_ios::ostringstream img_name_d;
+    std::ostringstream img_name_d;
     img_name_d << this->HueSatWheelCanvas->GetWidgetName()
                << "." << VTK_KW_HSV_SEL_IMAGE_TAG << "_disabled";
 
@@ -696,7 +696,7 @@ void vtkKWHSVColorSelector::UpdateHueSatWheelImage()
 
   // Update the image
 
-  vtksys_ios::ostringstream img_name;
+  std::ostringstream img_name;
   img_name << this->HueSatWheelCanvas->GetWidgetName() 
            << "." << VTK_KW_HSV_SEL_IMAGE_TAG;
 
@@ -710,7 +710,7 @@ void vtkKWHSVColorSelector::UpdateHueSatWheelImage()
 
   // Update the image (disabled state)
 
-  vtksys_ios::ostringstream img_name_d;
+  std::ostringstream img_name_d;
   img_name_d << this->HueSatWheelCanvas->GetWidgetName() 
              << "." << VTK_KW_HSV_SEL_IMAGE_TAG << "_disabled";
 
@@ -731,7 +731,7 @@ void vtkKWHSVColorSelector::UpdateHueSatWheelSelection()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   const char *canv = this->HueSatWheelCanvas->GetWidgetName();
 
@@ -779,19 +779,19 @@ void vtkKWHSVColorSelector::RedrawValueBoxCanvas()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   const char *canv = this->ValueBoxCanvas->GetWidgetName();
 
   // If the image is not in the canvas, create it and add it to the canvas
   
-  vtksys_ios::ostringstream img_name;
+  std::ostringstream img_name;
   img_name << this->ValueBoxCanvas->GetWidgetName() 
            << "." << VTK_KW_HSV_SEL_IMAGE_TAG;
 
   if (!this->ValueBoxCanvas->HasTag(VTK_KW_HSV_SEL_IMAGE_TAG))
     {
-    vtksys_ios::ostringstream img_name_d;
+    std::ostringstream img_name_d;
     img_name_d << this->ValueBoxCanvas->GetWidgetName() 
                << "." << VTK_KW_HSV_SEL_IMAGE_TAG << "_disabled";
 
@@ -911,7 +911,7 @@ void vtkKWHSVColorSelector::UpdateValueBoxImage()
 
   // Update image
 
-  vtksys_ios::ostringstream img_name;
+  std::ostringstream img_name;
   img_name << this->ValueBoxCanvas->GetWidgetName() 
            << "." << VTK_KW_HSV_SEL_IMAGE_TAG;
 
@@ -925,7 +925,7 @@ void vtkKWHSVColorSelector::UpdateValueBoxImage()
 
   // Update disabled image
 
-  vtksys_ios::ostringstream img_name_d;
+  std::ostringstream img_name_d;
   img_name_d << this->ValueBoxCanvas->GetWidgetName() 
              << "." << VTK_KW_HSV_SEL_IMAGE_TAG << "_disabled";
 
@@ -946,7 +946,7 @@ void vtkKWHSVColorSelector::UpdateValueBoxSelection()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   const char *canv = this->ValueBoxCanvas->GetWidgetName();
 

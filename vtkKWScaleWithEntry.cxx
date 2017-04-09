@@ -24,8 +24,8 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWApplication.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 //---------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWScaleWithEntry );
@@ -335,7 +335,7 @@ void vtkKWScaleWithEntry::Pack()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   int i;
   int is_horiz = 1;
@@ -607,7 +607,7 @@ void vtkKWScaleWithEntry::Bind()
       this->TopLevel->SetBinding(
         "<Leave>", this, "WithdrawPopupModeCallback");
 
-      vtksys_stl::string callback;
+      std::string callback;
 
       this->GetScale()->AddBinding(
         "<ButtonPress>", this->TopLevel, "RemoveBinding <Leave>");
@@ -1082,7 +1082,7 @@ void vtkKWScaleWithEntry::SetBalloonHelpString(const char *string)
 
   if (this->PopupMode && this->PopupPushButton)
     {
-    vtksys_stl::string temp(string);
+    std::string temp(string);
     temp += " ";
     temp += ks_("Popup Scale|(press this button to display the scale)");
     this->PopupPushButton->SetBalloonHelpString(temp.c_str());

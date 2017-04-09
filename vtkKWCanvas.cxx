@@ -39,8 +39,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "vtkColorTransferFunction.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWCanvas );
@@ -204,12 +204,12 @@ int vtkKWCanvas::AddGradient(vtkColorTransferFunction *ctf,
     ctf->GetTable(ctf->GetRange()[0], ctf->GetRange()[1], 
                   horizontal ? width : height);
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   const char *wname = this->GetWidgetName();
   char rgb[10];
 
-  vtksys_stl::string extra;
+  std::string extra;
   if (tag)
     {
     extra = extra + " -tags {" + tag + "} ";
@@ -357,7 +357,7 @@ void vtkKWCanvas::RemoveCanvasBinding(
 
     // Retrieve the bindings, remove the command, re-assign
 
-    vtksys_stl::string bindings(
+    std::string bindings(
       this->Script("%s bind %s %s", this->GetWidgetName(), tag, event));
 
     vtksys::SystemTools::ReplaceString(bindings, command, "");

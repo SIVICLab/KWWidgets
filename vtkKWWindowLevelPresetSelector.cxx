@@ -28,7 +28,7 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #include "vtkKWInternationalization.h"
 #include "vtkKWIcon.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 const char *vtkKWWindowLevelPresetSelector::WindowColumnName = "Window";
 const char *vtkKWWindowLevelPresetSelector::LevelColumnName  = "Level";
@@ -45,7 +45,7 @@ public:
   
   // User slot name for the default fields
   
-  vtksys_stl::string TypeSlotName;
+  std::string TypeSlotName;
 };
 
 //----------------------------------------------------------------------------

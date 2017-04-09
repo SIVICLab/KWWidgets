@@ -45,7 +45,7 @@ int vtkKWResourceUtilities::ReadImage(
     return 0;
     }
 
-  vtksys_stl::string ext = vtksys::SystemTools::LowerCase(
+  std::string ext = vtksys::SystemTools::LowerCase(
     vtksys::SystemTools::GetFilenameExtension(filename));
 
   if (!strcmp(ext.c_str(), ".png"))
@@ -510,13 +510,13 @@ int vtkKWResourceUtilities::ConvertImageToHeader(
    
     // Output the file in the header
 
-    vtksys_stl::string filename_name = 
+    std::string filename_name = 
       vtksys::SystemTools::GetFilenameName(filename);
-    vtksys_stl::string filename_name_wext = 
+    std::string filename_name_wext = 
       vtksys::SystemTools::GetFilenameWithoutExtension(filename_name);
-    vtksys_stl::string filename_path = 
+    std::string filename_path = 
       vtksys::SystemTools::GetFilenamePath(filename);
-    vtksys_stl::string prefix;
+    std::string prefix;
 
     prefix += (file_is_image ? "image_" : "file_");
     if (var_prefix)

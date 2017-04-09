@@ -18,8 +18,8 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/stl/list>
+#include <string>
+#include <list>
 #include <vtksys/RegularExpression.hxx>
 
 const char *vtkKWText::MarkerBold = "**";
@@ -46,12 +46,12 @@ public:
   class TagMatcher
   {
   public:
-    vtksys_stl::string Regexp;
-    vtksys_stl::string Tag;
+    std::string Regexp;
+    std::string Tag;
   };
 
-  typedef vtksys_stl::list<TagMatcher> TagMatchersContainer;
-  typedef vtksys_stl::list<TagMatcher>::iterator TagMatchersContainerIterator;
+  typedef std::list<TagMatcher> TagMatchersContainer;
+  typedef std::list<TagMatcher>::iterator TagMatchersContainerIterator;
 
   TagMatchersContainer TagMatchers;
 };
@@ -260,26 +260,26 @@ void vtkKWText::AppendTextInternalTagging(const char *str, const char *tag)
         {
         // Text before the marker, using the current tag
 
-        vtksys_stl::string before;
+        std::string before;
         before.append(str, closest_marker - str);
         this->AppendTextInternalTagging(before.c_str(), tag);
 
         // Zone inside the marker, using the current tag + the marker's tag
 
-        vtksys_stl::string new_tag;
+        std::string new_tag;
         if (tag)
           {
           new_tag.append(tag);
           }
         new_tag.append(" ").append(markertag[closest_marker_id * 2 + 1]);
-        vtksys_stl::string zone;
+        std::string zone;
         zone.append(closest_marker + len_marker, 
                     end_marker - closest_marker - len_marker);
         this->AppendTextInternalTagging(zone.c_str(), new_tag.c_str());
 
         // Text after the marker, using the current tag
 
-        vtksys_stl::string after;
+        std::string after;
         after.append(end_marker + len_marker);
         this->AppendTextInternalTagging(after.c_str(), tag);
 
@@ -302,23 +302,23 @@ void vtkKWText::AppendTextInternalTagging(const char *str, const char *tag)
       {
       // Text before the regexp, using the current tag
 
-      vtksys_stl::string before;
+      std::string before;
       before.append(str, re.start());
 
       // Zone inside the regexp, using the current tag + the marker's tag
 
-      vtksys_stl::string new_tag;
+      std::string new_tag;
       if (tag)
         {
         new_tag.append(tag);
         }
       new_tag.append(" ").append((*it).Tag);
-      vtksys_stl::string zone;
+      std::string zone;
       zone.append(str + re.start(), re.end() - re.start());
 
       // Text after the regexp, using the current tag
 
-      vtksys_stl::string after;
+      std::string after;
       after.append(str + re.end());
 
       this->AppendTextInternalTagging(before.c_str(), tag);
@@ -354,7 +354,7 @@ void vtkKWText::CreateWidget()
 {
   // Call the superclass to set the appropriate flags then create manually
 
-  vtksys_stl::string options;
+  std::string options;
   int tcl_major, tcl_minor, tcl_patch_level;
   Tcl_GetVersion(&tcl_major, &tcl_minor, &tcl_patch_level, NULL);
   if (tcl_major > 8 || (tcl_major == 8 && tcl_minor >= 5))
@@ -375,7 +375,7 @@ void vtkKWText::CreateWidget()
   // Create the default tags
 
   const char *wname = this->GetWidgetName();
-  vtksys_stl::string font(this->GetConfigurationOption("-font"));
+  std::string font(this->GetConfigurationOption("-font"));
 
   char bold_font[512], italic_font[512];
   vtkKWTkUtilities::ChangeFontWeightToBold(

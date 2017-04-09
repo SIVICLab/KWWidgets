@@ -30,10 +30,10 @@
 #include "vtkKWWindowBase.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/stl/list>
-#include <vtksys/stl/algorithm>
-#include <vtksys/ios/sstream> 
+#include <string>
+#include <list>
+#include <algorithm>
+#include <sstream> 
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWUserInterfaceManagerDialog);
@@ -43,9 +43,9 @@ vtkStandardNewMacro(vtkKWUserInterfaceManagerDialog);
 class vtkKWUserInterfaceManagerDialogInternals
 {
 public:
-  vtksys_stl::string SelectedNode;
-  vtksys_stl::string SelectedSection;
-  vtksys_stl::string SelectedSectionOldPackingPosition;
+  std::string SelectedNode;
+  std::string SelectedSection;
+  std::string SelectedSectionOldPackingPosition;
 };
 
 //----------------------------------------------------------------------------
@@ -572,7 +572,7 @@ int vtkKWUserInterfaceManagerDialog::GetWidgetLocation(
     }
   else
     {
-    vtksys_ios::ostringstream in_str;
+    std::ostringstream in_str;
     if (!vtkKWTkUtilities::GetMasterInPack(
           this->GetApplication()->GetMainInterp(), widget, in_str))
       {
@@ -613,7 +613,7 @@ void vtkKWUserInterfaceManagerDialog::PopulateTree()
 
   // Preserve the old selection
 
-  vtksys_stl::string selected_node = tree->GetSelection();
+  std::string selected_node = tree->GetSelection();
 
   // Make sure all panels are created
 
@@ -636,7 +636,7 @@ void vtkKWUserInterfaceManagerDialog::PopulateTree()
     return;
     }
 
-  vtksys_stl::string first_node;
+  std::string first_node;
 
   int nb_children = parent->GetNumberOfChildren();
   for (i = 0; i < nb_children; i++)
@@ -671,11 +671,11 @@ void vtkKWUserInterfaceManagerDialog::PopulateTree()
       continue;
       }
 
-    vtksys_stl::string parent_node;
+    std::string parent_node;
 
     // Add a node for the panel, if needed
 
-    vtksys_stl::string panel_node(parent_node);
+    std::string panel_node(parent_node);
     panel_node += "_";
     panel_node += panel->GetTclName();
     if (this->PanelNodeVisibility)
@@ -695,7 +695,7 @@ void vtkKWUserInterfaceManagerDialog::PopulateTree()
 
     // Add a node for the page, if needed
 
-    vtksys_stl::string page_node(panel_node);
+    std::string page_node(panel_node);
     page_node += "_";
     page_node += this->Notebook->GetFrame(page_id)->GetTclName();
     if (this->PageNodeVisibility)
@@ -715,7 +715,7 @@ void vtkKWUserInterfaceManagerDialog::PopulateTree()
 
     // Add a node for the section (the child)
     
-    vtksys_stl::string section_node(page_node);
+    std::string section_node(page_node);
     section_node += "_";
     section_node += frame->GetTclName();
     if (!tree->HasNode(section_node.c_str()))
@@ -835,7 +835,7 @@ void vtkKWUserInterfaceManagerDialog::RaiseSection(
         (!target_section || !*target_section ||
          !strcmp(target_section, frame->GetLabel()->GetText())))
       {
-      vtksys_stl::string node;
+      std::string node;
       node += "_";
       node += panel->GetTclName();
       node += "_";
@@ -921,7 +921,7 @@ int vtkKWUserInterfaceManagerDialog::ShowSelectedNodeSection()
   // Make sure we save where the section was packed previously, so that
   // it can be moved back properly
 
-  vtksys_stl::string selected_node, selected_section, selected_section_old_pos;
+  std::string selected_node, selected_section, selected_section_old_pos;
   int res = 0;
 
   if (tree->HasSelection())
@@ -930,7 +930,7 @@ int vtkKWUserInterfaceManagerDialog::ShowSelectedNodeSection()
     selected_section = tree->GetNodeUserData(selected_node.c_str());
     if (selected_section.size())
       {
-      vtksys_ios::ostringstream in_str;
+      std::ostringstream in_str;
       if (vtkKWTkUtilities::GetMasterInPack(
             this->GetApplication()->GetMainInterp(), 
             selected_section.c_str(), 

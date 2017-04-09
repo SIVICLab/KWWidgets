@@ -22,7 +22,7 @@
 #define __vtkKWFileBrowserUtilities_h
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/stl/string>
+#include <string>
 
 #ifdef _WIN32
 #define KWFileBrowser_PATH_SEPARATOR "\\"
@@ -38,7 +38,7 @@ static char* KWFileBrowser_GetUnixPath(const char* path)
 {
   if(path && *path)
     {
-    vtksys_stl::string sBuffer = path;
+    std::string sBuffer = path;
     vtksys::SystemTools::ConvertToUnixSlashes(sBuffer);
     static char buffer[512];
     strcpy(buffer, sBuffer.c_str());
@@ -62,8 +62,8 @@ static bool KWFileBrowser_ComparePath(const char *dir1, const char* dir2)
     {
     return false;
     }
-  vtksys_stl::string path1 = dir1;
-  vtksys_stl::string path2 = dir2;
+  std::string path1 = dir1;
+  std::string path2 = dir2;
   int dirslash1 = KWFileBrowser_HasTrailingSlash(dir1);
   int dirslash2 = KWFileBrowser_HasTrailingSlash(dir2);
   if(!dirslash1 && dirslash2)

@@ -23,10 +23,10 @@
 #include "vtkKWToolbar.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/list>
+#include <list>
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/stl/algorithm>
-#include <vtksys/ios/sstream> 
+#include <algorithm>
+#include <sstream> 
 
 //----------------------------------------------------------------------------
 
@@ -38,13 +38,13 @@ class vtkKWToolbarSetInternals
 {
 public:
 
-  typedef vtksys_stl::list<vtkKWToolbarSet::ToolbarSlot*> ToolbarsContainer;
-  typedef vtksys_stl::list<vtkKWToolbarSet::ToolbarSlot*>::iterator ToolbarsContainerIterator;
+  typedef std::list<vtkKWToolbarSet::ToolbarSlot*> ToolbarsContainer;
+  typedef std::list<vtkKWToolbarSet::ToolbarSlot*>::iterator ToolbarsContainerIterator;
 
   ToolbarsContainer Toolbars;
 
-  vtksys_stl::string PreviousPackInfo;
-  vtksys_stl::string PreviousGridInfo;
+  std::string PreviousPackInfo;
+  std::string PreviousGridInfo;
 };
 
 //----------------------------------------------------------------------------
@@ -231,7 +231,7 @@ void vtkKWToolbarSet::Pack()
 
         if (!this->Internals->PreviousPackInfo.empty())
           {
-          vtksys_ios::ostringstream master, previous_slave, next_slave;
+          std::ostringstream master, previous_slave, next_slave;
           
           vtkKWTkUtilities::GetMasterInPack(this, master);
 
@@ -254,7 +254,7 @@ void vtkKWToolbarSet::Pack()
         }
       else
         {
-        vtksys_stl::string grid_info = 
+        std::string grid_info = 
           this->Script("grid info %s", this->GetWidgetName());
         if (!grid_info.empty())
           {
@@ -354,7 +354,7 @@ void vtkKWToolbarSet::PackToolbars()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   tk_cmd << "pack " << this->ToolbarsFrame->GetWidgetName() 
          << " -side top -fill both -expand y -padx 0 -pady 0" << endl;
@@ -494,7 +494,7 @@ int vtkKWToolbarSet::RemoveToolbar(vtkKWToolbar *toolbar)
   vtkKWToolbarSet::ToolbarSlot *toolbar_slot = this->GetToolbarSlot(toolbar);
 
   vtkKWToolbarSetInternals::ToolbarsContainerIterator pos = 
-    vtksys_stl::find(this->Internals->Toolbars.begin(),
+    std::find(this->Internals->Toolbars.begin(),
                  this->Internals->Toolbars.end(),
                  toolbar_slot);
 
@@ -743,7 +743,7 @@ void vtkKWToolbarSet::SaveToolbarVisibilityToRegistry(
     {
     char *clean_name = vtksys::SystemTools::RemoveChars(
       toolbar_slot->Toolbar->GetName(), " ");
-    vtksys_stl::string key(clean_name);
+    std::string key(clean_name);
     delete [] clean_name;
 
     key += "Visibility";
@@ -763,7 +763,7 @@ void vtkKWToolbarSet::RestoreToolbarVisibilityFromRegistry(
     {
     char *clean_name = vtksys::SystemTools::RemoveChars(
       toolbar_slot->Toolbar->GetName(), " ");
-    vtksys_stl::string key(clean_name);
+    std::string key(clean_name);
     delete [] clean_name;
     
     key += "Visibility";
@@ -835,7 +835,7 @@ void vtkKWToolbarSet::PopulateToolbarsVisibilityMenu(vtkKWMenu *menu)
         {
         if (!menu->HasItem((*it)->Toolbar->GetName()))
           {
-          vtksys_stl::string command("ToggleToolbarVisibility ");
+          std::string command("ToggleToolbarVisibility ");
           command += (*it)->Toolbar->GetTclName();
 
           sprintf(help, k_("Show/Hide the '%s' toolbar"), 

@@ -18,8 +18,8 @@
 #include "vtkKWCoreWidget.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/stl/list>
-#include <vtksys/stl/algorithm>
+#include <list>
+#include <algorithm>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWDragAndDropTargetSet );
@@ -30,8 +30,8 @@ class vtkKWDragAndDropTargetSetInternals
 {
 public:
 
-  typedef vtksys_stl::list<vtkKWDragAndDropTargetSet::TargetSlot*> TargetsContainer;
-  typedef vtksys_stl::list<vtkKWDragAndDropTargetSet::TargetSlot*>::iterator TargetsContainerIterator;
+  typedef std::list<vtkKWDragAndDropTargetSet::TargetSlot*> TargetsContainer;
+  typedef std::list<vtkKWDragAndDropTargetSet::TargetSlot*>::iterator TargetsContainerIterator;
 
   TargetsContainer Targets;
 };
@@ -380,7 +380,7 @@ int vtkKWDragAndDropTargetSet::RemoveTarget(vtkKWWidget *widget)
     }
   
   vtkKWDragAndDropTargetSetInternals::TargetsContainerIterator pos = 
-    vtksys_stl::find(this->Internals->Targets.begin(),
+    std::find(this->Internals->Targets.begin(),
                  this->Internals->Targets.end(),
                  found);
   

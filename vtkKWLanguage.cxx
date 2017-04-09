@@ -22,7 +22,7 @@
 #include "vtkKWApplication.h"
 
 #include "vtkObjectFactory.h"
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWLanguage);
@@ -43,7 +43,7 @@ void vtkKWLanguage::SetCurrentLanguage(int lang)
     // gettext DLL has its own environment.
     // gettext will also try LC_ALL, LC_xxx (i.e. LC_MESSAGES), and LANG
 
-    vtksys_stl::string env_var;
+    std::string env_var;
 
     env_var = "LC_MESSAGES=";
     env_var += xpg;

@@ -21,7 +21,7 @@
 #include "vtkKWMenu.h"
 #include "vtkKWInternationalization.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 //vtkCxxRevisionMacro(vtkKWScalarComponentSelectionWidget, "$Revision: 1.23 $");
@@ -149,7 +149,7 @@ void vtkKWScalarComponentSelectionWidget::Update()
       menu->DeleteAllItems();
       for (i = 0; i < this->NumberOfComponents; ++i)
         {
-        vtksys_ios::ostringstream cmd_name, cmd_method;
+        std::ostringstream cmd_name, cmd_method;
 
         cmd_name << (i + 1);
         cmd_method << "SelectedComponentCallback " << i;
@@ -160,7 +160,7 @@ void vtkKWScalarComponentSelectionWidget::Update()
     
     if (menu->GetNumberOfItems() && this->IndependentComponents)
       {
-      vtksys_ios::ostringstream v;
+      std::ostringstream v;
       v << (this->SelectedComponent + 1);
       menubutton->SetValue(v.str().c_str());
       }

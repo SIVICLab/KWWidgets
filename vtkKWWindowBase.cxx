@@ -485,7 +485,7 @@ void vtkKWWindowBase::PopulateHelpMenu()
   vtkKWApplication *app = this->GetApplication();
   vtkKWMenu *menu = this->GetHelpMenu();
   int idx;
-  vtksys_stl::string cmd;
+  std::string cmd;
 
   int tcl_major, tcl_minor, tcl_patch_level;
   Tcl_GetVersion(&tcl_major, &tcl_minor, &tcl_patch_level, NULL);
@@ -571,7 +571,7 @@ void vtkKWWindowBase::Pack()
 
   if (this->MainToolbarSet && this->MainToolbarSet->IsCreated())
     {
-    vtksys_stl::string after;
+    std::string after;
     if (this->MenuBarSeparator && 
         this->MenuBarSeparator->IsCreated())
       {
@@ -830,7 +830,7 @@ void vtkKWWindowBase::SaveWindowGeometryToRegistry()
     return;
     }
 
-  vtksys_stl::string geometry = this->GetGeometry();
+  std::string geometry = this->GetGeometry();
   this->GetApplication()->SetRegistryValue(
     2, "Geometry", this->GetWindowGeometryRegKey(), "%s", 
     geometry.c_str());
@@ -1189,7 +1189,7 @@ void vtkKWWindowBase::LoadScript()
           ks_("Load Script Dialog|File Type|%s Scripts"), 
           this->ScriptType ? this->ScriptType : "");
   
-  vtksys_stl::string filetypes;
+  std::string filetypes;
   filetypes += "{{";
   filetypes += buffer;
   filetypes += "} {";
@@ -1440,7 +1440,7 @@ void vtkKWWindowBase::UpdateMenuState()
 
   if (this->HelpMenu) // do not use GetHelpMenu() here
     {
-    vtksys_stl::string about_command = "DisplayAbout ";
+    std::string about_command = "DisplayAbout ";
     about_command +=  this->GetTclName();
     int pos = this->GetHelpMenu()->GetIndexOfCommandItem(
       this->GetApplication(), about_command.c_str());

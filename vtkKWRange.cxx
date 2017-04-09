@@ -23,7 +23,7 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 vtkStandardNewMacro( vtkKWRange );
 //vtkCxxRevisionMacro(vtkKWRange, "$Revision: 1.74 $");
@@ -276,7 +276,7 @@ void vtkKWRange::Pack()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   int is_horiz = (this->Orientation == vtkKWRange::OrientationHorizontal);
 
   int row, col, row_span, col_span, c_padx = 0, c_pady = 0;
@@ -498,7 +498,7 @@ void vtkKWRange::Bind()
 
   if (this->Canvas && this->Canvas->IsCreated())
     {
-    vtksys_stl::string command;
+    std::string command;
 
     // Range
 
@@ -1552,7 +1552,7 @@ void vtkKWRange::RedrawWholeRange()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *canv = this->Canvas->GetWidgetName();
   const char *tag = VTK_KW_RANGE_WHOLE_RANGE_TAG;
   int was_created = this->HasTag(tag);
@@ -1738,7 +1738,7 @@ void vtkKWRange::RedrawRange()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *canv = this->Canvas->GetWidgetName();
   const char *tag = VTK_KW_RANGE_RANGE_TAG;
   int was_created = this->HasTag(tag);
@@ -1890,7 +1890,7 @@ void vtkKWRange::RedrawSlider(int pos, int slider_idx)
     tag = VTK_KW_RANGE_SLIDER2_TAG;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *canv = this->Canvas->GetWidgetName();
   int sw = this->SliderSize;
   const char *stag = VTK_KW_RANGE_SLIDERS_TAG;
@@ -2044,7 +2044,7 @@ void vtkKWRange::UpdateRangeColors()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *canv = this->Canvas->GetWidgetName();
 
   char bgcolor[10], dscolor[10], lscolor[10], hlcolor[10];
@@ -2087,7 +2087,7 @@ void vtkKWRange::UpdateRangeColors()
 //----------------------------------------------------------------------------
 void vtkKWRange::UpdateSliderColors(int slider_idx)
 {
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *canv = this->Canvas->GetWidgetName();
 
   char bgcolor[10], dscolor[10], hlcolor[10];
@@ -2139,7 +2139,7 @@ void vtkKWRange::UpdateColors()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   const char *canv = this->Canvas->GetWidgetName();
 
   char bgcolor[10], dscolor[10], lscolor[10], hlcolor[10];

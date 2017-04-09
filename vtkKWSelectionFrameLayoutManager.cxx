@@ -63,10 +63,10 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
 #include "vtkStringArray.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/list>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <string>
 
 #include "Resources/vtkKWWindowLayoutResources.h"
 
@@ -86,14 +86,14 @@ class vtkKWSelectionFrameLayoutManagerInternals
 public:
   struct PoolNode
   {
-    vtksys_stl::string Tag;
-    vtksys_stl::string Group;
+    std::string Tag;
+    std::string Group;
     vtkKWSelectionFrame *Widget;
     int Position[2];
   };
 
-  typedef vtksys_stl::vector<PoolNode> PoolType;
-  typedef vtksys_stl::vector<PoolNode>::iterator PoolIterator;
+  typedef std::vector<PoolNode> PoolType;
+  typedef std::vector<PoolNode>::iterator PoolIterator;
 
   PoolType Pool;
 
@@ -102,12 +102,12 @@ public:
     int Col;
     int Row;
   };
-  typedef vtksys_stl::list<CellCoordinate> CellCoordinatePoolType;
+  typedef std::list<CellCoordinate> CellCoordinatePoolType;
 
   CellCoordinatePoolType ResolutionStack;
   CellCoordinatePoolType PositionStack;
 
-  vtksys_stl::string ScheduleNumberOfWidgetsHasChangedTimerId;
+  std::string ScheduleNumberOfWidgetsHasChangedTimerId;
 };
 
 //----------------------------------------------------------------------------
@@ -243,7 +243,7 @@ void vtkKWSelectionFrameLayoutManager::Pack()
   int nb_of_cols = 10, nb_of_rows = 10;
   vtkKWTkUtilities::GetGridSize(this->LayoutFrame, &nb_of_cols, &nb_of_rows);
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Pack each widgets
   // First unpack all widgets (this is necessary if some of the widgets that
@@ -418,7 +418,7 @@ int vtkKWSelectionFrameLayoutManager::ReorganizeWidgetPositions()
   // Given the resolution, fill in the corresponding grid with 
   // widgets that have a valid position inside that grid
 
-  vtksys_stl::vector<int> grid;
+  std::vector<int> grid;
   grid.assign(this->Resolution[0] * this->Resolution[1], 0);
 
   vtkKWSelectionFrameLayoutManagerInternals::PoolIterator it = 
@@ -718,7 +718,7 @@ void vtkKWSelectionFrameLayoutManager::CreateResolutionEntriesMenu(
 
   // Allowed resolutions
 
-  vtksys_stl::string varname(this->GetTclName());
+  std::string varname(this->GetTclName());
   varname += "reschoice";
 
   char label[64], command[128], help[128];  
@@ -789,7 +789,7 @@ void vtkKWSelectionFrameLayoutManager::UpdateResolutionEntriesMenu()
   int value = 
     (this->Resolution[0]-1) * VTK_KW_SFLMGR_MAX_SIZE + this->Resolution[1]-1;
 
-  vtksys_stl::string rbv(this->GetTclName());
+  std::string rbv(this->GetTclName());
   rbv += "reschoice";
   if (atoi(this->Script("set %s", rbv.c_str())) != value)
     {
@@ -900,7 +900,7 @@ void vtkKWSelectionFrameLayoutManager::CreateResolutionEntriesToolbar(
 
   // Allowed resolutions
 
-  vtksys_stl::string rbv(this->GetTclName());
+  std::string rbv(this->GetTclName());
   rbv += "reschoice";
 
   char command[128], help[128], icon[128];  
@@ -967,7 +967,7 @@ void vtkKWSelectionFrameLayoutManager::UpdateResolutionEntriesToolbar()
   int value = 
     (this->Resolution[0]-1) * VTK_KW_SFLMGR_MAX_SIZE + this->Resolution[1]-1;
 
-  vtksys_stl::string rbv(this->GetTclName());
+  std::string rbv(this->GetTclName());
   rbv += "reschoice";
   if (atoi(this->Script("set %s", rbv.c_str())) != value)
     {
@@ -2022,7 +2022,7 @@ int vtkKWSelectionFrameLayoutManager::ChangeWidgetTitleCallback(
   int ok = dlg->Invoke();
   if (ok)
     {
-    vtksys_stl::string new_title(dlg->GetEntry()->GetWidget()->GetValue());
+    std::string new_title(dlg->GetEntry()->GetWidget()->GetValue());
     ok = this->CanWidgetTitleBeChanged(widget, new_title.c_str());
     if (!ok)
       {
@@ -2180,18 +2180,18 @@ int vtkKWSelectionFrameLayoutManager::AppendWidgetsToImageData(
 
   // We need a window to image filter for each widget in the grid
 
-  vtksys_stl::vector<vtkWindowToImageFilter*> w2i_filters;
+  std::vector<vtkWindowToImageFilter*> w2i_filters;
   w2i_filters.assign(nb_slots, (vtkWindowToImageFilter*)NULL);
 
   // We also need a pad filter to add a small margin for each widget 
 
-  vtksys_stl::vector<vtkImageConstantPad*> pad_filters;
+  std::vector<vtkImageConstantPad*> pad_filters;
   pad_filters.assign(nb_slots, (vtkImageConstantPad*)NULL);
 
   // We need an append filter for each row in the grid, to append
   // widgets horizontally
 
-  vtksys_stl::vector<vtkImageAppend*> append_filters;
+  std::vector<vtkImageAppend*> append_filters;
   append_filters.assign(this->Resolution[1], (vtkImageAppend*)NULL);
 
   // We need an append filter to append each rows (see above) and form

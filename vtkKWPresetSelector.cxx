@@ -38,11 +38,11 @@
 #include "vtkImageClip.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/stl/list>
-#include <vtksys/stl/string>
-#include <vtksys/stl/map>
+#include <list>
+#include <string>
+#include <map>
 #include <vtksys/RegularExpression.hxx>
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 #include <time.h>
 
@@ -62,7 +62,7 @@ public:
 
   // User slot
 
-  typedef vtksys_stl::string UserSlotNameType;
+  typedef std::string UserSlotNameType;
 
   class UserSlotValueType
   {
@@ -72,7 +72,7 @@ public:
     int IntValue;
     unsigned long UnsignedLongValue;
     vtkTypeInt64 Int64Value;
-    vtksys_stl::string StringValue;
+    std::string StringValue;
     void *PointerValue;
     vtkObject *ObjectValue;
     
@@ -81,8 +81,8 @@ public:
 
   // User slot pool
 
-  typedef vtksys_stl::map<UserSlotNameType, UserSlotValueType> UserSlotPoolType;
-  typedef vtksys_stl::map<UserSlotNameType, UserSlotValueType>::iterator UserSlotPoolIterator;
+  typedef std::map<UserSlotNameType, UserSlotValueType> UserSlotPoolType;
+  typedef std::map<UserSlotNameType, UserSlotValueType>::iterator UserSlotPoolIterator;
 
   // Preset node
 
@@ -100,14 +100,14 @@ public:
 
   int PresetNodeCounter;
 
-  typedef vtksys_stl::list<PresetNode*> PresetPoolType;
-  typedef vtksys_stl::list<PresetNode*>::iterator PresetPoolIterator;
+  typedef std::list<PresetNode*> PresetPoolType;
+  typedef std::list<PresetNode*>::iterator PresetPoolIterator;
 
   PresetPoolType PresetPool;
   PresetPoolIterator GetPresetNodeIterator(int id);
 
-  typedef vtksys_stl::map<int, PresetNode*> SortedPresetPoolType;
-  typedef vtksys_stl::map<int, PresetNode*>::iterator SortedPresetPoolIterator;
+  typedef std::map<int, PresetNode*> SortedPresetPoolType;
+  typedef std::map<int, PresetNode*>::iterator SortedPresetPoolIterator;
 
   SortedPresetPoolType SortedPresetPool; // for faster quick access
   SortedPresetPoolIterator GetSortedPresetNodeIterator(int id);
@@ -116,63 +116,63 @@ public:
 
   // Timers for updating preset rows
 
-  typedef vtksys_stl::map<int,vtksys_stl::string> ScheduleUpdatePresetRowTimerPoolType;
-  typedef vtksys_stl::map<int,vtksys_stl::string>::iterator ScheduleUpdatePresetRowTimerPoolIterator;
+  typedef std::map<int,std::string> ScheduleUpdatePresetRowTimerPoolType;
+  typedef std::map<int,std::string>::iterator ScheduleUpdatePresetRowTimerPoolIterator;
   ScheduleUpdatePresetRowTimerPoolType ScheduleUpdatePresetRowTimerPool;
 
-  vtksys_stl::string ScheduleUpdatePresetRowsTimerId;
-  vtksys_stl::string SchedulePresetSelectionCallbackTimerId;
-  vtksys_stl::string SchedulePresetSelectionChangedCallbackTimerId;
+  std::string ScheduleUpdatePresetRowsTimerId;
+  std::string SchedulePresetSelectionCallbackTimerId;
+  std::string SchedulePresetSelectionChangedCallbackTimerId;
 
   // User slot name for the default fields
 
-  vtksys_stl::string GroupSlotName;
-  vtksys_stl::string CommentSlotName;
-  vtksys_stl::string FileNameSlotName;
-  vtksys_stl::string CreationTimeSlotName;
-  vtksys_stl::string ThumbnailSlotName;
-  vtksys_stl::string ScreenshotSlotName;
+  std::string GroupSlotName;
+  std::string CommentSlotName;
+  std::string FileNameSlotName;
+  std::string CreationTimeSlotName;
+  std::string ThumbnailSlotName;
+  std::string ScreenshotSlotName;
 
   // Filter constraint
 
   class PresetFilterConstraint
   {
   public:
-    vtksys_stl::string StringValue;
+    std::string StringValue;
     int IsRegularExpression;
   };
 
   // Filter pool
 
-  typedef vtksys_stl::map<UserSlotNameType, PresetFilterConstraint> PresetFilterType;
-  typedef vtksys_stl::map<UserSlotNameType, PresetFilterConstraint>::iterator PresetFilterIterator;
+  typedef std::map<UserSlotNameType, PresetFilterConstraint> PresetFilterType;
+  typedef std::map<UserSlotNameType, PresetFilterConstraint>::iterator PresetFilterIterator;
 
   PresetFilterType PresetFilter;
 
   // Button label (internal purposes)
 
-  vtksys_stl::string SelectPreviousButtonLabel;
-  vtksys_stl::string SelectNextButtonLabel;
-  vtksys_stl::string AddButtonLabel;
-  vtksys_stl::string ApplyButtonLabel;
-  vtksys_stl::string UpdateButtonLabel;
-  vtksys_stl::string RemoveButtonLabel;
-  vtksys_stl::string RemoveAllButtonLabel;
-  vtksys_stl::string LocateButtonLabel;
-  vtksys_stl::string EmailButtonLabel;
-  vtksys_stl::string LoadButtonLabel;
-  vtksys_stl::string FilterButtonLabel;
+  std::string SelectPreviousButtonLabel;
+  std::string SelectNextButtonLabel;
+  std::string AddButtonLabel;
+  std::string ApplyButtonLabel;
+  std::string UpdateButtonLabel;
+  std::string RemoveButtonLabel;
+  std::string RemoveAllButtonLabel;
+  std::string LocateButtonLabel;
+  std::string EmailButtonLabel;
+  std::string LoadButtonLabel;
+  std::string FilterButtonLabel;
 
   // Let's try to speed things up by caching some info
   // - preset id to row index
   // - row index to preset id
 
-  typedef vtksys_stl::map<int, int> PresetIdToRowIndexCacheType;
-  typedef vtksys_stl::map<int, int>::iterator PresetIdToRowIndexCacheTypeIterator;
+  typedef std::map<int, int> PresetIdToRowIndexCacheType;
+  typedef std::map<int, int>::iterator PresetIdToRowIndexCacheTypeIterator;
   PresetIdToRowIndexCacheType PresetIdToRowIndexCache;
 
-  typedef vtksys_stl::map<int, int> RowIndexToPresetIdCacheType;
-  typedef vtksys_stl::map<int, int>::iterator RowIndexToPresetIdCacheTypeIterator;
+  typedef std::map<int, int> RowIndexToPresetIdCacheType;
+  typedef std::map<int, int>::iterator RowIndexToPresetIdCacheTypeIterator;
   RowIndexToPresetIdCacheType RowIndexToPresetIdCache;
 };
 
@@ -2134,7 +2134,7 @@ int vtkKWPresetSelector::GetIdOfPresetWithFileName(const char *filename)
           }
         else
           {
-          vtksys_stl::string it_name = 
+          std::string it_name = 
             vtksys::SystemTools::GetFilenameName(it_filename);
           if (!strcmp(it_name.c_str(), filename))
             {
@@ -4011,7 +4011,7 @@ void vtkKWPresetSelector::PresetFilterCallback()
   // It is expected to be in the ^(value1|value2|)$ form, where the last value
   // may be empty to match presets with no value for this specific slot.
 
-  vtksys_stl::map<vtksys_stl::string, int> current_values;
+  std::map<std::string, int> current_values;
 
   const char *res = this->GetPresetFilterUserSlotConstraint(
     this->GetFilterButtonSlotName());
@@ -4029,19 +4029,19 @@ void vtkKWPresetSelector::PresetFilterCallback()
       {
       res_end -= strlen(close_regexp);
       }
-    vtksys_stl::string res_safe(res, res_end - res);
+    std::string res_safe(res, res_end - res);
 
     // Split at | and build a map of unique current values
     // We actually *do* need the empty value to be registered as
     // a valid filtering value.
-    vtksys_stl::vector<vtksys_stl::string> split_elems;
+    std::vector<std::string> split_elems;
     vtksys::SystemTools::Split(res_safe.c_str(), split_elems, '|');
     if (!split_elems.size())
       {
       split_elems.push_back("");
       }
-    vtksys_stl::vector<vtksys_stl::string>::iterator it = split_elems.begin();
-    vtksys_stl::vector<vtksys_stl::string>::iterator end = split_elems.end();
+    std::vector<std::string>::iterator it = split_elems.begin();
+    std::vector<std::string>::iterator end = split_elems.end();
     for (; it != end; it++)
       {
       current_values[*it] = 1;
@@ -4050,9 +4050,9 @@ void vtkKWPresetSelector::PresetFilterCallback()
   
   // Collect all the unique possible values for that slot
 
-  vtksys_stl::map<vtksys_stl::string, int> possible_values;
+  std::map<std::string, int> possible_values;
   
-  vtksys_stl::string empty_value;
+  std::string empty_value;
 
   vtkKWPresetSelectorInternals::PresetPoolIterator it = 
     this->Internals->PresetPool.begin();
@@ -4063,7 +4063,7 @@ void vtkKWPresetSelector::PresetFilterCallback()
     vtkKWPresetSelectorInternals::PresetNode *preset = *it; // it->second;
     vtkKWPresetSelectorInternals::UserSlotPoolIterator s_it =
       preset->UserSlotPool.find(this->GetFilterButtonSlotName());
-    vtksys_stl::string *possible_value = NULL;
+    std::string *possible_value = NULL;
     // If the slot was not found, accept it as an empty value...
     if (s_it != preset->UserSlotPool.end())
       {
@@ -4074,7 +4074,7 @@ void vtkKWPresetSelector::PresetFilterCallback()
       possible_value = &empty_value;
       }
     // Register the unique empty value (and count the occurences)
-    vtksys_stl::map<vtksys_stl::string, int>::iterator p_it_found = 
+    std::map<std::string, int>::iterator p_it_found = 
       possible_values.find(*possible_value);
     if (p_it_found == possible_values.end())
       {
@@ -4089,9 +4089,9 @@ void vtkKWPresetSelector::PresetFilterCallback()
   // Also add the current values, even if they were not found, they need
   // to be displayed (execept the empty one)
 
-  vtksys_stl::map<vtksys_stl::string, int>::iterator c_it = 
+  std::map<std::string, int>::iterator c_it = 
     current_values.begin();
-  vtksys_stl::map<vtksys_stl::string, int>::iterator c_end = 
+  std::map<std::string, int>::iterator c_end = 
     current_values.end();
   for (; c_it != c_end; ++c_it)
     {
@@ -4103,13 +4103,13 @@ void vtkKWPresetSelector::PresetFilterCallback()
 
   // Build the menu, allowing the new possible values
 
-  vtksys_stl::map<vtksys_stl::string, int>::iterator p_it = 
+  std::map<std::string, int>::iterator p_it = 
     possible_values.begin();
-  vtksys_stl::map<vtksys_stl::string, int>::iterator p_end = 
+  std::map<std::string, int>::iterator p_end = 
     possible_values.end();
   for (; p_it != p_end; ++p_it)
     {
-    vtksys_ios::ostringstream label;
+    std::ostringstream label;
     const char *possible_value = p_it->first.c_str();
     label << (*possible_value ? possible_value : k_("Unknown")); 
     // << " (" << p_it->second << ")";
@@ -4118,8 +4118,8 @@ void vtkKWPresetSelector::PresetFilterCallback()
     // Build the filter for this specific button (i.e. the list of 
     // current values minus or plus this specific new possible value)
 
-    vtksys_stl::map<vtksys_stl::string, int> new_values(current_values);
-    vtksys_stl::map<vtksys_stl::string, int>::iterator n_it = 
+    std::map<std::string, int> new_values(current_values);
+    std::map<std::string, int>::iterator n_it = 
       new_values.find(p_it->first);
     if (n_it == new_values.end())
       {
@@ -4131,14 +4131,14 @@ void vtkKWPresetSelector::PresetFilterCallback()
       new_values.erase(n_it);
       }
 
-    vtksys_stl::string cmd("PresetFilterApplyCallback");
+    std::string cmd("PresetFilterApplyCallback");
     if (new_values.size())
       {
-      vtksys_stl::map<vtksys_stl::string, int>::iterator n_begin = 
+      std::map<std::string, int>::iterator n_begin = 
         new_values.begin();
-      vtksys_stl::map<vtksys_stl::string, int>::iterator n_end = 
+      std::map<std::string, int>::iterator n_end = 
         new_values.end();
-      vtksys_stl::string new_values_collated;
+      std::string new_values_collated;
       for (n_it = n_begin; n_it != n_end; ++n_it)
         {
         if (n_it != n_begin)
@@ -4247,16 +4247,16 @@ void vtkKWPresetSelector::PresetEmailCallback(int id)
     return;
     }
       
-  vtksys_stl::string collapsed_filename = 
+  std::string collapsed_filename = 
     vtksys::SystemTools::CollapseFullPath(filename);
-  vtksys_stl::string native_filename(collapsed_filename);
+  std::string native_filename(collapsed_filename);
 #if _WIN32
   vtksys::SystemTools::ReplaceString(native_filename, "/", "\\");
 #endif
   
   const char *comment = this->GetPresetComment(id);
   
-  vtksys_stl::string subject;
+  std::string subject;
   subject = this->GetApplication()->GetPrettyName();
   subject += ": \"";
   subject += vtksys::SystemTools::GetFilenameName(native_filename);
@@ -4268,7 +4268,7 @@ void vtkKWPresetSelector::PresetEmailCallback(int id)
     subject += ")";
     }
 
-  vtksys_stl::string message;
+  std::string message;
 
   char buffer[500];
   sprintf(buffer,

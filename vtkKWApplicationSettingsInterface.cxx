@@ -32,7 +32,7 @@
 #include "vtkKWWindow.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 //----------------------------------------------------------------------------
 
@@ -201,7 +201,7 @@ void vtkKWApplicationSettingsInterface::Create()
 
   this->Superclass::Create();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   vtkKWWidget *page;
   vtkKWFrame *frame;
   vtkKWMenu *menu;

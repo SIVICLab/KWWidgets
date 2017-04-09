@@ -20,9 +20,9 @@
 #include "vtkKWPushButton.h"
 #include "vtkKWIcon.h"
 #include "vtkKWInternationalization.h"
-#include <vtksys/ios/sstream>
+#include <sstream>
 
-#include <vtksys/stl/string>
+#include <string>
 
 #define VTK_KWTWS_EXPAND_BUTTON_ID 0
 
@@ -173,7 +173,7 @@ void vtkKWTreeWithScrollbars::Pack()
 {
   this->PackScrollbarsWithWidget(this->Widget);
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   if (this->VerticalScrollbarVisibility && 
       this->VerticalButtons && this->VerticalButtons->IsCreated())

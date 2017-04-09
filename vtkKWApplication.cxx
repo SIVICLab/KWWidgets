@@ -58,9 +58,9 @@
 #include <stdarg.h>
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/algorithm>
+#include <sstream>
+#include <vector>
+#include <algorithm>
 
 #include "Resources/KWWidgets.rc.h"
 #include "vtkKWWidgetsConfigure.h"
@@ -207,25 +207,25 @@ private:
 class vtkKWApplicationInternals
 {
 public:
-  typedef vtksys_stl::vector<vtkKWWindowBase*> WindowsContainer;
-  typedef vtksys_stl::vector<vtkKWWindowBase*>::iterator WindowsContainerIterator;
+  typedef std::vector<vtkKWWindowBase*> WindowsContainer;
+  typedef std::vector<vtkKWWindowBase*>::iterator WindowsContainerIterator;
 
   WindowsContainer Windows;
 
   // Some temporary storage var that do not need to be exposed in the .h
 
-  vtksys_stl::string VersionNameTemp;
-  vtksys_stl::string LimitedEditionModeNameTemp;
-  vtksys_stl::string RegistryVersionNameTemp;
+  std::string VersionNameTemp;
+  std::string LimitedEditionModeNameTemp;
+  std::string RegistryVersionNameTemp;
 
   // For ::PutEnv
 
-  class DeletingCharVector : public vtksys_stl::vector<char*>
+  class DeletingCharVector : public std::vector<char*>
   {
   public:
     ~DeletingCharVector()
       {
-        for(vtksys_stl::vector<char*>::iterator i = this->begin();
+        for(std::vector<char*>::iterator i = this->begin();
             i != this->end(); ++i)
           {
           delete []*i;
@@ -321,7 +321,7 @@ vtkKWApplication::vtkKWApplication()
   // Try to find if we are running from a script and set the application name
   // accordingly. Otherwise try to find the executable name.
 
-  vtksys_stl::string script =
+  std::string script =
     vtksys::SystemTools::GetFilenameWithoutExtension(
       vtksys::SystemTools::GetFilenameName(
         vtkKWTkUtilities::GetCurrentScript(this->GetMainInterp())));
@@ -334,9 +334,9 @@ vtkKWApplication::vtkKWApplication()
     const char *nameofexec = Tcl_GetNameOfExecutable();
     if (nameofexec && vtksys::SystemTools::FileExists(nameofexec))
       {
-      vtksys_stl::string filename = 
+      std::string filename = 
         vtksys::SystemTools::GetFilenameName(nameofexec);
-      vtksys_stl::string filenamewe = 
+      std::string filenamewe = 
         vtksys::SystemTools::GetFilenameWithoutExtension(filename);
       if (!vtksys::SystemTools::StringStartsWith(filenamewe.c_str(), "wish") &&
           !vtksys::SystemTools::StringStartsWith(filenamewe.c_str(), "tclsh"))
@@ -542,7 +542,7 @@ int vtkKWApplication::RemoveWindow(vtkKWWindowBase *win)
   if (this->Internals && win)
     {
     vtkKWApplicationInternals::WindowsContainerIterator it = 
-      vtksys_stl::find(this->Internals->Windows.begin(),
+      std::find(this->Internals->Windows.begin(),
                        this->Internals->Windows.end(),
                       win);
     if (it != this->Internals->Windows.end())
@@ -1341,7 +1341,7 @@ int vtkKWApplication::OpenLink(const char *link)
 
   // Failed? Tried to interpret it as a filesystem path
 
-  vtksys_stl::string path = 
+  std::string path = 
     vtksys::SystemTools::CollapseFullPath(link);
 
   CFStringRef path_CFString = 
@@ -1364,7 +1364,7 @@ int vtkKWApplication::OpenLink(const char *link)
     }
 #endif
 
-  vtksys_stl::string msg(k_("Please open:\n"));
+  std::string msg(k_("Please open:\n"));
   if (link)
     {
     msg += link;
@@ -1380,12 +1380,12 @@ int vtkKWApplication::OpenLink(const char *link)
 //----------------------------------------------------------------------------
 int vtkKWApplication::ExploreLink(const char *link)
 {
-  vtksys_stl::string path = 
+  std::string path = 
     vtksys::SystemTools::CollapseFullPath(link);
 
 #ifdef _WIN32
   vtksys::SystemTools::ReplaceString(path, "/", "\\");
-  vtksys_stl::string command("explorer.exe /n,/e,");
+  std::string command("explorer.exe /n,/e,");
   if (!vtksys::SystemTools::FileIsDirectory(path.c_str()))
     {
     command += "/select,";
@@ -1472,10 +1472,10 @@ int vtkKWApplication::ExploreLink(const char *link)
     }
   else
     {
-    vtksys_stl::string ext =
+    std::string ext =
       vtksys::SystemTools::GetFilenameExtension(path);
     dlg->SetDefaultExtension(ext.c_str());
-    vtksys_stl::string file_types("{{");
+    std::string file_types("{{");
     file_types += ext;
     file_types += " files} {";
     file_types += ext;
@@ -1548,7 +1548,7 @@ void vtkKWApplication::DisplayHelpPage(const char *page, vtkKWTopLevel* master)
     return;
     }
 
-  vtksys_stl::string helplink;
+  std::string helplink;
 
   // If it's not a remote link (crude test) and we can't find it yet, try in
   // the install/bin directory
@@ -1558,7 +1558,7 @@ void vtkKWApplication::DisplayHelpPage(const char *page, vtkKWTopLevel* master)
     {
     if (this->GetInstallationDirectory())
       {
-      vtksys_stl::string try_file;
+      std::string try_file;
       helplink = this->GetInstallationDirectory();
       helplink += "/";
 
@@ -1724,7 +1724,7 @@ void vtkKWApplication::ConfigureAboutDialog()
   sprintf(buffer, ks_("About Dialog|Title|About %s"), this->GetPrettyName());
   this->AboutDialog->SetTitle(buffer);
 
-  vtksys_ios::ostringstream str;
+  std::ostringstream str;
   this->AddAboutText(str);
   str << endl;
   this->AddSystemInformation(str);
@@ -2112,7 +2112,7 @@ int vtkKWApplication::RetrieveColorRegistryValue(int level,
 int vtkKWApplication::LoadScript(const char* filename)
 {
   int res = 1;
-  vtksys_stl::string filename_copy(filename);
+  std::string filename_copy(filename);
   if (Tcl_EvalFile(this->GetMainInterp(), filename_copy.c_str()) != TCL_OK)
     {
     vtkErrorMacro("\n    Script: \n" << filename_copy.c_str()
@@ -2254,7 +2254,7 @@ const char* vtkKWApplication::GetLimitedEditionModeName()
 //----------------------------------------------------------------------------
 const char* vtkKWApplication::GetPrettyName()
 {
-  vtksys_ios::ostringstream pretty_str;
+  std::ostringstream pretty_str;
   if (this->LimitedEditionMode)
     {
     const char *lem_name = this->GetLimitedEditionModeName();
@@ -2403,7 +2403,7 @@ int vtkKWApplication::GetCheckForUpdatesPath(ostream &
 #ifdef _WIN32
   if (this->GetInstallationDirectory())
     {
-    vtksys_ios::ostringstream upd;
+    std::ostringstream upd;
     upd << this->GetInstallationDirectory() << "/WiseUpdt.exe";
     int res = vtksys::SystemTools::FileExists(upd.str().c_str());
     if (res)
@@ -2421,7 +2421,7 @@ int vtkKWApplication::GetCheckForUpdatesPath(ostream &
 int vtkKWApplication::HasCheckForUpdates()
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
-  vtksys_ios::ostringstream upd;
+  std::ostringstream upd;
   int res = this->GetCheckForUpdatesPath(upd);
   return res;
 #else
@@ -2438,7 +2438,7 @@ void vtkKWApplication::CheckForUpdates()
     }
 
 #if defined(_WIN32) && !defined(__CYGWIN__)
-  vtksys_ios::ostringstream upd;
+  std::ostringstream upd;
   if (this->GetCheckForUpdatesPath(upd))
     {
 #if defined (__BORLANDC__)
@@ -2564,7 +2564,7 @@ int vtkKWApplication::SendEmail(
 
     if (err != SUCCESS_SUCCESS)
       {
-      vtksys_stl::string msg =
+      std::string msg =
         k_("Sorry, an error occurred while trying to send an email.\n\n"
            "Please make sure that your default email client has been "
            "configured properly. The Microsoft Simple MAPI (Messaging "
@@ -2617,7 +2617,7 @@ int vtkKWApplication::SendEmail(
   // Sending an email using AppleEvents directly is just plain
   // hard. Let's write and run an AppleScript instead.
 
-  vtksys_stl::string script;
+  std::string script;
   script = 
     "tell application \"Mail\"\n"
     "  activate\n"
@@ -2658,7 +2658,7 @@ int vtkKWApplication::SendEmail(
 
 #endif
 
-  vtksys_stl::string msg =
+  std::string msg =
     k_("Sorry, sending an email from this operating system is not "
        "supported at the moment.\n\n"
        "In the meantime, we suggest you open your favorite email client "
@@ -2770,7 +2770,7 @@ void vtkKWApplication::CreateEmailMessageDialog(
     attachment_locate_button->SetImageToPredefinedIcon(vtkKWIcon::IconFolder);
     attachment_locate_button->SetBalloonHelpString(
       ks_("Email Feedback Dialog|Field|Attachment|Locate attachment on disk"));
-    vtksys_stl::string command("ExploreLink {");
+    std::string command("ExploreLink {");
     command += attachment_filename;
     command += "}";
     attachment_locate_button->SetCommand(this, command.c_str());
@@ -2809,10 +2809,10 @@ void vtkKWApplication::EmailFeedback()
     return;
     }
 
-  vtksys_ios::ostringstream email_subject;
+  std::ostringstream email_subject;
   this->AddEmailFeedbackSubject(email_subject);
 
-  vtksys_ios::ostringstream message;
+  std::ostringstream message;
   this->AddEmailFeedbackBody(message);
   message << endl;
 
@@ -2939,7 +2939,7 @@ void vtkKWApplication::FindInstallationDirectory()
   const char *nameofexec = Tcl_GetNameOfExecutable();
   if (nameofexec && vtksys::SystemTools::FileExists(nameofexec))
     {
-    vtksys_stl::string directory = 
+    std::string directory = 
       vtksys::SystemTools::GetFilenamePath(nameofexec);
     // remove the /bin from the end
     // directory[strlen(directory) - 4] = '\0';
@@ -2961,7 +2961,7 @@ void vtkKWApplication::FindInstallationDirectory()
     char installed_path[vtkKWRegistryHelper::RegistryKeyValueSizeMax];
     if (reg && reg->ReadValue(setup_key, "InstalledPath", installed_path))
       {
-      vtksys_stl::string directory(installed_path);
+      std::string directory(installed_path);
       vtksys::SystemTools::ConvertToUnixSlashes(directory);
       this->SetInstallationDirectory(directory.c_str());
       }
@@ -2970,7 +2970,7 @@ void vtkKWApplication::FindInstallationDirectory()
       reg->SetGlobalScope(1);
       if (reg && reg->ReadValue(setup_key, "InstalledPath", installed_path))
         {
-        vtksys_stl::string directory(installed_path);
+        std::string directory(installed_path);
         vtksys::SystemTools::ConvertToUnixSlashes(directory);
         this->SetInstallationDirectory(directory.c_str());
         }
@@ -2988,10 +2988,10 @@ const char* vtkKWApplication::GetUserDataDirectory()
 {
   if (!this->UserDataDirectory)
     {
-    vtksys_stl::string dir;
+    std::string dir;
 
 #ifdef _WIN32
-    vtksys_stl::string personal;
+    std::string personal;
     if (vtksys::SystemTools::ReadRegistryValue(
           "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders;Personal", // or ;AppData
           personal)) 
@@ -3186,7 +3186,7 @@ void vtkKWApplication::DisplayTclInteractor(vtkKWTopLevel *master)
       }
     if (master)
       {
-      vtksys_stl::string title;
+      std::string title;
       if (master->GetTitle())
         {
         title += master->GetTitle();

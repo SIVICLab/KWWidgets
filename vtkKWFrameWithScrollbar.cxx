@@ -21,7 +21,7 @@
 
 #include "Utilities/BWidgets/vtkKWBWidgetsInit.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWFrameWithScrollbar );
@@ -91,7 +91,7 @@ void vtkKWFrameWithScrollbar::CreateWidget()
 
   // Call the superclass to set the appropriate flags then create manually
 
-  vtksys_stl::string option("-relief flat -bd 2");
+  std::string option("-relief flat -bd 2");
   
   if (this->VerticalScrollbarVisibility && this->HorizontalScrollbarVisibility)
     {
@@ -139,7 +139,7 @@ void vtkKWFrameWithScrollbar::CreateWidget()
   // Create scrollbar wrappers so that we are sure it goes through the
   // theming/option database framework
 
-  vtksys_stl::string name;
+  std::string name;
   name = this->GetWidgetName();
   name += ".hscroll";
   this->Internals->HorizontalScrollbar = vtkKWScrollbar::New();

@@ -34,8 +34,8 @@
 #include "vtkKWPushButton.h"
 #include "vtkKWRadioButton.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 #define VTK_KW_COLOR_PICKER_WIDGET_SPECTRUM_TAG 0
 #define VTK_KW_COLOR_PICKER_WIDGET_COLOR_SWATCHES_TAG 1
@@ -50,7 +50,7 @@ vtkStandardNewMacro( vtkKWColorPickerWidget );
 class vtkKWColorPickerWidgetInternals
 {
 public:
-  vtksys_stl::string ScheduleUpdateInfoLabelTimerId;
+  std::string ScheduleUpdateInfoLabelTimerId;
 };
 
 //----------------------------------------------------------------------------
@@ -242,7 +242,7 @@ void vtkKWColorPickerWidget::CreateWidget()
 
   this->Superclass::CreateWidget();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
   int i, page_id;
 
   vtkKWIcon *icon = vtkKWIcon::New();
@@ -933,7 +933,7 @@ void vtkKWColorPickerWidget::Pack()
 
   this->UnpackChildren();
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   tk_cmd << "pack " << this->SlidersFrame->GetWidgetName()
          << " -padx 2 -pady 2 -side left -anchor nw -expand n -fill y" 
@@ -958,7 +958,7 @@ void vtkKWColorPickerWidget::AdjustToCompactMode()
   int i;
   int base_size;
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   // Compact mode
 

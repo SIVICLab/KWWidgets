@@ -30,9 +30,9 @@ vtkStandardNewMacro( vtkKWMenuButton );
 class vtkKWMenuButtonInternals
 {
 public:
-  vtksys_stl::string ScheduleUpdateMenuButtonLabelTimerId;
+  std::string ScheduleUpdateMenuButtonLabelTimerId;
   int WidgetWidthAtPreviousLabelCrop;
-  vtksys_stl::string ValueAtPreviousLabelCrop;
+  std::string ValueAtPreviousLabelCrop;
 
 };
 
@@ -273,14 +273,14 @@ void vtkKWMenuButton::UpdateMenuButtonLabel()
   // The code below takes care of it (if the user didn't interfere, it will
   // return the selected value, which was already set to match the label)
 
-  vtksys_stl::string varname(this->Menu->GetTclName());
+  std::string varname(this->Menu->GetTclName());
   varname += "_RB_group";
 
-  vtksys_stl::string value(this->GetValue());
+  std::string value(this->GetValue());
 
   const char *found = this->UpdateMenuButtonLabelFromMenu(
     varname.c_str(), value.c_str(), this->Menu);
-  vtksys_stl::string label;
+  std::string label;
   if (!found)
     {
     found = value.c_str(); // nothing found, use the value directly
@@ -340,7 +340,7 @@ void vtkKWMenuButton::UpdateMenuButtonLabel()
           // Otherwise shrink the label until we find something that fits
           // TODO: this can be optimized of course with binary search
           size_t length = strlen(found);
-          vtksys_stl::string cropped;
+          std::string cropped;
           do 
             {
             cropped = vtksys::SystemTools::CropString(found, --length);
@@ -357,7 +357,7 @@ void vtkKWMenuButton::UpdateMenuButtonLabel()
       {
       // Adjust the text width to a maximum custom width in characters
 
-      vtksys_stl::string cropped = vtksys::SystemTools::CropString(
+      std::string cropped = vtksys::SystemTools::CropString(
         found, (size_t)this->MaximumLabelWidth);
       this->SetConfigurationOption("-text", cropped.c_str());
       }
@@ -796,7 +796,7 @@ void vtkKWMenuButton::ProcessCallbackCommandEvents(vtkObject *caller,
 
   vtkKWMenu *caller_menu = vtkKWMenu::SafeDownCast(caller);
   vtkKWMenu *cascade_menu = NULL;
-  vtksys_stl::string varname;
+  std::string varname;
 
   if (caller_menu)
     {

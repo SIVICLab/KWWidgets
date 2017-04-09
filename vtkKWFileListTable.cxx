@@ -35,8 +35,8 @@
 #include "vtkDirectory.h"
 #include "vtkObjectFactory.h"
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 #include <vtksys/Glob.hxx>
 #include <sys/stat.h>
 #include <time.h>
@@ -77,7 +77,7 @@ public:
     this->NumberThousandsSeparator = '\0';
   }
   
-  vtksys_stl::string FolderImage;
+  std::string FolderImage;
   bool SortedOrder; //true, increasing; false, decreasing
   char NumberThousandsSeparator;
 };
@@ -575,10 +575,10 @@ const char *vtkKWFileListTable::GetNthSelectedFileName(int i)
 //----------------------------------------------------------------------------
 char* vtkKWFileListTable::GetRowFileName(int row)
 {
-  vtksys_stl::string fullname = this->GetParentDirectory();
+  std::string fullname = this->GetParentDirectory();
   if (!fullname.empty())
     {
-    vtksys_stl::string filename = this->GetCellText(row, 0);
+    std::string filename = this->GetCellText(row, 0);
     if (!KWFileBrowser_HasTrailingSlash(fullname.c_str()))
       {
       fullname += KWFileBrowser_PATH_SEPARATOR;
@@ -603,24 +603,24 @@ int vtkKWFileListTable::ShowFileList(
     return 0;
     }
 
-  vtksys_stl::string parentpath = inpath;
+  std::string parentpath = inpath;
   vtkKWTkUtilities::SetTopLevelMouseCursor(this, "watch");
 
   // Check if we need use pattern filters
 
   bool bUsePattern = false;
-  vtkstd::vector<vtkstd::string> filenames;
+  std::vector<std::string> filenames;
   if (filepattern && *filepattern)
     {
-    vtksys_stl::string fullPattern = filepattern;
-    if (fullPattern.find("*") != vtksys_stl::string::npos ||
-        fullPattern.find("?") != vtksys_stl::string::npos)
+    std::string fullPattern = filepattern;
+    if (fullPattern.find("*") != std::string::npos ||
+        fullPattern.find("?") != std::string::npos)
       {
       bUsePattern = true;
       vtksys::Glob glob;
       glob.RecurseOff();
 
-      vtkstd::vector<vtkstd::string> components;
+      std::vector<std::string> components;
       vtksys::SystemTools::SplitPath(fullPattern.c_str(), components);
 
       // If Pattern is a relative path, prepend with Directory
@@ -648,8 +648,8 @@ int vtkKWFileListTable::ShowFileList(
   // Check if we need use extension filters
 
   bool bUseExt = false;  
-  vtksys_stl::vector<vtksys_stl::string> fileexts;
-  vtksys_stl::vector<vtksys_stl::string>::iterator it;
+  std::vector<std::string> fileexts;
+  std::vector<std::string>::iterator it;
   
   // The pattern filter should overwrite extension filter.
 
@@ -713,11 +713,11 @@ int vtkKWFileListTable::ShowFileList(
 
   bool dotfound = false, dotdotfound = false;
 
-  vtksys_ios::ostringstream tk_filecmd, tk_foldercmd, tk_configcelllist;
+  std::ostringstream tk_filecmd, tk_foldercmd, tk_configcelllist;
   const char *listname = filelist->GetWidgetName();
 
   int folder_index = 0; 
-  vtksys_stl::string filename = "",fullname = "";
+  std::string filename = "",fullname = "";
   const char* image_name = this->Internals->FolderImage.c_str();
    
   struct stat fs;
@@ -727,7 +727,7 @@ int vtkKWFileListTable::ShowFileList(
     parentpath += KWFileBrowser_PATH_SEPARATOR;
     }
       
-  vtksys_stl::string::size_type dot_pos;
+  std::string::size_type dot_pos;
 
   for (int i = 0; i < num_files; i++)
     {
@@ -751,7 +751,7 @@ int vtkKWFileListTable::ShowFileList(
     // To fully handle a directory or file name containing slash, 
     // we need to modify some methods in vtkDirectory and vtksys::SystemTools. 
 
-    if(filename.find("\\") != vtksys_stl::string::npos)
+    if(filename.find("\\") != std::string::npos)
       {
       vtkWarningMacro(
         << "KWFileListTable currently does not support dir or file name containing slash \""
@@ -797,7 +797,7 @@ int vtkKWFileListTable::ShowFileList(
         for(it = fileexts.begin(); it != fileexts.end(); it++)
           {
           dot_pos = filename.rfind(".");
-          if (dot_pos != vtksys_stl::string::npos &&
+          if (dot_pos != std::string::npos &&
               strcmp((*it).c_str(), filename.substr(dot_pos).c_str()) == 0)
             {
             // The ++size is for sorting 0-byte files (become 1 byte) 
@@ -854,7 +854,7 @@ int vtkKWFileListTable::ShowFileList(
 
   if (tk_configcelllist.str() != "")
     {
-    vtksys_ios::ostringstream tk_configcellcmd;
+    std::ostringstream tk_configcellcmd;
     tk_configcellcmd << listname << " configcells "
       << tk_configcelllist.str() << endl;
     vtkKWTkUtilities::EvaluateSimpleString(
@@ -900,7 +900,7 @@ void vtkKWFileListTable::SelectFileName(const char* filename)
   
   vtkKWMultiColumnList *filelist = this->FileList->GetWidget();
   int numRows = filelist->GetNumberOfRows();
-  vtksys_stl::string shortname = 
+  std::string shortname = 
     vtksys::SystemTools::GetFilenameName(filename);
   for(int i = 0; i < numRows; i++)
     {
@@ -931,7 +931,7 @@ void vtkKWFileListTable::DeselectFileName(const char* filename)
     {
     int *indices = new int [selrows];
     filelist->GetSelectedRows(indices);
-    vtksys_stl::string shortname = 
+    std::string shortname = 
       vtksys::SystemTools::GetFilenameName(filename);
     for(int i = 0; i < selrows; i++)
       {
@@ -1014,8 +1014,8 @@ char * vtkKWFileListTable::GetFormatSizeStringCallback(
       sprintf(buffer, "%d", 
               vtkMath::Round(ceil((double)(u-1)/1024)));
       // put in the thousand sep if necessary  
-      vtksys_stl::string outStr = buffer;
-      vtksys_stl::string tmpStr = buffer;
+      std::string outStr = buffer;
+      std::string tmpStr = buffer;
       while (tmpStr.size() > 3)
         {
         outStr.insert(tmpStr.size() - 3, 1, 
@@ -1074,11 +1074,11 @@ void vtkKWFileListTable::FileDoubleClickCallback()
     int selrows = this->FileList->GetWidget()->GetNumberOfSelectedRows();
     int *indices = new int [selrows];
     this->FileList->GetWidget()->GetSelectedRows(indices);
-    vtksys_stl::string fullname = this->GetParentDirectory();
+    std::string fullname = this->GetParentDirectory();
 
     if (!fullname.empty())
       {
-      vtksys_stl::string filename = this->GetCellText(indices[0], 0);
+      std::string filename = this->GetCellText(indices[0], 0);
       if (!KWFileBrowser_HasTrailingSlash(fullname.c_str()))
         {
         fullname += KWFileBrowser_PATH_SEPARATOR;
@@ -1114,7 +1114,7 @@ void vtkKWFileListTable::KeyHomeEndNavigationCallback(
   if (this->FileList->GetWidget()->GetNumberOfSelectedRows() > 0 &&
       key && *key)
     {
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
     const char* name = this->FileList->GetWidget()->GetWidgetName();
     if (strcmp(key, "Home") == 0)
       {
@@ -1142,7 +1142,7 @@ void vtkKWFileListTable::KeyPriorNextNavigationCallback(
 {
   if (this->IsCreated() && key && *key)
     {
-    vtksys_ios::ostringstream tk_cmd;
+    std::ostringstream tk_cmd;
     const char* widgetname = this->FileList->GetWidget()->GetWidgetName();
 
     tk_cmd << "upvar #0 ::tablelist::ns" 
@@ -1269,7 +1269,7 @@ int vtkKWFileListTable::RenameFileCallback()
     }
 
   int selrows = this->FileList->GetWidget()->GetNumberOfSelectedRows();
-  vtksys_stl::string parentdir = this->GetParentDirectory();
+  std::string parentdir = this->GetParentDirectory();
     
   // Prompt the user for the name of the folder  
 
@@ -1288,7 +1288,7 @@ int vtkKWFileListTable::RenameFileCallback()
   dlg->SetText(ks_("File Browser|Dialog|Enter a new name for this file"));
     
   int ok = dlg->Invoke();
-  vtksys_stl::string newname = dlg->GetEntry()->GetWidget()->GetValue();
+  std::string newname = dlg->GetEntry()->GetWidget()->GetValue();
   dlg->Delete();
   if (ok)
     {
@@ -1326,7 +1326,7 @@ int vtkKWFileListTable::RenameFileCallback()
     return 0;
     }
 
-  vtksys_stl::string filename, fullname;
+  std::string filename, fullname;
 
   // Check if the file is already created
 
@@ -1355,7 +1355,7 @@ int vtkKWFileListTable::RenameFileCallback()
     parentdir += KWFileBrowser_PATH_SEPARATOR;
     }
   fullname = parentdir + newname;
-  vtksys_stl::string oldfile = this->GetSelectedFileName();
+  std::string oldfile = this->GetSelectedFileName();
 
   if (rename(this->GetSelectedFileName(), fullname.c_str()) == 0)
     {
@@ -1366,7 +1366,7 @@ int vtkKWFileListTable::RenameFileCallback()
 
     // Setup prefix for display
 
-    vtksys_stl::string text;
+    std::string text;
     if (!vtksys::SystemTools::FileIsDirectory(fullname.c_str()))
       {
       text = "b";
@@ -1420,11 +1420,11 @@ int vtkKWFileListTable::RemoveSelectedFileCallback()
 
   int *indices = new int [selrows];
   this->FileList->GetWidget()->GetSelectedRows(indices);
-  vtksys_stl::string fullname = this->GetParentDirectory();
+  std::string fullname = this->GetParentDirectory();
 
   if (!fullname.empty())
     {
-    vtksys_stl::string filename = this->GetCellText(indices[0], 0);
+    std::string filename = this->GetCellText(indices[0], 0);
     if (!KWFileBrowser_HasTrailingSlash(fullname.c_str()))
       {
       fullname += KWFileBrowser_PATH_SEPARATOR;
@@ -1663,7 +1663,7 @@ void vtkKWFileListTable::CreateNewFolderCallback(
     return;
     }
  
-  vtksys_stl::string selfile = parentdir;
+  std::string selfile = parentdir;
   vtkKWMultiColumnList *filelist = this->FileList->GetWidget();
   if (!vtksys::SystemTools::FileIsDirectory(selfile.c_str()))
     {
@@ -1691,7 +1691,7 @@ void vtkKWFileListTable::CreateNewFolderCallback(
     ks_("File Browser|Dialog|Enter a name for this new folder"));
   
   int ok = dlg->Invoke();
-  vtksys_stl::string foldername = dlg->GetEntry()->GetWidget()->GetValue();
+  std::string foldername = dlg->GetEntry()->GetWidget()->GetValue();
   dlg->Delete();
   if (ok)
     {
@@ -1725,7 +1725,7 @@ void vtkKWFileListTable::CreateNewFolderCallback(
     return;
     }
   
-  vtksys_stl::string filename, fullname;
+  std::string filename, fullname;
 
   // Check if the folder is already created
 

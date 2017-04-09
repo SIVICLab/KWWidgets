@@ -17,7 +17,7 @@
 #include "vtkKWScrollbar.h"
 #include "@WidgetType@.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(@WidgetType@WithScrollbars);

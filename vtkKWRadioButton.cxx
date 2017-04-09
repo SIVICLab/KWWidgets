@@ -15,7 +15,7 @@
 #include "vtkKWRadioButton.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWRadioButton );
@@ -103,10 +103,10 @@ int vtkKWRadioButton::GetSelectedState()
        this->Script("expr {${%s}} == {[%s cget -value]}",
                     this->VariableName, this->GetWidgetName()));
 #else
-    vtksys_stl::string varvalue(
+    std::string varvalue(
       Tcl_GetVar(this->GetApplication()->GetMainInterp(), 
                  this->VariableName, TCL_GLOBAL_ONLY));
-    vtksys_stl::string value(this->GetConfigurationOption("-value"));
+    std::string value(this->GetConfigurationOption("-value"));
     return !strcmp(varvalue.c_str(), value.c_str());
 #endif
     }

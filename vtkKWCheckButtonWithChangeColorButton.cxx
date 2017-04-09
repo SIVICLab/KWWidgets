@@ -18,8 +18,8 @@
 #include "vtkKWCheckButton.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro(vtkKWCheckButtonWithChangeColorButton);
@@ -100,7 +100,7 @@ void vtkKWCheckButtonWithChangeColorButton::Pack()
 
   // Repack everything
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   tk_cmd << "pack " << this->CheckButton->GetWidgetName() 
          << " -side left -anchor w" << endl
@@ -158,7 +158,7 @@ void vtkKWCheckButtonWithChangeColorButton::UpdateVariableBindings()
   // Nope, we can't use the checkbutton's Command, it might be used
   // already (most likely).
 
-  vtksys_stl::string cmd(this->GetTclName());
+  std::string cmd(this->GetTclName());
   cmd += " UpdateVariableCallback";
   this->Script("trace remove variable %s {write} {%s}",
                this->CheckButton->GetVariableName(), cmd.c_str());

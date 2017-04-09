@@ -18,8 +18,8 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWMenu.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
+#include <string>
+#include <vector>
 #include <vtksys/SystemTools.hxx>
 
 //vtkCxxRevisionMacro(vtkKWMostRecentFilesManager, "$Revision: 1.20 $");
@@ -42,17 +42,17 @@ public:
     FileEntry() { this->TargetObject = NULL; };
     ~FileEntry() {};
     
-    vtksys_stl::string FileName;
+    std::string FileName;
     vtkObject          *TargetObject;
-    vtksys_stl::string TargetCommand;
-    vtksys_stl::string Label;
+    std::string TargetCommand;
+    std::string Label;
 
     int IsEqual(const char *filename, vtkObject *, const char *) 
       { return (filename && !strcmp(filename, this->FileName.c_str())); }
   };
 
-  typedef vtksys_stl::vector<FileEntry*> FileEntriesContainer;
-  typedef vtksys_stl::vector<FileEntry*>::iterator FileEntriesContainerIterator;
+  typedef std::vector<FileEntry*> FileEntriesContainer;
+  typedef std::vector<FileEntry*>::iterator FileEntriesContainerIterator;
 
   FileEntriesContainer MostRecentFileEntries;
 };
@@ -216,14 +216,14 @@ void vtkKWMostRecentFilesManager::AddFile(
     return;
     }
 
-  vtksys_stl::string filename_unix(filename);
+  std::string filename_unix(filename);
   vtksys::SystemTools::ConvertToUnixSlashes(filename_unix);
 
-  vtksys_stl::string evalstr = "eval file join {\"";
+  std::string evalstr = "eval file join {\"";
   evalstr += filename_unix;
   evalstr += "\"}";
 
-  vtksys_stl::string filename_expanded = 
+  std::string filename_expanded = 
     this->Script(evalstr.c_str());
 
   this->AddFileInternal(
@@ -534,7 +534,7 @@ void vtkKWMostRecentFilesManager::PopulateMenu(
         {
         char buffer[10];
         sprintf(buffer, "%d", count);
-        vtksys_stl::string label(buffer);
+        std::string label(buffer);
         label += " - ";
 
         int has_label = this->LabelVisibilityInMenu && (*it)->Label.size();
@@ -573,7 +573,7 @@ void vtkKWMostRecentFilesManager::PopulateMenu(
             }
           label += vtksys::SystemTools::CropString(
             this->BaseNameVisibilityInMenu ?
-            vtksys_stl::string(filename) : 
+            std::string(filename) : 
             vtksys::SystemTools::GetFilenamePath(filename), 40);
           if (has_label)
             {
@@ -584,7 +584,7 @@ void vtkKWMostRecentFilesManager::PopulateMenu(
         int index;
         if (target_command)
           {
-          vtksys_stl::string cmd(target_command);
+          std::string cmd(target_command);
           cmd += " {";
           cmd += filename;
           cmd += "}";

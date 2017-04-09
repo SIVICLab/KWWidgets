@@ -20,7 +20,7 @@
 #include "vtkKWFrame.h"
 #include "vtkKWInternationalization.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //----------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWDialog );
@@ -164,7 +164,7 @@ void vtkKWDialog::CreateWidget()
 
   // Error log
 
-  vtksys_stl::string cmd;
+  std::string cmd;
   cmd = "DisplayLogDialog {";
   cmd += this->GetTclName();
   cmd += "}";

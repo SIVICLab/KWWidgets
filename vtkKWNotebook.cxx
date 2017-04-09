@@ -27,9 +27,9 @@
 #include "vtkKWFrameWithScrollbar.h"
 #include "vtkKWSmallCounterLabel.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/list>
-#include <vtksys/stl/algorithm>
+#include <sstream>
+#include <list>
+#include <algorithm>
 
 // The amount of horizontal padding separating each tab in the top tab row.
 
@@ -59,9 +59,9 @@ class vtkKWNotebookInternals
 {
 public:
 
-  typedef vtksys_stl::list<vtkKWNotebook::Page*> PagesContainer;
-  typedef vtksys_stl::list<vtkKWNotebook::Page*>::iterator PagesContainerIterator;
-  typedef vtksys_stl::list<vtkKWNotebook::Page*>::reverse_iterator PagesContainerReverseIterator;
+  typedef std::list<vtkKWNotebook::Page*> PagesContainer;
+  typedef std::list<vtkKWNotebook::Page*>::iterator PagesContainerIterator;
+  typedef std::list<vtkKWNotebook::Page*>::reverse_iterator PagesContainerReverseIterator;
 
   PagesContainer Pages;
   PagesContainer MostRecentPages;
@@ -369,7 +369,7 @@ void vtkKWNotebook::CreateWidget()
   this->TabBalloonHelpManager->SetApplication(this->GetApplication());
   this->TabBalloonHelpManager->SetDelay(400);
 
-  vtksys_ios::ostringstream cmd;
+  std::ostringstream cmd;
 
   this->SetWidth(this->MinimumWidth);
   this->SetHeight(this->MinimumHeight);
@@ -890,7 +890,7 @@ void vtkKWNotebook::BuildPage(vtkKWNotebook::Page *page,
                               const char *balloon, 
                               vtkKWIcon *icon)
 {
-  vtksys_ios::ostringstream cmd;
+  std::ostringstream cmd;
 
   // Create the page frame (this is where user-defined widgets will be packed)
 
@@ -1110,7 +1110,7 @@ int vtkKWNotebook::RemovePage(vtkKWNotebook::Page *page)
   // Remove the page from the container
 
   vtkKWNotebookInternals::PagesContainerIterator pos = 
-    vtksys_stl::find(this->Internals->Pages.begin(),
+    std::find(this->Internals->Pages.begin(),
                  this->Internals->Pages.end(),
                  page);
 
@@ -1222,7 +1222,7 @@ void vtkKWNotebook::RaisePage(vtkKWNotebook::Page *page)
 
   // Show the tab body
 
-  vtksys_ios::ostringstream cmd;
+  std::ostringstream cmd;
   cmd << "pack " << page->Frame->GetWidgetName() 
       << " -fill both -anchor n -expand 1" 
       << endl;
@@ -1282,7 +1282,7 @@ void vtkKWNotebook::ShowPageTab(vtkKWNotebook::Page *page)
     return;
     }
 
-  vtksys_ios::ostringstream cmd;
+  std::ostringstream cmd;
   cmd << "pack " << page->TabFrame->GetWidgetName() << " -side left -anchor s";
 
   // If the tab was not packed, we are about to bring up a new page tab
@@ -1358,7 +1358,7 @@ void vtkKWNotebook::LowerPage(vtkKWNotebook::Page *page)
     return;
     }
   
-  vtksys_ios::ostringstream cmd;
+  std::ostringstream cmd;
 
   // Unpack the page
 
@@ -1978,7 +1978,7 @@ int vtkKWNotebook::AddToMostRecentPages(vtkKWNotebook::Page *page)
     }
 
   vtkKWNotebookInternals::PagesContainerIterator pos = 
-    vtksys_stl::find(this->Internals->MostRecentPages.begin(),
+    std::find(this->Internals->MostRecentPages.begin(),
                  this->Internals->MostRecentPages.end(),
                  page);
 
@@ -2000,7 +2000,7 @@ int vtkKWNotebook::RemoveFromMostRecentPages(vtkKWNotebook::Page *page)
     }
 
   vtkKWNotebookInternals::PagesContainerIterator pos = 
-    vtksys_stl::find(this->Internals->MostRecentPages.begin(),
+    std::find(this->Internals->MostRecentPages.begin(),
                  this->Internals->MostRecentPages.end(),
                  page);
 
@@ -2331,7 +2331,7 @@ void vtkKWNotebook::PageTabContextMenuCallback(int id, int x, int y)
   
   // Visibility
 
-  vtksys_ios::ostringstream visibility;
+  std::ostringstream visibility;
   visibility << "TogglePageVisibilityCallback " << id;
 
   int index;
@@ -2347,7 +2347,7 @@ void vtkKWNotebook::PageTabContextMenuCallback(int id, int x, int y)
 
   if (this->PagesCanBePinned)
     {
-    vtksys_ios::ostringstream pin;
+    std::ostringstream pin;
     pin << "TogglePagePinnedCallback " << id;
 
     index = this->TabPopupMenu->InsertCheckButton(
@@ -2741,7 +2741,7 @@ void vtkKWNotebook::SetShowIcons(int arg)
 
   // Pack or unpack the icons if needed
 
-  vtksys_ios::ostringstream cmd;
+  std::ostringstream cmd;
 
   if (this->Internals)
     {

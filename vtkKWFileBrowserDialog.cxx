@@ -54,9 +54,9 @@ public:
     this->GeometryRegKey = "KWFileBrowserGeometry";
   }
   
-  vtksys_stl::string CurrentFileExtensions;
-  vtksys_stl::string CurrentSelectedFileNames;
-  vtksys_stl::string GeometryRegKey;
+  std::string CurrentFileExtensions;
+  std::string CurrentSelectedFileNames;
+  std::string GeometryRegKey;
 
   int IsEditingFileName;
 };
@@ -428,7 +428,7 @@ void vtkKWFileBrowserDialog::RestoreGeometryFromRegistry()
     char value[vtkKWRegistryHelper::RegistryKeyValueSizeMax];
     int width = 0, height = 0;
     
-    vtksys_stl::string widthKey, heightKey;
+    std::string widthKey, heightKey;
     if(this->ChooseDirectory)
       {
       widthKey = "DirExplorerDialogWidth";
@@ -563,7 +563,7 @@ void vtkKWFileBrowserDialog::Display()
 
     if (this->FileTypesBox->GetNumberOfValues() > 0)
       {
-      vtksys_stl::string buffer(this->FileTypesBox->GetValueFromIndex(0));
+      std::string buffer(this->FileTypesBox->GetValueFromIndex(0));
       this->FileTypesBox->SetValue(buffer.c_str());
       this->FileTypeChangedCallback(buffer.c_str());
       }
@@ -609,7 +609,7 @@ int vtkKWFileBrowserDialog::SetupInitialSelectedFiles()
     }
   else
     {
-    vtksys_stl::string selDir = vtksys::SystemTools::GetFilenamePath(
+    std::string selDir = vtksys::SystemTools::GetFilenamePath(
       this->InitialSelecttedFileNames->GetValue(0));
     if(!this->FileBrowserWidget->OpenDirectory(selDir.c_str()))
       {
@@ -670,7 +670,7 @@ void vtkKWFileBrowserDialog::SetFileTypes(const char* _arg)
     this->PopulateFileTypes();
     if (this->FileTypesBox->GetNumberOfValues() > 0)
       {
-      vtksys_stl::string buffer(this->FileTypesBox->GetValueFromIndex(0));
+      std::string buffer(this->FileTypesBox->GetValueFromIndex(0));
       this->FileTypesBox->SetValue(buffer.c_str());
       this->FileTypeChangedCallback(buffer.c_str());
       }
@@ -736,11 +736,11 @@ void vtkKWFileBrowserDialog::PopulateFileTypes()
     
   vtksys::RegularExpression filetyperegexp(
     "{ *{([^}]+)} +{[^\\.]*([^}]+)} *}");
-  vtksys_stl::vector<vtksys_stl::string> filetypes;
-  vtksys_stl::string filetypetext;
-  vtksys_stl::string filetypeext;
+  std::vector<std::string> filetypes;
+  std::string filetypetext;
+  std::string filetypeext;
 
-  vtksys_stl::string strfiletypes = this->GetFileTypes();
+  std::string strfiletypes = this->GetFileTypes();
 
   while (filetyperegexp.find(strfiletypes))
     {
@@ -897,7 +897,7 @@ int vtkKWFileBrowserDialog::FileOK()
 
   if (num_files > 1)
     {
-    vtksys_stl::string selfile;
+    std::string selfile;
     for (int i = 0; i < num_files; i++)
       {
       selfile = 
@@ -949,7 +949,7 @@ int vtkKWFileBrowserDialog::FileOK()
     
     // Allow user to input a full or relative path directly in the filename box
 
-    vtksys_stl::string fullname;
+    std::string fullname;
     if (vtksys::SystemTools::FileIsFullPath(realname))
       {
       fullname = realname;
@@ -990,7 +990,7 @@ int vtkKWFileBrowserDialog::FileOK()
         (!vtksys::SystemTools::FileExists(fullname.c_str()) 
         || this->SaveDialog ))
       {
-      vtksys_stl::string ext = 
+      std::string ext = 
         vtksys::SystemTools::GetFilenameExtension(fullname.c_str());
       if (ext.size() == 0)
         {
@@ -998,9 +998,9 @@ int vtkKWFileBrowserDialog::FileOK()
          this->GetFileBrowserWidget()->GetFileListTable()->GetFileExtensions();
         if (extensions && *extensions)
           {
-          vtksys_stl::vector<vtksys_stl::string> extensions_v;
+          std::vector<std::string> extensions_v;
           vtksys::SystemTools::Split(extensions, extensions_v, ' ');
-          vtksys_stl::string firstext = *extensions_v.begin();
+          std::string firstext = *extensions_v.begin();
           if (firstext.size() >= 2 && firstext[0] == '.')
             {
             fullname.append(firstext);
@@ -1042,9 +1042,9 @@ int vtkKWFileBrowserDialog::FileOK()
       return 1;
       }
     
-    vtksys_stl::string fullPattern = realname;
-    if(fullPattern.find("*") == vtksys_stl::string::npos &&
-      fullPattern.find("?") == vtksys_stl::string::npos)
+    std::string fullPattern = realname;
+    if(fullPattern.find("*") == std::string::npos &&
+      fullPattern.find("?") == std::string::npos)
       {
       this->FileBrowserWidget->FilterFilesByExtensions(
         this->Internals->CurrentFileExtensions.c_str());
@@ -1063,7 +1063,7 @@ int vtkKWFileBrowserDialog::FileOK()
 
   if (num_files == 1)
     {
-    vtksys_stl::string fullname = 
+    std::string fullname = 
       this->FileBrowserWidget->GetFileListTable()->GetNthSelectedFileName(0);
     if (vtksys::SystemTools::FileIsDirectory(fullname.c_str()))
       {
@@ -1082,7 +1082,7 @@ int vtkKWFileBrowserDialog::FileOK()
 //----------------------------------------------------------------------------
 int vtkKWFileBrowserDialog::ConfirmOverwrite(const char* filename)
 {
-  vtksys_stl::string message = "The file, ";
+  std::string message = "The file, ";
   message.append(filename).append(
     ", already exists. \n Do you want to overwrite it?");
   return vtkKWMessageDialog::PopupYesNo( 
@@ -1102,17 +1102,17 @@ int vtkKWFileBrowserDialog::OpenMultipleFileNames(const char* inputnames)
     return 0;
     }
 
-  vtksys_stl::string filenames = inputnames;
+  std::string filenames = inputnames;
 
   // If there are multiple filenames input, the filenames will/have to be
   // put in double quote and separated by space
 
-  if(filenames.find("\"") == vtksys_stl::string::npos)
+  if(filenames.find("\"") == std::string::npos)
     {
     return 0;
     }
 
-  vtksys_stl::string parentDir = 
+  std::string parentDir = 
     this->FileBrowserWidget->GetFileListTable()->GetParentDirectory();
   if (!KWFileBrowser_HasTrailingSlash(parentDir.c_str()))
     {
@@ -1120,8 +1120,8 @@ int vtkKWFileBrowserDialog::OpenMultipleFileNames(const char* inputnames)
     }
 
   vtksys::RegularExpression filenamesregexp("\"[^\"]+\"");
-  vtksys_stl::string filename;
-  vtksys_stl::string fullfilename;
+  std::string filename;
+  std::string fullfilename;
 
   while (filenamesregexp.find(filenames))
     {
@@ -1150,7 +1150,7 @@ int vtkKWFileBrowserDialog::OpenMultipleFileNames(const char* inputnames)
       }
     else if(!this->SaveDialog)
       {
-      vtksys_stl::string message;
+      std::string message;
       message.append("The input file name (").append(filename).append(
         ") does not exist!");
       vtkKWMessageDialog::PopupMessage(
@@ -1179,7 +1179,7 @@ void vtkKWFileBrowserDialog::SetFileName(const char *arg)
     return;
     }
 
-  vtksys_stl::string currPath;
+  std::string currPath;
   if(arg)
     {
     currPath = arg;
@@ -1279,11 +1279,11 @@ void vtkKWFileBrowserDialog::FileTypeChangedCallback(
   if (this->FileBrowserWidget->IsCreated() 
       && fileextensions && *fileextensions)
     {
-    vtksys_stl::string fileexts = fileextensions;
+    std::string fileexts = fileextensions;
 
-    vtksys_stl::string::size_type pos1 = fileexts.rfind("(");
-    vtksys_stl::string::size_type pos2 = fileexts.rfind(")");
-    if (pos1 != vtksys_stl::string::npos && pos2 != vtksys_stl::string::npos)
+    std::string::size_type pos1 = fileexts.rfind("(");
+    std::string::size_type pos2 = fileexts.rfind(")");
+    if (pos1 != std::string::npos && pos2 != std::string::npos)
       {
       fileexts = fileexts.substr(pos1+1, pos2-pos1-1).c_str();
       this->FileBrowserWidget->FilterFilesByExtensions(fileexts.c_str());
@@ -1308,8 +1308,8 @@ const char* vtkKWFileBrowserDialog::GenerateLastPath(
 {
   if (path && *path)
     {
-    vtksys_stl::string s(path);
-    vtksys_stl::string p = vtksys::SystemTools::GetFilenamePath(s);
+    std::string s(path);
+    std::string p = vtksys::SystemTools::GetFilenamePath(s);
     this->SetLastPath(p.c_str());
     }
   else

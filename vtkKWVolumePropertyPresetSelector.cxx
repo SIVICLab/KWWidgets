@@ -29,7 +29,7 @@
 #include "vtkKWMenu.h"
 #include "vtkVolumeMapper.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 #define VTK_KW_WLPS_TOLERANCE 0.005
 
@@ -46,10 +46,10 @@ public:
   
   // User slot name for the default fields
   
-  vtksys_stl::string TypeSlotName;
-  vtksys_stl::string IndependentComponentsSlotName;
-  vtksys_stl::string HistogramFlagSlotName;
-  vtksys_stl::string BlendModeSlotName;
+  std::string TypeSlotName;
+  std::string IndependentComponentsSlotName;
+  std::string HistogramFlagSlotName;
+  std::string BlendModeSlotName;
 
   // Range constraint
 

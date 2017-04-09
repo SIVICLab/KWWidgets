@@ -26,9 +26,9 @@
 #include "vtkObjectFactory.h"
 #include "vtkCommand.h"
 
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/map>
+#include <string>
+#include <vector>
+#include <map>
 #include <vtksys/SystemTools.hxx>
 
 //vtkCxxRevisionMacro(vtkKWKeyBindingsManager, "1.15");
@@ -43,11 +43,11 @@ public:
   {
   public:
     vtkObject *Target;
-    vtksys_stl::string Binding;
+    std::string Binding;
     vtkObject *CallbackObject;
-    vtksys_stl::string CallbackCommand;
-    vtksys_stl::string Context;
-    vtksys_stl::string Description;
+    std::string CallbackCommand;
+    std::string Context;
+    std::string Description;
 
     void Update(vtkObject *target, 
                 const char *binding, 
@@ -61,9 +61,9 @@ public:
   // In a struct to avoid Compiler Warning (level 1) C4503
   struct EntriesContainer
   {
-    vtksys_stl::vector<KeyBinding> Container;
+    std::vector<KeyBinding> Container;
   };
-  typedef vtksys_stl::vector<KeyBinding>::iterator EntriesIterator;
+  typedef std::vector<KeyBinding>::iterator EntriesIterator;
 
   // Faster access:
   // container[target][binding][callback object] = vector of key bindings
@@ -71,27 +71,27 @@ public:
   // Faster access: map of callback object to keybindings that have that
   // same callback object
 
-  typedef vtksys_stl::map<vtkObject*, EntriesContainer> ObjectToEntriesContainer;
-  typedef vtksys_stl::map<vtkObject*, EntriesContainer>::iterator ObjectToEntriesIterator;
+  typedef std::map<vtkObject*, EntriesContainer> ObjectToEntriesContainer;
+  typedef std::map<vtkObject*, EntriesContainer>::iterator ObjectToEntriesIterator;
 
   // Faster access: map of binding (i.e. event) to (map of callback object to
   // keybindings)
 
-  typedef vtksys_stl::map<vtksys_stl::string, ObjectToEntriesContainer> BindingToObjectContainer;
-  typedef vtksys_stl::map<vtksys_stl::string, ObjectToEntriesContainer>::iterator BindingToObjectIterator;
+  typedef std::map<std::string, ObjectToEntriesContainer> BindingToObjectContainer;
+  typedef std::map<std::string, ObjectToEntriesContainer>::iterator BindingToObjectIterator;
 
   // Faster access: map of target to binding  (i.e. event) to
   // (map of callback object to keybindings)
 
-  typedef vtksys_stl::map<vtkObject*, BindingToObjectContainer> ObjectToBindingContainer;
-  typedef vtksys_stl::map<vtkObject*, BindingToObjectContainer>::iterator ObjectToBindingIterator;
+  typedef std::map<vtkObject*, BindingToObjectContainer> ObjectToBindingContainer;
+  typedef std::map<vtkObject*, BindingToObjectContainer>::iterator ObjectToBindingIterator;
 
   ObjectToBindingContainer ObjectToBindings;
 
   // String to string, cache the pretty objects
 
-  typedef vtksys_stl::map<vtksys_stl::string, vtksys_stl::string> StringToStringContainer;
-  typedef vtksys_stl::map<vtksys_stl::string, vtksys_stl::string>::iterator StringToStringIterator;
+  typedef std::map<std::string, std::string> StringToStringContainer;
+  typedef std::map<std::string, std::string>::iterator StringToStringIterator;
 
   StringToStringContainer BindingToPrettyBinding;
   StringToStringContainer ContextToPrettyContext;
@@ -535,7 +535,7 @@ const char* vtkKWKeyBindingsManager::GetPrettyBinding(const char *binding)
 
   // Assign to string in cache container
 
-  vtksys_stl::string &pretty = 
+  std::string &pretty = 
     this->Internals->BindingToPrettyBinding[binding];
   pretty.append(begin, end);
 
@@ -558,7 +558,7 @@ const char* vtkKWKeyBindingsManager::GetPrettyBinding(const char *binding)
       (pretty_size >= 2 && pretty[pretty_size - 2] == '+'))
     {
     pretty[pretty_size - 1] = 
-      static_cast<vtksys_stl::string::value_type>(
+      static_cast<std::string::value_type>(
         toupper(pretty[pretty_size - 1]));
     }
 
@@ -601,7 +601,7 @@ const char* vtkKWKeyBindingsManager::GetPrettyContext(const char *context)
     
   // Assign to string in cache container
 
-  vtksys_stl::string &pretty = 
+  std::string &pretty = 
     this->Internals->ContextToPrettyContext[context];
   pretty.append(begin, end);
 
@@ -628,7 +628,7 @@ void vtkKWKeyBindingsManager::SetKeyBindingsFromEventMap(
     return;
     }
 
-  vtksys_stl::string binding;
+  std::string binding;
   int i;
 
   // Keys

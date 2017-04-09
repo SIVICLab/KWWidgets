@@ -33,9 +33,9 @@
 #include "vtkObjectFactory.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/list>
+#include <sstream>
+#include <string>
+#include <list>
 #include <time.h>
 
 #define MAX_NUMBER_OF_RECORDS 5000
@@ -59,18 +59,18 @@ public:
     vtkIdType             Id;
     int                   Type;
     unsigned int          Time;
-    vtksys_stl::string    Description;
+    std::string    Description;
   };
   
-  typedef vtksys_stl::list<Record> RecordContainerType;
-  typedef vtksys_stl::list<Record>::iterator RecordContainerIterator;
+  typedef std::list<Record> RecordContainerType;
+  typedef std::list<Record>::iterator RecordContainerIterator;
 
   RecordContainerType RecordContainer;
   
-  vtksys_stl::string ErrorImage;
-  vtksys_stl::string WarningImage; 
-  vtksys_stl::string InformationImage; 
-  vtksys_stl::string DebugImage; 
+  std::string ErrorImage;
+  std::string WarningImage; 
+  std::string InformationImage; 
+  std::string DebugImage; 
 };
 
 //----------------------------------------------------------------------------
@@ -540,10 +540,10 @@ int vtkKWLogWidget::WriteRecordsToFile(const char* filename)
 //----------------------------------------------------------------------------
 int vtkKWLogWidget::EmailRecords(const char *recipient)
 {
-  vtksys_ios::ostringstream email_subject;
+  std::ostringstream email_subject;
   this->GetApplication()->AddEmailFeedbackSubject(email_subject);
 
-  vtksys_ios::ostringstream message;
+  std::ostringstream message;
   this->GetApplication()->AddEmailFeedbackBody(message);
   message << endl;
 
@@ -736,7 +736,7 @@ int vtkKWLogWidget::AddRecord(
   int newline_pos = (int)record.Description.find_first_of('\n');
   if (newline_pos > 0 && newline_pos < (int)record.Description.length())
     {
-    vtksys_stl::string celltext = record.Description.substr(
+    std::string celltext = record.Description.substr(
       0, newline_pos).append("...");
     tablelist->SetCellText(0, 3, celltext.c_str());
     }
@@ -843,7 +843,7 @@ void vtkKWLogWidget::SelectionChangedCallback()
     
     if (this->Internals->RecordContainer.size() > 0)
       {
-      vtksys_ios::ostringstream text;
+      std::ostringstream text;
       if (nb_selected_rows > 1)
         {
         for (int i=0; i<nb_selected_rows; i++)

@@ -14,9 +14,9 @@
 #include "vtkKWWin32RegistryHelper.h"
 
 #include "vtkObjectFactory.h"
-#include <vtksys/stl/string>
+#include <string>
 #include <stdlib.h>
-#include <vtksys/ios/sstream> 
+#include <sstream> 
 
 //vtkCxxRevisionMacro(vtkKWWin32RegistryHelper, "$Revision: 1.7 $");
 vtkStandardNewMacro( vtkKWWin32RegistryHelper );
@@ -43,7 +43,7 @@ int vtkKWWin32RegistryHelper::OpenInternal(const char *toplevel,
                                            int readonly)
 {
   int res = 0;
-  vtksys_ios::ostringstream str;
+  std::ostringstream str;
   if ( this->GetGlobalScope() )
     {
     str << "HKEY_LOCAL_MACHINE\\";
@@ -67,11 +67,11 @@ int vtkKWWin32RegistryHelper::OpenInternal(const char *toplevel,
 int vtkKWWin32RegistryHelper::OpenInternal(const char *key, int readonly)
 {
   int res = 0;
-  vtksys_stl::string primary = key;
-  vtksys_stl::string second;
+  std::string primary = key;
+  std::string second;
  
   size_t start = primary.find("\\");
-  if (start == vtksys_stl::string::npos)
+  if (start == std::string::npos)
     {
     return res;
     }

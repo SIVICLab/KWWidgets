@@ -23,7 +23,7 @@
 #include "vtkKWTextWithScrollbars.h"
 #include "vtkObjectFactory.h"
 
-#include <vtksys/stl/string>
+#include <string>
 
 //-------------------------------------------------------------------------
 vtkStandardNewMacro( vtkKWTclInteractor );
@@ -144,7 +144,7 @@ void vtkKWTclInteractor::EvaluateCallback()
   char buffer_tag[32];
   sprintf(buffer_tag, "%d", this->CommandIndex);
 
-  vtksys_stl::string entry(this->CommandEntry->GetValue());
+  std::string entry(this->CommandEntry->GetValue());
 
   this->DisplayText->GetWidget()->AppendText(entry.c_str(), buffer_tag);
   this->DisplayText->GetWidget()->AppendText("\n");
@@ -164,7 +164,7 @@ void vtkKWTclInteractor::EvaluateCallback()
     }
   this->UnRegister(this);
 
-  vtksys_stl::string res(this->Script("set _tmp_err"));
+  std::string res(this->Script("set _tmp_err"));
   this->DisplayText->GetWidget()->AppendText(res.c_str());
   this->DisplayText->GetWidget()->AppendText("\n\n");
 

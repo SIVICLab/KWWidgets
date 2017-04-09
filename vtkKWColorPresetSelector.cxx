@@ -34,7 +34,7 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #include "vtkKWIcon.h"
 #include "vtkKWRegistryHelper.h"
 
-#include <vtksys/ios/sstream>
+#include <sstream>
 
 const char *vtkKWColorPresetSelector::ColorColumnName = "Color";
 
@@ -360,7 +360,7 @@ void vtkKWColorPresetSelector::SavePresetsToRegistry()
       color->SetName("color");
       color->SetVectorAttribute("rgb", 3, rgb);
       color->SetAttribute("comment", this->GetPresetComment(id));
-      vtksys_ios::ostringstream c_time_str;
+      std::ostringstream c_time_str;
       c_time_str << this->GetPresetCreationTime(id);
       color->SetAttribute("c_time", c_time_str.str().c_str());
       colors->AddNestedElement(color);
@@ -368,7 +368,7 @@ void vtkKWColorPresetSelector::SavePresetsToRegistry()
       }
     }
 
-  vtksys_ios::ostringstream str;
+  std::ostringstream str;
   vtkXMLUtilities::FlattenElement(colors, str, NULL, 0);
   colors->Delete();
   
@@ -422,7 +422,7 @@ void vtkKWColorPresetSelector::RestorePresetsFromRegistry()
         const char *c_time_ptr = color->GetAttribute("c_time");
         if (c_time_ptr)
           {
-          vtksys_ios::istringstream c_time_str(c_time_ptr);
+          std::istringstream c_time_str(c_time_ptr);
           vtkTypeInt64 c_time;
           c_time_str >> c_time;
           this->SetPresetCreationTime(id, c_time);

@@ -42,9 +42,9 @@
 #include "vtkWin32OpenGLRenderWindow.h"
 #endif
 
-#include <vtksys/stl/string>
-#include <vtksys/stl/vector>
-#include <vtksys/stl/map>
+#include <string>
+#include <vector>
+#include <map>
 
 vtkStandardNewMacro(vtkKWRenderWidget);
 //vtkCxxRevisionMacro(vtkKWRenderWidget, "$Revision: 1.171 $");
@@ -54,8 +54,8 @@ class vtkKWRenderWidgetInternals
 {
 public:
 
-  typedef vtksys_stl::vector<vtkRenderer*> RendererPoolType;
-  typedef vtksys_stl::vector<vtkRenderer*>::iterator RendererPoolIterator;
+  typedef std::vector<vtkRenderer*> RendererPoolType;
+  typedef std::vector<vtkRenderer*>::iterator RendererPoolIterator;
 
   RendererPoolType RendererPool;
   RendererPoolType OverlayRendererPool;
@@ -68,8 +68,8 @@ public:
     Tcl_TimerToken TclTimerToken;
   };
   
-  typedef vtksys_stl::map<int, TimerAdapter> TimerAdapterPoolType;
-  typedef vtksys_stl::map<int, TimerAdapter>::iterator TimerAdapterPoolTypeIterator;
+  typedef std::map<int, TimerAdapter> TimerAdapterPoolType;
+  typedef std::map<int, TimerAdapter>::iterator TimerAdapterPoolTypeIterator;
 
   TimerAdapterPoolType TimerAdapterPool;
 };

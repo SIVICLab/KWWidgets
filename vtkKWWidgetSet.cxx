@@ -18,9 +18,9 @@
 #include "vtkObjectFactory.h"
 #include "vtkKWTkUtilities.h"
 
-#include <vtksys/stl/list>
-#include <vtksys/stl/vector>
-#include <vtksys/ios/sstream> 
+#include <list>
+#include <vector>
+#include <sstream> 
 
 //----------------------------------------------------------------------------
 //vtkCxxRevisionMacro(vtkKWWidgetSet, "$Revision: 1.25 $");
@@ -37,8 +37,8 @@ public:
     vtkKWWidget *Widget;
   };
 
-  typedef vtksys_stl::vector<WidgetSlot> WidgetsContainer;
-  typedef vtksys_stl::vector<WidgetSlot>::iterator WidgetsContainerIterator;
+  typedef std::vector<WidgetSlot> WidgetsContainer;
+  typedef std::vector<WidgetSlot>::iterator WidgetsContainerIterator;
 
   WidgetsContainer Widgets;
 };
@@ -247,7 +247,7 @@ void vtkKWWidgetSet::Pack()
     return;
     }
 
-  vtksys_ios::ostringstream tk_cmd;
+  std::ostringstream tk_cmd;
 
   tk_cmd << "catch {eval grid forget [grid slaves " << this->GetWidgetName() 
          << "]}" << endl;
@@ -265,10 +265,10 @@ void vtkKWWidgetSet::Pack()
   const char *sticky = 
     (this->ExpandWidgets ? "news" : (this->PackHorizontally ? "ews" : "nsw"));
 
-  vtksys_stl::vector<int> col_used;
+  std::vector<int> col_used;
   col_used.assign(nb_widgets, 0);
 
-  vtksys_stl::vector<int> row_used;
+  std::vector<int> row_used;
   row_used.assign(nb_widgets, 0);
 
   int col = -1;

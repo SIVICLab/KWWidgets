@@ -36,10 +36,10 @@
 #include "vtkObjectFactory.h"
 
 #include <vtksys/SystemTools.hxx>
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
-#include <vtksys/stl/list>
-#include <vtksys/stl/algorithm>
+#include <sstream>
+#include <string>
+#include <list>
+#include <algorithm>
 
 #include <sys/stat.h>
 #include <time.h>
@@ -76,8 +76,8 @@ public:
  
   // Most recent directories list (history)
 
-  typedef vtksys_stl::list<vtksys_stl::string> MostRecentDirContainer;
-  typedef vtksys_stl::list<vtksys_stl::string>::iterator MostRecentDirIterator;
+  typedef std::list<std::string> MostRecentDirContainer;
+  typedef std::list<std::string>::iterator MostRecentDirIterator;
   
   MostRecentDirContainer MostRecentDirList;
   MostRecentDirIterator MostRecentDirCurrent;
@@ -85,8 +85,8 @@ public:
   const char* RootNode;
   int IsNavigatingNode;
   int IsOpeningDirectory;
-  vtksys_stl::string TempPath;
-  vtksys_stl::string FolderImage;
+  std::string TempPath;
+  std::string FolderImage;
 };
 
 //----------------------------------------------------------------------------
@@ -345,9 +345,9 @@ void vtkKWDirectoryExplorer::LoadRootDirectory()
 
 #else                   // Windows flavor
 
-  vtksys_stl::string name;
-  vtksys_stl::string realname;
-  vtksys_stl::string disklabel;
+  std::string name;
+  std::string realname;
+  std::string disklabel;
   
   char strVolName[MAX_PATH];
   char strFS[MAX_PATH];
@@ -432,7 +432,7 @@ void vtkKWDirectoryExplorer::LoadRootDirectory()
 
     if(drivetype != DRIVE_REMOTE)
       {
-      vtksys_stl::string volPath = name;
+      std::string volPath = name;
       if (GetVolumeInformation(volPath.append("\\").c_str(),
         strVolName, MAX_PATH, &serialnum, NULL,
         NULL, strFS, 
@@ -469,7 +469,7 @@ void vtkKWDirectoryExplorer::LoadRootDirectory()
     sprintf(strDirID, "%lu", dirID);
     // Be consistent with SystemTools::GetParentDirectory() returning as "C:/"
     
-    vtksys_stl::string dirname = name;
+    std::string dirname = name;
     dirname += '\\';
     this->AddDirectoryNode(this->Internals->RootNode, 
                            strDirID, 
@@ -517,14 +517,14 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
   // Check if this node has children, if yes,
   // check if those directory still there.
 
-  vtksys_stl::vector<vtksys_stl::string> children;
+  std::vector<std::string> children;
   vtksys::SystemTools::Split(
     dirtree->GetNodeChildren(node), children, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator node_it, node_end;
+  std::vector<std::string>::iterator node_it, node_end;
   int num_children = (int)children.size();
 
-  vtksys_stl::list<vtksys_stl::string> children_text;
-  vtksys_stl::list<vtksys_stl::string>::iterator node_text_it, node_text_end;
+  std::list<std::string> children_text;
+  std::list<std::string>::iterator node_text_it, node_text_end;
   
   node_it = children.begin();
   node_end =  children.end();
@@ -541,7 +541,7 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
   clock_t start = clock();
 #endif
 
-  vtksys_stl::string nodepath = dirtree->GetNodeUserData(node);
+  std::string nodepath = dirtree->GetNodeUserData(node);
 
   vtkDirectory *dir = vtkDirectory::New();
   if (!dir->Open(nodepath.c_str()))
@@ -560,10 +560,10 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
   
   // First collect all the dirs
 
-  vtksys_stl::vector<const char*> dir_list;
+  std::vector<const char*> dir_list;
   dir_list.reserve(num_files);
   bool dotfound = false, dotdotfound = false;
-  vtksys_stl::string strfilename;
+  std::string strfilename;
 
   for (int i = 0; i < num_files; i++)
     {
@@ -592,7 +592,7 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
     // needs to be considered.
 
     strfilename = filename;
-    if(strfilename.find("\\") != vtksys_stl::string::npos)
+    if(strfilename.find("\\") != std::string::npos)
       {
       vtkWarningMacro(
         << "KWDirectoryExplorer currently does not support dir name containing slash \""
@@ -611,7 +611,7 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
 #ifdef _WIN32
   // Already sorted on Win32
 #else
-  vtksys_stl::sort(dir_list.begin(), dir_list.end(), 
+  std::sort(dir_list.begin(), dir_list.end(), 
                    vtkKWDirectoryExplorerSortDirPredicate);
 #endif
 
@@ -621,20 +621,20 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
   // Have these two flags so that we do not need to do strcmp
   // for every file in the directory
 
-  vtksys_ios::ostringstream tk_cfgcmd;
-  vtksys_ios::ostringstream tk_treecmd;
+  std::ostringstream tk_cfgcmd;
+  std::ostringstream tk_treecmd;
 
   // The following variables is for checking whether a
   // directory has sub directories; if yes, then add the 
   // '+' before the tree node
 
   vtkDirectory *tmpdir = vtkDirectory::New();
-  vtksys_stl::string tmp_str, tmp_file, tmp_name;
+  std::string tmp_str, tmp_file, tmp_name;
   
-  vtksys_stl::string treecmd = dirtreename;
+  std::string treecmd = dirtreename;
   treecmd.append(" insert end ").append(node).append(" ");
   
-  vtksys_stl::string fullname = "";
+  std::string fullname = "";
   const char* image_name = this->Internals->FolderImage.c_str();
    
   if (!KWFileBrowser_HasTrailingSlash(nodepath.c_str()))
@@ -646,8 +646,8 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
   clock_t scriptstart = clock();
 #endif
 
-  vtksys_stl::vector<const char*>::iterator dir_list_it = dir_list.begin();
-  vtksys_stl::vector<const char*>::iterator dir_list_end = dir_list.end();
+  std::vector<const char*>::iterator dir_list_it = dir_list.begin();
+  std::vector<const char*>::iterator dir_list_end = dir_list.end();
 
   int nb_new_dirs = 0;
   int nb_dirs_found = 0;
@@ -762,7 +762,7 @@ void vtkKWDirectoryExplorer::UpdateDirectoryNode(const char* node)
 
 #else // Try differently? Crashs on some Unixes...
 
-      vtksys_stl::string tmpNewdir =  vtksys::SystemTools::EscapeChars(
+      std::string tmpNewdir =  vtksys::SystemTools::EscapeChars(
         fullname.c_str(), KWFileBrowser_ESCAPE_CHARS);
       
       tk_cfgcmd << "set dir \"" << tmpNewdir.c_str() << "\"" <<endl;
@@ -853,7 +853,7 @@ void vtkKWDirectoryExplorer::OpenDirectoryNode(const char* node,
 {
   // Change mouse cursor to wait.
 
-  vtksys_stl::string node_str = node;
+  std::string node_str = node;
   if (!this->DirectoryTree->GetWidget()->HasNode(node_str.c_str()))
     {
     return;
@@ -920,7 +920,7 @@ void vtkKWDirectoryExplorer::Update()
 
   this->UpdateEnableState();
 
-  vtksys_stl::string callback = "OpenDirectoryNodeCallback ";
+  std::string callback = "OpenDirectoryNodeCallback ";
 
   // History buttons
 
@@ -962,8 +962,8 @@ void vtkKWDirectoryExplorer::Update()
     vtkKWDirectoryExplorerInternals::MostRecentDirIterator it = 
       this->Internals->MostRecentDirCurrent;
           
-    vtksys_stl::string menucommand;
-    vtksys_stl::string menutext;
+    std::string menucommand;
+    std::string menutext;
     int offset = -1;
     char buff[10];
   
@@ -1039,15 +1039,15 @@ void vtkKWDirectoryExplorer::ScrollToDirectory(const char* prefix)
   if(prefix && *prefix)
     {
     vtkKWTree *dirTree = this->DirectoryTree->GetWidget();
-    vtksys_stl::string parentnode = this->GetNthSelectedNode(0);
+    std::string parentnode = this->GetNthSelectedNode(0);
 
-    vtksys_stl::vector<vtksys_stl::string> children;
+    std::vector<std::string> children;
     vtksys::SystemTools::Split(dirTree->
       GetNodeChildren(parentnode.c_str()), children, ' ');
-    vtksys_stl::vector<vtksys_stl::string>::iterator it = children.begin();
-    vtksys_stl::vector<vtksys_stl::string>::iterator end = children.end();
+    std::vector<std::string>::iterator it = children.begin();
+    std::vector<std::string>::iterator end = children.end();
 
-    vtksys_stl::string nodetext;
+    std::string nodetext;
     
     for (; it != end; it++)
       {
@@ -1066,7 +1066,7 @@ void vtkKWDirectoryExplorer::ReloadDirectoryNode(const char* node)
 {
   if (node && *node)
     {
-    vtksys_stl::string node_str = node;
+    std::string node_str = node;
     
     // Open whole tree
 
@@ -1085,11 +1085,11 @@ void vtkKWDirectoryExplorer::SelectDirectory(const char* dirname)
     {
     return;
     }
-  vtksys_stl::string dirpath = dirname;
+  std::string dirpath = dirname;
   vtkKWTree *tree =  this->DirectoryTree->GetWidget();
 
-  vtkstd::vector<vtkstd::string> nodes;
-  vtksys_stl::vector<vtksys_stl::string>::iterator it;
+  std::vector<std::string> nodes;
+  std::vector<std::string>::iterator it;
 
   // Take care of Unix root directory
   if (!strcmp(dirpath.c_str(), KWFileBrowser_UNIX_ROOT_DIRECTORY))
@@ -1131,7 +1131,7 @@ void vtkKWDirectoryExplorer::SelectDirectory(const char* dirname)
     }
   else
     {
-    vtksys_stl::string parentdir = 
+    std::string parentdir = 
       vtksys::SystemTools::GetParentDirectory(dirpath.c_str());;
 
 #ifndef _WIN32
@@ -1150,7 +1150,7 @@ void vtkKWDirectoryExplorer::SelectDirectory(const char* dirname)
       nodes.clear();
       vtksys::SystemTools::Split(
         tree->GetNodeChildren(parentnode), nodes, ' ');
-      vtksys_stl::string nodedir;
+      std::string nodedir;
       vtksys::SystemTools::ConvertToUnixSlashes(dirpath);
       for(it = nodes.begin(); it != nodes.end(); it++)
         {
@@ -1180,14 +1180,14 @@ void vtkKWDirectoryExplorer::DeselectDirectory(const char* dirname)
     return;
     }
 
-  vtksys_stl::string dirpath = dirname;
-  vtksys_stl::string nodedir;
+  std::string dirpath = dirname;
+  std::string nodedir;
   vtksys::SystemTools::ConvertToUnixSlashes(dirpath);
 
-  vtkstd::vector<vtkstd::string> selnodes;
+  std::vector<std::string> selnodes;
   vtksys::SystemTools::Split(
     this->DirectoryTree->GetWidget()->GetSelection(), selnodes, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator it;
+  std::vector<std::string>::iterator it;
 
   for(it = selnodes.begin(); it != selnodes.end(); it++)
     {
@@ -1218,12 +1218,12 @@ int vtkKWDirectoryExplorer::IsNodeSelected(const char* node)
     {
     return 0;
     }
-  vtksys_stl::string nodeId = node;
+  std::string nodeId = node;
 
-  vtkstd::vector<vtkstd::string> selnodes;
+  std::vector<std::string> selnodes;
   vtksys::SystemTools::Split(
     this->DirectoryTree->GetWidget()->GetSelection(), selnodes, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator it;
+  std::vector<std::string>::iterator it;
 
   for(it = selnodes.begin(); it != selnodes.end(); it++)
     {
@@ -1280,7 +1280,7 @@ const char* vtkKWDirectoryExplorer::ReloadDirectory(
 
   else // error
     {
-    vtksys_stl::string message = "The direcotry does not exist: \n";
+    std::string message = "The direcotry does not exist: \n";
     message.append(dirname);
     vtkKWMessageDialog::PopupMessage(
       this->GetApplication(), this, 
@@ -1299,7 +1299,7 @@ int vtkKWDirectoryExplorer::OpenDirectory(const char* dirname)
   const char* newnode = this->OpenDirectoryInternal(dirname, 1);
   if (newnode)
     {
-    vtksys_stl::string newnode_str(newnode);
+    std::string newnode_str(newnode);
     this->UpdateMostRecentDirectoryHistory(newnode_str.c_str());
     // update Back/Forward button state  
     this->Update();
@@ -1317,7 +1317,7 @@ const char* vtkKWDirectoryExplorer::OpenDirectoryInternal(
     return NULL;
     }
 
-  vtksys_stl::string path = dirname;
+  std::string path = dirname;
   // "!vtksys::SystemTools::FileIsDirectory(dirname)" does not
   // recognize "C:" or "C:/", so using vtkDirectory to check
   vtkDirectory *dir = vtkDirectory::New();
@@ -1341,10 +1341,10 @@ const char* vtkKWDirectoryExplorer::OpenDirectoryInternal(
     {
     // Get all the directories for the node layers in the tree
 
-    vtksys_stl::string rootdir = path;
-    vtksys_stl::string parentdir = 
+    std::string rootdir = path;
+    std::string parentdir = 
       vtksys::SystemTools::GetParentDirectory(path.c_str());
-    vtksys_stl::list<vtksys_stl::string> dirlist;
+    std::list<std::string> dirlist;
     dirlist.push_front(path);
 
     // Find the most upper level node for this node
@@ -1369,8 +1369,8 @@ const char* vtkKWDirectoryExplorer::OpenDirectoryInternal(
       }
   #endif  
 
-    vtksys_stl::string parentnode = this->Internals->RootNode;
-    vtksys_stl::string subdir;
+    std::string parentnode = this->Internals->RootNode;
+    std::string subdir;
     
     // Reload back each directory in the list. 
     // Make sure to only select the last directory and
@@ -1418,7 +1418,7 @@ void vtkKWDirectoryExplorer::OpenSubDirectory(
   const char* fullname, 
   int select)
 {
-  vtksys_stl::string parentnode_str = parentnode;
+  std::string parentnode_str = parentnode;
 
   const char* subnode = this->ReloadDirectory(
     parentnode_str.c_str(), fullname, select);
@@ -1545,7 +1545,7 @@ int vtkKWDirectoryExplorer::GetNumberOfSelectedDirectories()
     return 0;
     }
 
-  vtkstd::vector<vtkstd::string> selnodes;
+  std::vector<std::string> selnodes;
   vtksys::SystemTools::Split(this->DirectoryTree->GetWidget()->GetSelection(), 
                              selnodes, ' ');
 
@@ -1564,7 +1564,7 @@ const char *vtkKWDirectoryExplorer::GetNthSelectedDirectory(int i)
     return NULL;
     }
 
-  vtkstd::vector<vtkstd::string> selnodes;
+  std::vector<std::string> selnodes;
   vtksys::SystemTools::Split(this->DirectoryTree->GetWidget()->GetSelection(), 
     selnodes, ' ');
 
@@ -1580,7 +1580,7 @@ const char* vtkKWDirectoryExplorer::GetNthSelectedNode(int i)
     return NULL;
     }
 
-  vtkstd::vector<vtkstd::string> selnodes;
+  std::vector<std::string> selnodes;
   vtksys::SystemTools::Split(this->DirectoryTree->GetWidget()->GetSelection(), 
     selnodes, ' ');
 
@@ -1595,16 +1595,16 @@ const char* vtkKWDirectoryExplorer::ReloadDirectory(
   const char* dirname,
   int select)
 {
-  vtksys_stl::string nodedir, nodepath;
-  vtksys_stl::string dirpath = dirname;
+  std::string nodedir, nodepath;
+  std::string dirpath = dirname;
 
-  vtksys_stl::vector<vtksys_stl::string> children;
+  std::vector<std::string> children;
   vtksys::SystemTools::Split(
     this->DirectoryTree->GetWidget()->GetNodeChildren(parentnode), 
     children, ' ');
 
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = children.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = children.end();
+  std::vector<std::string>::iterator it = children.begin();
+  std::vector<std::string>::iterator end = children.end();
 
   // Convert the path for comparing with other path
 
@@ -1640,14 +1640,14 @@ void vtkKWDirectoryExplorer::RemoveDirectoryFromHistory(
   int oldsize = (int)this->Internals->MostRecentDirList.size();
   if (oldsize > 0)
     {
-    vtksys_stl::string node_str = node;
+    std::string node_str = node;
     vtkKWTree *tree = this->DirectoryTree->GetWidget();
     const char *nodechildren = tree->GetNodeChildren(node_str.c_str());
     if (nodechildren && *nodechildren)
       {
-      vtksys_stl::vector<vtksys_stl::string> children;
+      std::vector<std::string> children;
       vtksys::SystemTools::Split(nodechildren, children, ' ');
-      vtksys_stl::vector<vtksys_stl::string>::iterator it = children.begin();
+      std::vector<std::string>::iterator it = children.begin();
       for (; it != children.end(); it++)
         {
         this->RemoveDirectoryFromHistory((*it).c_str());
@@ -1706,13 +1706,13 @@ void vtkKWDirectoryExplorer::UpdateMostRecentDirectoryHistory(
 //----------------------------------------------------------------------------
 void vtkKWDirectoryExplorer::OpenWholeTree(const char* node)
 {
-  vtksys_stl::string node_str = node;
+  std::string node_str = node;
   if (!this->DirectoryTree->GetWidget()->HasNode(node_str.c_str()))
     {
     return;
     }
 
-  vtksys_stl::string parentnode = 
+  std::string parentnode = 
     this->DirectoryTree->GetWidget()->GetNodeParent(node_str.c_str());
 
   this->Internals->IsOpeningDirectory=1;
@@ -1743,8 +1743,8 @@ void vtkKWDirectoryExplorer::CreateNewFolderCallback()
     return;
     }
   
-  vtksys_stl::string dirnode = this->GetNthSelectedNode(0);
-  vtksys_stl::string parentdir = 
+  std::string dirnode = this->GetNthSelectedNode(0);
+  std::string parentdir = 
     this->DirectoryTree->GetWidget()->GetNodeUserData(dirnode.c_str());
   
   // Prompt the user for the name of the folder  
@@ -1762,7 +1762,7 @@ void vtkKWDirectoryExplorer::CreateNewFolderCallback()
     ks_("Directory Explorer|Dialog|Enter a name for this new folder"));
   
   int ok = dlg->Invoke();
-  vtksys_stl::string foldername = dlg->GetEntry()->GetWidget()->GetValue();
+  std::string foldername = dlg->GetEntry()->GetWidget()->GetValue();
   dlg->Delete();
   if (ok)
     {
@@ -1797,7 +1797,7 @@ void vtkKWDirectoryExplorer::CreateNewFolderCallback()
     return;
     }
 
-  vtksys_stl::string filename, fullname;
+  std::string filename, fullname;
 
   // Check if the folder is already created
 
@@ -1874,7 +1874,7 @@ void vtkKWDirectoryExplorer::BackToPreviousDirectoryCallback()
     if (strcmp((*this->Internals->MostRecentDirCurrent).c_str(), 
       this->Internals->MostRecentDirList.back().c_str())!=0)
       {
-      vtksys_stl::string currentnode = 
+      std::string currentnode = 
         *(++this->Internals->MostRecentDirCurrent);
       this->OpenDirectoryNodeCallback(currentnode.c_str(), 0);
       }
@@ -1934,7 +1934,7 @@ void vtkKWDirectoryExplorer::ForwardToNextDirectoryCallback()
       this->Internals->MostRecentDirCurrent != 
       this->Internals->MostRecentDirList.begin())
     {
-    vtksys_stl::string currentnode = 
+    std::string currentnode = 
       *(--this->Internals->MostRecentDirCurrent);
     this->OpenDirectoryNodeCallback(currentnode.c_str(), 0);
     }
@@ -1962,12 +1962,12 @@ void vtkKWDirectoryExplorer::GoUpDirectoryCallback()
 //----------------------------------------------------------------------------
 void vtkKWDirectoryExplorer::BackToRoot()
 {
-  vtksys_stl::vector<vtksys_stl::string> children;
+  std::vector<std::string> children;
   vtksys::SystemTools::Split(this->DirectoryTree->GetWidget()->
     GetNodeChildren(this->Internals->RootNode), children, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = 
+  std::vector<std::string>::iterator it = 
     children.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = 
+  std::vector<std::string>::iterator end = 
     children.end();
   for (; it != end; it++)
     {
@@ -1988,7 +1988,7 @@ void vtkKWDirectoryExplorer::SingleClickOnNodeCallback(
     // multipleselection. So it is OK, and necessary, to clear 
     // the selection here.
     this->DirectoryTree->GetWidget()->ClearSelection();
-    vtksys_stl::string node_str = node;
+    std::string node_str = node;
     this->SelectDirectoryNode(node_str.c_str());
     }
 }
@@ -1998,7 +1998,7 @@ void vtkKWDirectoryExplorer::SelectDirectoryNode(
   const char* node, 
   int opennode)
 { 
-  vtksys_stl::string node_str = node;
+  std::string node_str = node;
     
   if (!this->Internals->IsNavigatingNode)
     {
@@ -2020,7 +2020,7 @@ void vtkKWDirectoryExplorer::SelectDirectoryNode(
 void vtkKWDirectoryExplorer::DirectoryClosedCallback(
   const char* node)
 {
-  vtksys_stl::string selectednode = this->GetNthSelectedNode(0);
+  std::string selectednode = this->GetNthSelectedNode(0);
 
   // If the closed node is the selected node, or the selected node
   // is not one of the parent nodes of the selected node, just return
@@ -2033,7 +2033,7 @@ void vtkKWDirectoryExplorer::DirectoryClosedCallback(
   // If the selected node is a child of the closed node, 
   // the closed node should be selected, but not opened.
 
-  vtksys_stl::string parentnode = this->DirectoryTree->GetWidget()->
+  std::string parentnode = this->DirectoryTree->GetWidget()->
     GetNodeParent(selectednode.c_str());
 
   while (strcmp(parentnode.c_str(), this->Internals->RootNode) != 0)
@@ -2101,11 +2101,11 @@ int vtkKWDirectoryExplorer::RenameCallback()
 {
   if (this->DirectoryTree->GetWidget()->HasSelection())
     {
-    vtksys_stl::string node = this->GetNthSelectedNode(0);
+    std::string node = this->GetNthSelectedNode(0);
 
     // Prompt the user for confirmation
 
-    vtksys_stl::string parentdir = 
+    std::string parentdir = 
       this->DirectoryTree->GetWidget()->GetNodeUserData(
         this->DirectoryTree->GetWidget()->GetNodeParent(node.c_str()));
     
@@ -2121,14 +2121,14 @@ int vtkKWDirectoryExplorer::RenameCallback()
     dlg->Create();
     dlg->GetEntry()->GetLabel()->SetText(
       ks_("Directory Explorer|Dialog|Directory name:"));
-    vtksys_stl::string txtname = this->DirectoryTree->GetWidget()->
+    std::string txtname = this->DirectoryTree->GetWidget()->
       GetNodeText(node.c_str());
     dlg->GetEntry()->GetWidget()->SetValue(txtname.c_str());
     dlg->SetText(
       ks_("Directory Explorer|Dialog|Enter a new directory name:"));
     
     int ok = dlg->Invoke();
-    vtksys_stl::string newname = dlg->GetEntry()->GetWidget()->GetValue();
+    std::string newname = dlg->GetEntry()->GetWidget()->GetValue();
     dlg->Delete();
     if (ok)
       {
@@ -2163,7 +2163,7 @@ int vtkKWDirectoryExplorer::RenameCallback()
       return 0;
       }
 
-    vtksys_stl::string filename, fullname;
+    std::string filename, fullname;
 
     for (int i = 0; i < dir->GetNumberOfFiles(); i++)
       {
@@ -2190,7 +2190,7 @@ int vtkKWDirectoryExplorer::RenameCallback()
       parentdir += KWFileBrowser_PATH_SEPARATOR;
       }
     fullname = parentdir + newname;
-    vtksys_stl::string oldfile = this->GetSelectedDirectory();
+    std::string oldfile = this->GetSelectedDirectory();
     
     if (rename(oldfile.c_str(), fullname.c_str()) == 0)
       {
@@ -2234,8 +2234,8 @@ int vtkKWDirectoryExplorer::RemoveSelectedNodeCallback()
 {
   if (this->DirectoryTree->GetWidget()->HasSelection())
     {
-    vtksys_stl::string node = this->GetNthSelectedNode(0);
-    vtksys_stl::string parentnode = 
+    std::string node = this->GetNthSelectedNode(0);
+    std::string parentnode = 
       this->DirectoryTree->GetWidget()->GetNodeParent(node.c_str());
     if (strcmp(parentnode.c_str(), this->Internals->RootNode) == 0)
       {
@@ -2258,7 +2258,7 @@ int vtkKWDirectoryExplorer::RemoveSelectedNodeCallback()
           vtkKWMessageDialog::WarningIcon | 
           vtkKWMessageDialog::InvokeAtPointer))
       {
-      vtksys_stl::string dir = 
+      std::string dir = 
         this->DirectoryTree->GetWidget()->GetNodeUserData(node.c_str());
       if (vtksys::SystemTools::RemoveADirectory(dir.c_str()))
         {
@@ -2292,16 +2292,16 @@ int vtkKWDirectoryExplorer::DeleteDirectory(const char* dirname)
     return 0;
     }
 
-  vtksys_stl::string parentnode = this->GetNthSelectedNode(0);
+  std::string parentnode = this->GetNthSelectedNode(0);
 
-  vtksys_stl::vector<vtksys_stl::string> children;
+  std::vector<std::string> children;
   vtksys::SystemTools::Split(this->DirectoryTree->GetWidget()->
     GetNodeChildren(parentnode.c_str()), children, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = children.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = children.end();
+  std::vector<std::string>::iterator it = children.begin();
+  std::vector<std::string>::iterator end = children.end();
 
-  vtksys_stl::string nodedir, nodepath;
-  vtksys_stl::string dirpath = dirname;
+  std::string nodedir, nodepath;
+  std::string dirpath = dirname;
 
   // Just to compare
 
@@ -2360,16 +2360,16 @@ int vtkKWDirectoryExplorer::RenameDirectory(
     return 0;
     }
 
-  vtksys_stl::string parentnode = 
+  std::string parentnode = 
     this->DirectoryTree->GetWidget()->GetSelection();  
-  vtksys_stl::vector<vtksys_stl::string> children;
+  std::vector<std::string> children;
   vtksys::SystemTools::Split(this->DirectoryTree->GetWidget()->
     GetNodeChildren(parentnode.c_str()), children, ' ');
-  vtksys_stl::vector<vtksys_stl::string>::iterator it = children.begin();
-  vtksys_stl::vector<vtksys_stl::string>::iterator end = children.end();
+  std::vector<std::string>::iterator it = children.begin();
+  std::vector<std::string>::iterator end = children.end();
 
-  vtksys_stl::string nodedir, nodepath;
-  vtksys_stl::string dirpath = oldname;
+  std::string nodedir, nodepath;
+  std::string dirpath = oldname;
 
   // Just to compare
 
@@ -2408,7 +2408,7 @@ void vtkKWDirectoryExplorer::SetDirectorySelectedCommand(
 void vtkKWDirectoryExplorer::InvokeDirectorySelectedCommand(
   const char* directory)
 {
-  vtksys_stl::string dirpath = directory;
+  std::string dirpath = directory;
   if (this->DirectorySelectedCommand && *this->DirectorySelectedCommand)
     {
     this->Script("%s \"%s\"", this->DirectorySelectedCommand, 
@@ -2453,7 +2453,7 @@ void vtkKWDirectoryExplorer::SetDirectoryDeletedCommand(
 void vtkKWDirectoryExplorer::InvokeDirectoryDeletedCommand(
   const char* path)
 {
-  vtksys_stl::string fullpath;
+  std::string fullpath;
   if (path && *path)
     {
     fullpath = path;
@@ -2595,7 +2595,7 @@ void vtkKWDirectoryExplorer::PopulateContextMenu(
   const char* node)
 {
   char command[256];
-  vtksys_stl::string dirNode = node;
+  std::string dirNode = node;
 
   // create new folder
   sprintf(command, "CreateNewFolderCallback");

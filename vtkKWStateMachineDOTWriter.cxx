@@ -22,8 +22,8 @@
 #include "vtkKWStateMachineTransition.h"
 #include "vtkKWStateMachineCluster.h"
 
-#include <vtksys/ios/sstream>
-#include <vtksys/stl/string>
+#include <sstream>
+#include <string>
 #include <vtksys/SystemTools.hxx>
 
 //----------------------------------------------------------------------------
@@ -153,7 +153,7 @@ int vtkKWStateMachineDOTWriter::WriteToStream(ostream& os)
 
   os << endl;
 
-  vtksys_ios::ostringstream all_states;
+  std::ostringstream all_states;
 
   int nb_states = this->Input->GetNumberOfStates();
   for (i = 0; i < nb_states; i++)
